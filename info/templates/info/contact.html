@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Контакты{% endblock title %}
+{% block metaTitle %}Контакты{% endblock metaTitle %}
+{% block cssStyle %}{% static "css/contact.css" %}{% endblock cssStyle %}
+
+{% block content %}
+    <div class="overlay js-overlay"></div>
+
+<main class="main">
+
+      <section class="contacts">
+        <div class="wrap">
+          <div class="contacts__box">
+            <h1 class="contacts__title">Контакты</h1>
+            <div class="contacts__content">
+              <div class="contacts__item">
+                <picture><img src="{% static "images/mail.svg" %}" alt="img" /></picture>
+                <div class="contacts__item-info">
+                  <a
+                    class="contacts__item-title"
+                    href="/cdn-cgi/l/email-protection#95f8f4fcf9d5f6fafcfbf6fdf4fbf2f0e7bbfcfb"
+                  >
+                    <span
+                      class="__cf_email__"
+                      data-cfemail="a5d6d0d5d5cad7d1e5c6cacccbc6cdc4cbc2c0d78bcccb"
+                    >
+                      support@c-changer.in
+                    </span>
+                  </a>
+                  <div class="contacts__item-text">
+                    Мы всегда рады ответить на интересующие вас вопросы и
+                    выслушать предложения по улучшению нашего сервиса
+                    coinchanger.in
+                    <br />
+                    Если у Вас есть предложение по сотрудничеству, подключению
+                    мониторинга, добавлению валюты — пишите, мы всегда открыты к
+                    сотрудничеству!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img class="bg-img" src="{% static "images/unicorn.svg" %}" alt="bg" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+{% endblock content %}

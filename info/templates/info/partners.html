@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Партнерская программа{% endblock title %}
+{% block metaTitle %}Партнерская программа{% endblock metaTitle %}
+{% block cssStyle %}{% static "css/partners.css" %}{% endblock cssStyle %}
+
+{% block content %}
+    <div class="overlay js-overlay"></div>
+   
+    <main class="main">
+      <section class="rules">
+        <div class="wrap">
+          <div class="rules__content">
+            <div class="rules__box">
+              <h1 class="rules__title">Партнерская программа</h1>
+              <div class="article">
+                <div class="partner__text">
+                  <p>
+                    Сервис coinchanger.in приглашает к взаимовыгодному
+                    сотрудничеству владельцев собственных сайтов, блогов и
+                    каналов. Предлагайте людям использовать наш сервис обмена
+                    криптовалюты и получайте до 30% от чистой прибыли (комиссии)
+                    с каждой сделки.
+                  </p>
+                  <p>
+                    Для участия в партнерской программе вам необходимо
+                    <a href="/signup">зарегистрироваться</a>
+                    на сайте в качестве обычного пользователя и получить свою
+                    реферальную ссылку в личном кабинете. Вашу прибыль вы
+                    получите мгновенно, сразу же после того, как пользователь,
+                    пришедший по вашей ссылке, осуществит обмен валюты.
+                  </p>
+                  <div class="partner__attention">
+                    Предупреждаем о запрещенных способах распространения ссылки
+                    - СПАМ, в случае обнаружения которого аккаунт может быть
+                    удален без возможности восстановления и вывода заработанных
+                    на реферальной программе средств.
+                  </div>
+                  <a href="/signup" class="rules__action">Стать партнером</a>
+                </div>
+                <div class="attention">
+                  <p></p>
+                  <div class="attention__title">Обращаем внимание</div>
+                  Получение прибыли партнерами осуществляется только за
+                  операции, произведенные через наш сервис, а не за переходы на
+                  сайт сервиса. Применение рассылки электронных писем
+                  (известных, как SPAM) с целью рекламы нашего сервиса
+                  категорически запрещается. В случае поступления жалоб от
+                  владельцев электронной почты о подобных рассылках, аккаунты
+                  партнеров будут удаляться с полной потерей заработанных
+                  средств.
+                  <p></p>
+                </div>
+              </div>
+              <div class="rules__list">
+                <h3 class="rules__list-title">Наши партнёры</h3>
+                <div class="rules__wrapper">
+                  <div class="rules__wrapper-title">Мониторинги:</div>
+                  <div class="rules__wrapper-list">
+                    <a
+                      href="https://www.bestchange.ru/coinchanger-exchanger.html"
+                      class="rules__wrapper-item"
+                      target="_blank"
+                    >
+                      <img src="{% static "images/bestchange_1.svg" %}" alt="BestChange" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar no-mob">
+              <div class="sidebar-list">
+                <img class="icon" style="width: 62px;height: 42px;margin-left: -12px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#star" alt="">
+                <div class="sidebar-text">
+                  Став нашим партнером, вы сможете получать
+                  <strong>30% от чистой прибыли</strong>
+                  с каждой сделки
+                </div>
+              </div>
+            </div>
+            <img class="bg-img" src="{% static "images/unicorn.svg" %}" alt="bg" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+{% endblock content %}
+    

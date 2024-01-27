@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Отзывы{% endblock title %}
+{% block metaTitle %}Отзывы{% endblock metaTitle %}
+{% block cssStyle %}{% static "css/reviews.css" %}{% endblock cssStyle %}
+
+{% block content %}
+    <div class="overlay js-overlay"></div>
+
+    
+    <main class="main">
+      <div class="reviews">
+        <div class="wrap">
+          <div class="reviews__box">
+            <div class="reviews__content">
+              <h1 class="reviews__title">Отзывы</h1>
+              <div class="reviews__text">
+                Нам доверяют более
+                <span>тысячи клиентов</span>
+                . На этих сервисах вы можете почитать реальные отзывы о нас,
+                каждый из которых помогает нам работать лучше.
+              </div>
+              <div class="reviews__list">
+                <div class="reviews__item">
+                  <a
+                    href="https://www.bestchange.ru/coinchanger-exchanger.html"
+                    target="__blank"
+                  >
+                    <img src="{% static "images/bestchange.svg" %}" alt="BestChange" />
+                  </a>
+                  <div class="reviews__item-footer">
+                    <p>Cервис BestChange</p>
+                    <a
+                      href="https://www.bestchange.ru/coinchanger-exchanger.html"
+                      target="__blank"
+                    >
+                      Читать все отзывы
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reviews__info">
+                <img class="icon" style="width: 62px;height: 42px;margin-left: -12px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#star" alt="">
+
+              Будем рады если вы тоже оставите отзыв о нас на одном из этих
+              сервисов
+            </div>
+          </div>
+          <img class="bg-img" src="{% static "images/unicorn.svg" %}" alt="" />
+        </div>
+      </div>
+    </main>
+
+
+    <div
+      itemscope=""
+      itemtype="http://schema.org/BreadcrumbList"
+      class="breads"
+    >
+      <div class="wrap">
+        <div class="breads__list">
+          <div
+            itemprop="itemListElement"
+            itemscope=""
+            itemtype="http://schema.org/ListItem"
+            class="breads__box"
+          >
+            <a itemprop="item" href="/" class="breads__link">
+              <span itemprop="name">Главная</span>
+            </a>
+            <meta itemprop="position" content="1" />
+          </div>
+          <div
+            itemprop="itemListElement"
+            itemscope=""
+            itemtype="http://schema.org/ListItem"
+            class="breads__box"
+          >
+            <span itemprop="name">Отзывы</span>
+            <meta itemprop="position" content="2" />
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+

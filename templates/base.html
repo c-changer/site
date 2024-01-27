@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static "images/apple-touch-icon.png" %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static "images/favicon-32x32.png" %}"
+    />
+    <link rel="icon" type="image/x-icon" href="{% static "images/favicon.ico" %}" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static "images/favicon-16x16.png" %}"
+    />
+    <title>{% block title %}c-changer{% endblock title %}</title>
+    <meta name="description" content="" />
+    <meta property="og:title" content="{% block metaTitle %}c-changer{% endblock metaTitle %}" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="c-changer.in" />
+    {% if request.get_full_path %}
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% else %}
+        <meta property="og:url" content="https://c-changer.in/">
+    {% endif %}    <link
+      rel="stylesheet"
+      href="{% block cssStyle %}{% endblock cssStyle %}"
+    />
+  </head>
+<body class="preload">
+     <header class="header">
+      <div class="wrap">
+        <div class="header__box">
+          <a href="/" class="header__logo">
+            <img src="{% static "images/logo.svg" %}" alt="logo" />
+          </a>
+          <a
+            href="#"
+            class="header__support js-support"
+            onclick="return false;"
+          >
+            Поддержка
+          </a>
+          <div class="header__nav">
+            {% if request.path != "/" %}
+                <a href="/" class="header__nav-link">Все направления</a>
+            {% endif %}
+            <a href="{% url "reviews" %}" class="header__nav-link">Отзывы</a>
+            <a
+              href="https://t.me/CoinChangerSupport"
+              class="header__nav-link support js-support"
+              target="_blank"
+              >
+              <img style="height: 20px;width:30px;" src="https://coinchanger.in/img/sprite.svg#support" alt="">
+              Связаться с поддержкой
+            </a>
+            {% if request.user.is_authenticated %}
+            <a href="{% url "logout" %}" class="header__nav-link">Выйти</a>
+            {% else %}
+            <a href="{% url "sign-in" %}" class="header__nav-link">Войти</a>
+            {% endif %}
+          </div>
+          <button class="header__burger js-burger-btn"></button>
+        </div>
+      </div>
+    </header>
+    {% block content %}{% endblock content %}
+
+
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = 'b28284baf32a9b13850584cb889002dd17a38b8d';
+
+        (function(d) {
+            var s, c, o = smartsupp = function() { o._.push(arguments) };
+            o._ = [];
+            s = d.getElementsByTagName('script')[0];
+            c = d.createElement('script');
+            c.type = 'text/javascript';
+            c.charset = 'utf-8';
+            c.async = true;
+            c.src = 'https://www.smartsuppchat.com/loader.js?';
+            s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+    <noscript>
+        Powered by
+        <a href="https://www.smartsupp.com" target="_blank">
+            Smartsupp
+        </a>
+    </noscript>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer__box">
+          <div class="footer__nav">
+            <a href="/" class="footer__nav-link">Все направления</a>
+            <a href="{% url "partners" %}" class="footer__nav-link">Партнерам</a>
+            <a href="{% url "reviews" %}" class="footer__nav-link">Отзывы</a>
+            <a href="{% url "contact" %}" class="footer__nav-link">Контакты</a>
+            <a href="{% url "agreement" %}" class="footer__nav-link">Правила сервиса</a>
+            <a href="{% url "aml-agreement" %}" class="footer__nav-link">AML политика</a>
+          </div>
+          <div class="footer__nav-item lang js-wrap_dropdown">
+            <div class="footer__lang js-open_dropdown">
+              <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
+              <span>Русский</span>
+              <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
+            </div>
+            <div class="footer__dropdown js__dropdown">
+              <button
+                class="header__dropdown-item js-choose-lang"
+                data-code="en"
+              >
+                <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk" alt="">
+                English
+              </button>
+            </div>
+            <div class="footer__dropdown js__dropdown" data-lang="en" style="display: none;">
+  <button class="header__dropdown-item js-choose-lang" data-code="ru">
+    <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
+    Русский
+  </button>
+</div>
+          </div>
+        </div>
+        <div class="footer__inform">
+          <div class="footer__partner">
+            <a
+              target="_blank"
+              href="https://www.bestchange.ru/coinchanger-exchanger.html"
+            >
+              <img
+                class="footer__partner-img"
+                src="{% static "images/bestchange.svg" %}"
+                alt="BestChange"
+              />
+            </a>
+          </div>
+          <div class="footer__copyrite">
+            © 2019–2024 c-changer.in - сервис обмена криптовалют
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Language switch script -->
+<script>
+  $(document).ready(function () {
+    // Function to toggle between Russian and English
+    function toggleLanguage() {
+      // Toggle visibility of elements based on the selected language
+      $('[data-lang]').each(function () {
+        var currentLang = $(this).data('lang');
+        if (currentLang === selectedLang) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+
+    // Initial language setting (you can set this based on user preference or browser settings)
+    var selectedLang = 'ru';
+
+    // Call the toggleLanguage function on page load
+    toggleLanguage();
+
+    // Click event for language switch buttons
+    $('.js-choose-lang').on('click', function () {
+      // Get the selected language code from the data attribute
+      selectedLang = $(this).data('code');
+
+      // Call the toggleLanguage function to update the content
+      toggleLanguage();
+    });
+  });
+</script>
+</body>
+</html>

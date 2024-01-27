@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Регистрация{% endblock title %}
+{% block metaTitle %}Регистрация{% endblock metaTitle %}
+{% block cssStyle %}{% static "css/sign-up.css" %}{% endblock cssStyle %}
+
+{% block content %}
+    <div class="overlay js-overlay"></div>
+    <main class="main">
+        <section class="pattern">
+            <div class="wrap">
+                <form class="pattern__form" method="post" id="js-registration-vue">
+                    {% csrf_token %}
+                    <div class="pattern__form-wrap">
+                        <div class="pattern__form-header">
+                            <h2 class="pattern__form-title">Регистрация</h2>
+                            <a href="{% url 'sign-in' %}" class="pattern__form-link">Войти</a>
+                        </div>
+                        <div class="field">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="field">
+                            {{ form.password1.label_tag }}
+                            {{ form.password1 }}
+                        </div>
+                        <div class="field">
+                            {{ form.password2.label_tag }}
+                            {{ form.password2 }}
+                        </div>
+                        {% if form.errors.password2 %}
+                                <p style="color: red;">{{ form.errors.password2.0 }}</p>
+                        {% endif %}                        <button class="pattern__form-action" type="submit">Регистрация</button>
+                    </div>
+                </form>
+                <img class="bg-img" src="{% static 'images/unicorn.svg' %}" alt="bg" />
+            </div>
+        </section>
+    </main>
+
+    
+{% endblock content %}

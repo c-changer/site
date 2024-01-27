@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Вход
+{% endblock %}
+{% block metaTitle %}
+  Вход
+{% endblock %}
+{% block cssStyle %}
+  {% static 'css/sign-in.css' %}
+{% endblock %}
+
+{% block content %}
+  <div class="overlay js-overlay"></div>
+
+  <main class="main">
+    <section class="pattern">
+      <div class="wrap">
+        <form class="pattern__form" method="post">
+          {% csrf_token %}
+          <div class="pattern__form-wrap">
+            <div class="pattern__form-header">
+              <h2 class="pattern__form-title">Вход</h2>
+              <a href="{% url 'sign-up' %}" class="pattern__form-link">Регистрация</a>
+            </div>
+            <div class="field">
+              <input class="js-field" type="email" name="email" placeholder="" />
+              <label class="label" for="email">E-mail</label>
+            </div>
+            <div class="field">
+              <input class="js-field" type="password" placeholder="" name="password" />
+              <label class="label" for="password">Пароль</label>
+            </div>
+            <p class="pattern__form-forgot" style="color: red;">
+                {{ error }}
+            </p>
+            <button class="pattern__form-action" type="submit">Войти</button>
+          </div>
+        </form>
+        <img class="bg-img" src="{% static 'images/unicorn.svg' %}" alt="bg" />
+      </div>
+    </section>
+  </main>
+{% endblock %}
