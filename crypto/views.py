@@ -18,7 +18,7 @@ def home(request):
     settings = DepositSettings.objects.get(title="Настройки депозита")
     
     try:
-        default_payment = Crypto.objects.filter(symbol="BTC",is_available=True)
+        default_payment = Crypto.objects.get(symbol="BTC",is_available=True)
     except Exception as e:
         default_payment = payments[0]
     
