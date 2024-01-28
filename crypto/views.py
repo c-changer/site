@@ -23,11 +23,11 @@ def home(request):
     except Exception as e:
         default_payment = payments[0]
         
-        try:
-            obj = Crypto.objects.get(symbol="USDT")
-            default_dep = DepositPayment.objects.filter(crypto=obj, is_available=True).first()
-        except Exception as e:
-            default_dep = deposit[0]
+    try:
+        obj = Crypto.objects.get(symbol="USDT")
+        default_dep = DepositPayment.objects.filter(crypto=obj, is_available=True).first()
+    except Exception as e:
+        default_dep = deposit[0]
         
     try:
         if default_payment == default_dep:
