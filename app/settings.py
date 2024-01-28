@@ -59,8 +59,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/",]
-CSRF_COOKIE_DOMAIN = '127.0.0.1:8000'
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/", "https://c-changer.in/"]
+CSRF_COOKIE_DOMAIN = 'c-changer.in'
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
 
