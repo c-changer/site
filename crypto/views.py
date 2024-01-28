@@ -47,7 +47,7 @@ def home(request):
         min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
         max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
     
-    reserve = settings.max_amount / Decimal(default_dep.crypto.price) * Decimal(5)
+    reserve = settings.max_amount / settings.min_amount * Decimal(25.2716)
     context = {
         "payments": payments,
         "deposit": deposit,
