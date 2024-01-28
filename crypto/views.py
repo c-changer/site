@@ -35,7 +35,7 @@ def home(request):
     except Exception as e:
         pass
         
-    price_ratio = default_payment.price / default_dep.crypto.price
+    price_ratio = default_payment.crypto.price / default_dep.crypto.price
 
     min_amount_payment = round(settings.min_amount / default_payment.price, 5)
     max_amount_payment = round(settings.max_amount / default_payment.price, 5)
