@@ -23,8 +23,8 @@ def home(request):
         default_payment = payments[0]
     
     try:
-        obj = Crypto.objects.filter(symbol="USDT",is_available=True).first()
-        default_deps = DepositPayment.objects.get(crypto=obj)
+        obj = Crypto.objects.get(symbol="USDT",is_available=True)
+        default_deps = DepositPayment.objects.filter(crypto=obj).first()
         default_dep = default_deps[0]
     except Exception as e:
         default_dep = deposit[1]
