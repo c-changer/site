@@ -17,13 +17,22 @@ def home(request):
     deposit = DepositPayment.objects.filter(is_available=True)
     settings = DepositSettings.objects.get(title="Настройки депозита")
     
-    if payments[0].symbol != deposit[0].crypto.symbol:
-        default_dep = deposit[0]
-    else:
+    try:
+        default_payment = Crypto.objects.filter(symbol="BTC",is_available=True)
+    except Exception as e:
+        default_payment = payments[0]
+    
+    try:
+        default_deps = Crypto.objects.filter(symbol="USDT",is_available=True)
+    except Exception as e:
         default_dep = deposit[1]
-    
-    default_payment = payments[0]
-    
+        
+    try:
+        if default_payment == default_dep:
+            default_dep = deposit[1]
+    except Exception as e:
+        pass
+        
     price_ratio = default_payment.price / default_dep.crypto.price
 
     min_amount_payment = round(settings.min_amount / default_payment.price, 5)
@@ -35,7 +44,7 @@ def home(request):
         "deposit": deposit,
         "settings": settings,
         "default_payment": default_payment,
-        "default_dep": default_dep,
+        "default_dep": default_deps[0],
         "price_ratio": round(price_ratio, 2),
         "min_amount_dep": int(settings.min_amount),
         "max_amount_dep": int(settings.max_amount),
