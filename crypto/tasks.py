@@ -6,7 +6,7 @@ from .models import Crypto
 
 from decimal import Decimal, ROUND_DOWN
 
-from settings import CoinMarketCup
+from app.settings import CoinMarketCup
 
 @shared_task
 def binance_price():
