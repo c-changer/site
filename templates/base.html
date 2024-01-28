@@ -83,11 +83,23 @@
 
     <script>
       let btnBurger = document.querySelector(".header__burger");
-      let modalBurger = document.querySelector(".header__nav");
+let modalBurger = document.querySelector(".header__nav");
 
-      btnBurger.addEventListener("click", function(){
-        modalBurger.classList.add("active")
-      })
+// Set initial background-image
+btnBurger.style.backgroundImage = 'url("https://coinchanger.in/img/sprite.svg#burger")';
+
+btnBurger.addEventListener("click", function() {
+  // Toggle the 'active' class on modalBurger
+  modalBurger.classList.toggle("active");
+
+  // Change background-image based on the presence of 'active' class
+  if (modalBurger.classList.contains("active")) {
+    btnBurger.style.backgroundImage = 'url("https://coinchanger.in/img/sprite.svg?v=1666338994#close")';
+  } else {
+    btnBurger.style.backgroundImage = 'url("https://coinchanger.in/img/sprite.svg#burger")';
+  }
+});
+
     </script>
 
     <script type="text/javascript">
