@@ -53,7 +53,7 @@
                     </a><div class="hidden hidden-payment">
                       <div class="hidden__hdr">
                         <h1 class="hidden__hdr-title">Отдаете</h1><button type="button" class="hidden__hdr-close">
-                          <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#close" style="width: 18px;" alt="">
+                          <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#close" style="width: 25px;" alt="">
                         </button>
                       </div>
                       <div class="hidden__search">
@@ -106,7 +106,7 @@
                     </a><div class="hidden hidden-dep">
                       <div class="hidden__hdr">
                         <h1 class="hidden__hdr-title">Получаете</h1><button type="button" class="hidden__hdr-close">
-                          <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#close" style="width: 18px;" alt="">
+                          <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#close" style="width: 25px;" alt="">
                         </button>
                       </div>
                       <div class="hidden__search">
@@ -672,7 +672,22 @@
   });
 </script>
 
+<script>
+  // Get all elements with the class ".hidden__hdr-close"
+let closeButtons = document.querySelectorAll(".hidden__hdr-close");
 
+// Get all elements with the class ".hidden"
+let modals = document.querySelectorAll(".hidden");
+
+// Iterate through each close button
+closeButtons.forEach((closeButton, index) => {
+  // Add a click event listener to the current close button
+  closeButton.addEventListener("click", () => {
+    // Close the corresponding modal by hiding it
+    modals[index].style.display = "none";
+  });
+});
+</script>
 {% endblock %}
 
 
