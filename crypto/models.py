@@ -38,8 +38,8 @@ class DepositPayment(models.Model):
         return f"{self.crypto.symbol}"
     
     class Meta:
-        verbose_name = "Монета для депозитов"
-        verbose_name_plural = "Монеты для депозитов"
+        verbose_name = "Адрес"
+        verbose_name_plural = "Адреса"
 
 
 class DepositSettings(models.Model):
@@ -51,8 +51,8 @@ class DepositSettings(models.Model):
         return f"{self.title}"
     
     class Meta:
-        verbose_name = "Min/Max депозит"
-        verbose_name_plural = "Min/Max депозит"
+        verbose_name = "Лимит"
+        verbose_name_plural = "Лимиты"
 
 
 class Exchange(models.Model):
@@ -81,5 +81,5 @@ class Exchange(models.Model):
         return f"Обмен - {self.id}"
     
     class Meta:
-        verbose_name = "Обмен"
-        verbose_name_plural = "Обмены"
+        verbose_name = "Заявка"
+        verbose_name_plural = "Заявки"
