@@ -37,15 +37,15 @@ def home(request):
         
     price_ratio = default_payment.crypto.price / default_dep.crypto.price
 
-    min_amount_payment = round(settings.min_amount / default_payment.price, 5)
-    max_amount_payment = round(settings.max_amount / default_payment.price, 5)
+    min_amount_payment = round(settings.min_amount / default_payment.crypto.price, 5)
+    max_amount_payment = round(settings.max_amount / default_payment.crypto.price, 5)
     
     if default_dep.crypto.symbol == "USDT":
         min_amount_dep = settings.min_amount
         max_amount_dep = settings.max_amount
     else:
-        min_amount_dep = round(settings.min_amount / default_dep.price, 5)
-        max_amount_dep = round(settings.max_amount / default_dep.price, 5)
+        min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
+        max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
     
     reserve = settings.max_amount / Decimal(default_dep.crypto.price) * Decimal(5)
     context = {
