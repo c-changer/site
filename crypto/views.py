@@ -6,9 +6,9 @@ from decimal import Decimal
 
 import secrets
 
-# from django.http import HttpResponse, HttpResponseRedirect
-# from django.views.decorators.csrf import csrf_exempt
-# from ipware import get_client_ip
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
+from ipware import get_client_ip
 
 # Create your views here.
 def home(request):
