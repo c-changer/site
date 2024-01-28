@@ -24,6 +24,7 @@ def home(request):
     
     try:
         default_deps = Crypto.objects.filter(symbol="USDT",is_available=True)
+        default_dep = default_deps[0]
     except Exception as e:
         default_dep = deposit[1]
         
@@ -44,7 +45,7 @@ def home(request):
         "deposit": deposit,
         "settings": settings,
         "default_payment": default_payment,
-        "default_dep": default_deps[0],
+        "default_dep": default_dep,
         "price_ratio": round(price_ratio, 2),
         "min_amount_dep": int(settings.min_amount),
         "max_amount_dep": int(settings.max_amount),
