@@ -120,21 +120,21 @@ def confirm(request):
         exchange.confirmed = True
         exchange.save()
         
-        try:
-            htmly = get_template('email.html')
-            context = {
-                "exchange": exchange
-            }
-            subject = f'Order {exchange.id}'
-            from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
-            to_email = user.email
-            html_content = htmly.render(context)
-            msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
-            msg.attach_alternative(html_content, "text/html")
+        # try:
+        #     htmly = get_template('email.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
 
-            msg.send()
-        except:
-            None
+        #     msg.send()
+        # except:
+        #     None
         
         return redirect('deal')
     return redirect('deal')
@@ -172,21 +172,21 @@ def error(request):
             'exchange': exchange
         }
         
-        try:
-            htmly = get_template('error.html')
-            context = {
-                "exchange": exchange
-            }
-            subject = f'Order {exchange.id}'
-            from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
-            to_email = user.email
-            html_content = htmly.render(context)
-            msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
-            msg.attach_alternative(html_content, "text/html")
+        # try:
+        #     htmly = get_template('error.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
 
-            msg.send()
-        except:
-            None
+        #     msg.send()
+        # except:
+        #     None
 
         response = render(request, "crypto/error.html", context)
         response.delete_cookie('exchange_id')
@@ -203,21 +203,21 @@ def success(request):
             'exchange': exchange
         }
 
-        try:
-            htmly = get_template('success.html')
-            context = {
-                "exchange": exchange
-            }
-            subject = f'Order {exchange.id}'
-            from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
-            to_email = user.email
-            html_content = htmly.render(context)
-            msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
-            msg.attach_alternative(html_content, "text/html")
+        # try:
+        #     htmly = get_template('success.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
 
-            msg.send()
-        except:
-            None
+        #     msg.send()
+        # except:
+        #     None
             
         response = render(request, "crypto/success.html", context)
         response.delete_cookie('exchange_id')

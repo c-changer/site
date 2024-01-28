@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a^nktl*mn@(5+(&fd0$n*s6m3bx9c541wvi=8nie$g%qbyk(7n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['135.181.123.174', "c-changer.in", "www.c-changer.in", "0.0.0.0"]
+ALLOWED_HOSTS = ['135.181.123.174', "c-changer.in", "www.c-changer.in", "0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -305,12 +305,12 @@ JAZZMIN_SETTINGS = {
     "language_chooser": False,
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'eushared11.twinservers.net'
-EMAIL_USE_TLS = False
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-# EMAIL_TLS_VERSION = ssl.PROTOCOL_TLS
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-# EMAIL_SSL_CERTFILE = '/path/to/certificate.pem'  # Optional, if you have a custom SSL certificate
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'eushared11.twinservers.net'
+# EMAIL_USE_TLS = False
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+# # EMAIL_TLS_VERSION = ssl.PROTOCOL_TLS
+# EMAIL_HOST_USER = ""
+# EMAIL_HOST_PASSWORD = ""
+# # EMAIL_SSL_CERTFILE = '/path/to/certificate.pem'  # Optional, if you have a custom SSL certificate
