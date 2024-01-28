@@ -6,39 +6,7 @@ from decimal import Decimal
 
 import secrets
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views.decorators.csrf import csrf_exempt
-from ipware import get_client_ip
-import requests
-
 # Create your views here.
-
-def get_location_info(ip):
-    # Use a service to get location information based on the IP address
-    # Example: https://ipinfo.io/json
-    ip_info_url = f"https://ipinfo.io/{ip}/json"
-    response = requests.get(ip_info_url)
-    location_info = response.json()
-    return location_info
-
-def send_telegram_message(location_info):
-    # Use the Python-Telegram-Bot library or another library to send a message to your Telegram channel
-    # Example: https://python-telegram-bot.readthedocs.io/en/stable/telegram.bot.html
-    # Make sure you have a Telegram bot and channel set up
-    bot_token = "6790080348:AAEpTaTpYnh3iH-x5bTb55wMgfZoKf97P3U"
-    channel_id = "-1002053348824"
-
-    message = f"New visitor!\nIP Address: {location_info.get('ip')}\nCountry: {location_info.get('country')}\nCity: {location_info.get('city')}"
-
-    telegram_api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    params = {
-        "chat_id": channel_id,
-        "text": message,
-    }
-
-    response = requests.post(telegram_api_url, params=params)
-    return response.text
-
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
     
