@@ -478,7 +478,7 @@
                 maxChange = parseFloat(maxChange);  // Convert maxChange to float if it's not already
                 newPriceRatio = parseFloat(newPriceRatio);  // Convert newPriceRatio to float if it's not already
 
-                let newReserve = (maxChange / newPriceRatio) * 5;
+                let newReserve = maxChange* 5;
                 let formattedReserve = formatNumberWithSpaces(newReserve);
                 reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
 
