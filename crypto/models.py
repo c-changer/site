@@ -22,15 +22,15 @@ class Crypto(models.Model):
         
 
 class DepositPayment(models.Model):
-    crypto = models.ForeignKey(Crypto, on_delete=models.CASCADE, verbose_name="Монета для депозита")
+    crypto = models.ForeignKey(Crypto, on_delete=models.CASCADE, verbose_name="Монета")
     NETWOR_CHOISES = (
                 ('', ''),
                 ('TRC-20', 'TRC-20'),
                 ('BEP-20', 'BEP-20'),
                 ('ERC-20', 'ERC-20'),)
-    network = models.CharField(max_length=100, verbose_name="Адрес для депозита", null=True, blank=True, default="", choices=NETWOR_CHOISES, help_text="Указывать только на монеты где нужно")
-    qrcode = models.ImageField(upload_to="", verbose_name="QR-код для депозита")
-    address = models.CharField(max_length=1000, verbose_name="Адрес для депозита")
+    network = models.CharField(max_length=100, verbose_name="Сеть", null=True, blank=True, default="", choices=NETWOR_CHOISES, help_text="Указывать только на монеты где нужно")
+    qrcode = models.ImageField(upload_to="", verbose_name="QR-код")
+    address = models.CharField(max_length=1000, verbose_name="Адрес")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
 
 

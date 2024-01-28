@@ -56,7 +56,7 @@
           <div class="order__hdr">
             <h1 class="order__hdr-title">Заказ 6272e0e87cf6f829</h1>
             <div class="order__hdr-info">
-              <div class="option">{{ exchange.coinFrom.name }}</div>
+              <div class="option">{{ exchange.coinFrom.crypto.name }} {% if exchange.coinFrom.network != '' %}{{ exchange.coinFrom.network }}{% endif %} {{ exchange.coinFrom.crypto.symbol }}</div>
               <div class="result">{{ exchange.sumFrom }} {{ exchange.coinFrom.symbol }}</div>
               <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width: 14px; transform: rotate(-90deg);" alt="" />
 
@@ -101,7 +101,7 @@
                     <div class="wrapper">
                       <div class="label">переводите</div>
                       <div class="result">
-                        <span class="amount1">{{ exchange.sumFrom }}</span> {{ exchange.coinFrom.symbol }}
+                        <span class="amount1">{{ exchange.sumFrom }}</span> {{ exchange.coinFrom.crypto.symbol }}
                       </div>
                     </div>
                     <button class="copy copy1"><img src="https://coinchanger.in/img/sprite.svg?v=1666338994#copy" style="width: 40px;" alt="" /></button>

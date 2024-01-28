@@ -13,20 +13,21 @@ def home(request):
     if exchange_id:
         return redirect('deal')
     
-    payments = Crypto.objects.filter(is_available=True)
+    payments = DepositPayment.objects.filter(is_available=True)
     deposit = DepositPayment.objects.filter(is_available=True)
     settings = DepositSettings.objects.get(title="Настройки депозита")
     
     try:
-        default_payment = Crypto.objects.get(symbol="BTC",is_available=True)
+        obj = Crypto.objects.get(symbol="BTC",is_available=True)
+        default_payment = DepositPayment.objects.filter(crypto=obj, is_available=True).first()
     except Exception as e:
         default_payment = payments[0]
-    
-    try:
-        objs = Crypto.objects.filter(symbol="USDT")
-        default_dep = objs.depositpayment_set.filter(is_available=True).first()
-    except Exception as e:
-        default_dep = deposit[1]
+        
+        try:
+            obj = Crypto.objects.get(symbol="USDT")
+            default_dep = DepositPayment.objects.filter(crypto=obj, is_available=True).first()
+        except Exception as e:
+            default_dep = deposit[0]
         
     try:
         if default_payment == default_dep:
@@ -39,7 +40,14 @@ def home(request):
     min_amount_payment = round(settings.min_amount / default_payment.price, 5)
     max_amount_payment = round(settings.max_amount / default_payment.price, 5)
     
-    reserve = settings.max_amount * Decimal(2.5)
+    if default_dep.crypto.symbol == "USDT":
+        min_amount_dep = settings.min_amount
+        max_amount_dep = settings.max_amount
+    else:
+        min_amount_dep = round(settings.min_amount / default_dep.price, 5)
+        max_amount_dep = round(settings.max_amount / default_dep.price, 5)
+    
+    reserve = settings.max_amount / Decimal(default_dep.crypto.price) * Decimal(5)
     context = {
         "payments": payments,
         "deposit": deposit,
@@ -47,8 +55,8 @@ def home(request):
         "default_payment": default_payment,
         "default_dep": default_dep,
         "price_ratio": round(price_ratio, 2),
-        "min_amount_dep": int(settings.min_amount),
-        "max_amount_dep": int(settings.max_amount),
+        "min_amount_dep": min_amount_dep,
+        "max_amount_dep": max_amount_dep,
         "min_amount_payment": min_amount_payment,
         "max_amount_payment": max_amount_payment,
         "reserve": round(reserve, 2),
@@ -77,8 +85,7 @@ def exchange(request):
                 return JsonResponse(response_data)
             
             coinFrom = Crypto.objects.get(symbol=symbolFrom)
-            crypto = Crypto.objects.get(symbol=symbolTo)
-            coinTo = DepositPayment.objects.get(crypto=crypto)
+            crypTo = Crypto.objects.get(symbol=symbolTo)
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
             exchange = Exchange.objects.create(

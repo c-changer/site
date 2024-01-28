@@ -31,25 +31,25 @@
               {% csrf_token %}
               <div class="preloader">
                 <img src="{% static "images/preload.svg" %}" alt="loading" />
-              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</span> за <span class="name2">{{ default_payment.name }}</span></h1><div>
+              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</span> за <span class="name2">{{ default_payment.crypto.name }} {% if default_payment.network is not None %}{{ default_payment.network }}{% endif %} {{ default_payment.crypto.symbol }}</span></h1><div>
                 <div class="trade__actual">
                   Курс актуален <span id="timer" class="time"></span> — плавающий курс <a href="{% url "agreement" %}" target="_blank">подробнее</a>
                 </div>
                 <div class="trade__form-item">
                   <div class="trade__form-hdr">
                     <div class="trade__form-title">Отдаете</div>
-                    <div class="trade__form-title" >1 <span class="firstsymbol" name="symbolFrom">{{ default_payment.symbol }}</span> = <span class="priceratio">{{ price_ratio|intcomma }}</span> <span class="secondsymbol" name="symbolTo">{{ default_dep.crypto.symbol }}</span></div>
-                    <input type="hidden" name="symbolFromInput" class="symbolFromInput" value="{{ default_payment.symbol }}">
+                    <div class="trade__form-title" >1 <span class="firstsymbol" name="symbolFrom">{{ default_payment.crypto.symbol }}</span> = <span class="priceratio">{{ price_ratio|intcomma }}</span> <span class="secondsymbol" name="symbolTo">{{ default_dep.crypto.symbol }}</span></div>
+                    <input type="hidden" name="symbolFromInput" class="symbolFromInput" value="{{ default_payment.crypto.symbol }}">
                     <input type="hidden" name="symbolToInput" class="symbolToInput" value="{{ default_dep.crypto.symbol }}">
 
-                    <input type="hidden" name="priceFromInput" class="priceFromInput" value="{{ default_payment.price }}">
+                    <input type="hidden" name="priceFromInput" class="priceFromInput" value="{{ default_payment.crypto.price }}">
                     <input type="hidden" name="priceToInput" class="priceToInput" value="{{ default_dep.crypto.price }}">
                   </div>
                   <div class="field ex-field js-dropdown-container active">
-                    <input name="sumFrom" type="text" id="sumFrom" autocomplete="off" min="{{ min_amount_payment }}" max="{{ max_amount_payment }}" type="number" placeholder="{{ min_amount_payment }} - {{ max_amount_payment }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-payment">{{ default_payment.name }} {{ default_payment.symbol }}</label><a class="open-select open-select-payment">
-                      <img src="{{ default_payment.icon }}" alt="BTC" />
+                    <input name="sumFrom" type="text" id="sumFrom" autocomplete="off" min="{{ min_amount_payment }}" max="{{ max_amount_payment }}" type="number" placeholder="{{ min_amount_payment }} - {{ max_amount_payment }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-payment">{{ default_payment.crypto.name }} {{ default_payment.crypto.symbol }}</label><a class="open-select open-select-payment">
+                      <img src="{{ default_payment.crypto.icon }}" alt="BTC" />
                       <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width: 18px;" alt="">
-                      <span class="payment-price" name="priceFrom" style="display:none">{{ default_payment.price }}</span>
+                      <span class="payment-price" name="priceFrom" style="display:none">{{ default_payment.crypto.price }}</span>
                     </a><div class="hidden hidden-payment">
                       <div class="hidden__hdr">
                         <h1 class="hidden__hdr-title">Отдаете</h1><button type="button" class="hidden__hdr-close">
@@ -67,11 +67,11 @@
                       <div class="hidden__list">
                         {% for payment in payments  %}
                            <div class="hidden__item hidden__item-payment">
-                            <img src="{{ payment.icon }}" alt="{{ payment.name }}" class="hidden__item-img hidden__item-img-payment" />
+                            <img src="{{ payment.crypto.icon }}" alt="{{ payment.crypto.name }}" class="hidden__item-img hidden__item-img-payment" />
                             <div class="hidden__item-wrapper">
-                              <span class="hidden__item-name hidden__item-name-payment">{{ payment.name }}</span>
-                              <span style="display: none;" class="hidden__item-symbol hidden__item-symbol-payment">{{ payment.symbol }}</span>
-                              <span style="display: none;" class="hidden__item-price hidden__item-price-payment">{{ payment.price }}</span>
+                              <span class="hidden__item-name hidden__item-name-payment">{{ payment.crypto.name }}</span>
+                              <span style="display: none;" class="hidden__item-symbol hidden__item-symbol-payment">{{ payment.crypto.symbol }}</span>
+                              <span style="display: none;" class="hidden__item-price hidden__item-price-payment">{{ payment.crypto.price }}</span>
                             </div>
                           </div>
                         {% endfor %}
@@ -312,7 +312,7 @@
 
       // Обновляем отображаемую информацию о цене
        let firstSymbolElement = document.querySelector(".firstsymbol");
-      let secondSymbolElement = document.querySelector(".secondsymbol");
+        let secondSymbolElement = document.querySelector(".secondsymbol");
 
         let firstSymbol = firstSymbolElement.innerText;
         let secondSymbol = secondSymbolElement.innerText;
@@ -359,7 +359,7 @@
         let maxAmountDep = parseFloat(placeholderText.split(' - ')[1].replace(',', '.'));
 
         // Calculate the new reserve value (multiply by 2)
-        let newReserve = maxAmountDep * 2.5;
+        let newReserve = maxAmountDep / newPriceRatio * 5;
 
         // Format the reserve value with spaces for thousands
         let formattedReserve = formatNumberWithSpaces(newReserve);
@@ -434,10 +434,7 @@
 
                 sumFromInput.placeholder = `${minChange.replace('.', ',')} - ${maxChange.replace('.', ',')}`;
 
-                let reserveSpan = document.querySelector('.reserve');
-                let newReserve = maxChange*2.5;
-                let formattedReserve = formatNumberWithSpaces(newReserve);
-                reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
+                
 
                 let price = document.querySelector(".dep-price");
                 price.innerText = itemPrice;
@@ -464,6 +461,11 @@
                 } else {
                   priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
+
+                let reserveSpan = document.querySelector('.reserve');
+                let newReserve = maxChange / newPriceRatio * 5;
+                let formattedReserve = formatNumberWithSpaces(newReserve);
+                reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
 
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');

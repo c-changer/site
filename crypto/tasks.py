@@ -14,7 +14,7 @@ def binance_price():
 
 
     for coin in coinList:
-        crypto_objects = Crypto.objects.filter(symbol=coin)
+        crypto_objects = Crypto.objects.filter(symbol=coin, is_available=True)
 
         if not crypto_objects.exists():
             print(coin)
