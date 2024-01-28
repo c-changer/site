@@ -368,7 +368,10 @@
         let maxAmountDep = parseFloat(placeholderText.split(' - ')[1].replace(',', '.'));
 
         // Calculate the new reserve value (multiply by 2)
-        let newReserve = maxAmountDep / newPriceRatio * 5;
+        let maxChange = parseFloat(maxChange);  // Convert maxChange to float if it's not already
+        let newPriceRatio = parseFloat(newPriceRatio);  // Convert newPriceRatio to float if it's not already
+
+        let newReserve = (maxAmountDep / newPriceRatio) * 5;
 
         // Format the reserve value with spaces for thousands
         let formattedReserve = formatNumberWithSpaces(newReserve);
@@ -472,7 +475,10 @@
                 }
 
                 let reserveSpan = document.querySelector('.reserve');
-                let newReserve = maxChange / newPriceRatio * 5;
+                let maxChange = parseFloat(maxChange);  // Convert maxChange to float if it's not already
+                let newPriceRatio = parseFloat(newPriceRatio);  // Convert newPriceRatio to float if it's not already
+
+                let newReserve = (maxChange / newPriceRatio) * 5;
                 let formattedReserve = formatNumberWithSpaces(newReserve);
                 reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
 
