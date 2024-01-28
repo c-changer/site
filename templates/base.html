@@ -49,7 +49,8 @@
             <img src="{% static "images/logo.svg" %}" alt="logo" />
           </a>
           <a
-            href="#"
+            href="https://t.me/CoinChangerSupport"
+            target="_blank"
             class="header__support js-support"
             onclick="return false;"
           >
@@ -80,6 +81,14 @@
     </header>
     {% block content %}{% endblock content %}
 
+    <script>
+      let btn = document.querySelector(".header__burger");
+      let modal = document.querySelector(".header__nav");
+
+      btn.addEventListener("click", function(){
+        modal.classList.add("active")
+      })
+    </script>
 
     <script type="text/javascript">
         var _smartsupp = _smartsupp || {};
