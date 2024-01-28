@@ -9,6 +9,7 @@ import secrets
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from ipware import get_client_ip
+import requests
 
 # Create your views here.
 
