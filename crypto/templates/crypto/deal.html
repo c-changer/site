@@ -323,6 +323,12 @@
                     window.location.href = '/success/';
                 } else if (data.status === "IP") {
                     window.location.href = '/ip-error/';
+                } else if (data.status === "MAC") {
+                    window.location.href = '/mac-error/';
+                } else if (data.status === "DOES_NOT_EXIST") {
+                    window.location.href = '/does-not-exist-error/';
+                } else if (data.status === "AML") {
+                    window.location.href = '/aml-error/';
                 }
                 
             })
