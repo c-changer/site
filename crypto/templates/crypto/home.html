@@ -194,11 +194,12 @@
     <span class="min" style="display: none;">{{ settings.min_amount }}</span>
     <span class="max" style="display: none;">{{ settings.max_amount }}</span>
 
+    <span>{{ all_settings }}</span>
     <div>
       {% for all_set in all_settings  %}
-        <span class="all-symbol" style="display: none;">{% if all_set.crypto is not None %}{{ all_set.crypto }}{% else %}None{% endif %}</span>
-        <span class="all-min" style="display: none;">{% if all_set.min_amount is not None %}{{ all_set.min_amount }}{% else %}None{% endif %}</span>
-        <span class="all-max" style="display: none;">{% if all_set.max_amount is not None %}{{ all_set.max_amount }}{% else %}None{% endif %}</span>
+        <span class="all-symbol" style="display: none;">{{ all_set.crypto }}</span>
+        <span class="all-min" style="display: none;">{{ all_set.min_amount }}</span>
+        <span class="all-max" style="display: none;">{{ all_set.max_amount }}</span>
       {% endfor %}
     </div>
  <!-- Ваш HTML-код -->
