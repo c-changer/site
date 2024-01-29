@@ -87,7 +87,7 @@ def exchange(request):
                 return JsonResponse(response_data)
             
             coinFrom = Crypto.objects.get(symbol=symbolFrom)
-            crypTo = Crypto.objects.get(symbol=symbolTo)
+            coinTo = Crypto.objects.get(symbol=symbolTo)
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
             exchange = Exchange.objects.create(
