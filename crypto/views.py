@@ -19,10 +19,10 @@ def home(request):
     deposit = DepositPayment.objects.filter(is_available=True)
     settings = DepositSettings.objects.get(title="Настройки депозита")
     banks = Bank.objects.filter(is_available=True)
-        
+    
     for dep in deposit:
         dep.crypto.price -= dep.crypto.price * Decimal(0.025)
-        dep.crypto.save()
+        dep.crypto.save(commit=False)
 
     try:
         obj = Crypto.objects.get(symbol="BTC",is_available=True)
@@ -42,7 +42,7 @@ def home(request):
     except Exception as e:
         pass
         
-    price_ratio = default_payment.crypto.price / default_dep.crypto.price
+    price_ratio = default_payment.crypto.price -  default_payment.crypto.price * Decimal(0.025)
 
     min_amount_payment = round(settings.min_amount / default_payment.crypto.price, 5)
     max_amount_payment = round(settings.max_amount / default_payment.crypto.price, 5)

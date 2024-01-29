@@ -12,7 +12,8 @@ from app.settings import CoinMarketCup
 def binance_price():
     coinList = Crypto.objects.all()
 
-
+    usdt = Crypto.objects.get(symbol="USDT")
+    
     for coin in coinList:
         crypto_objects = Crypto.objects.filter(symbol=coin, is_available=True)
 
@@ -28,7 +29,7 @@ def binance_price():
                 data = response.json()
                 price = data.get('lastPrice', '0')
                 price = Decimal(price)
-                obj.price = price
+                obj.price = price * usdt.price
             else:
                 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
                 params = {
