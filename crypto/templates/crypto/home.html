@@ -39,8 +39,8 @@
                   <div class="trade__form-hdr">
                     <div class="trade__form-title">Отдаете</div>
                     <div class="trade__form-title" >1 <span class="firstsymbol" name="symbolFrom">{{ default_payment.crypto.symbol }}</span> = <span class="priceratio">{{ price_ratio|intcomma }}</span> <span class="secondsymbol" name="symbolTo">{{ default_dep.crypto.symbol }}</span></div>
-                    <input type="hidden" name="symbolFromInput" class="symbolFromInput" value="{{ default_payment.crypto.symbol }}">
-                    <input type="hidden" name="symbolToInput" class="symbolToInput" value="{{ default_dep.crypto.symbol }}">
+                    <input type="hidden" name="symbolFromInput" class="symbolFromInput" value="{% if default_payment.network is not None %}{{ default_payment.crypto.symbol }} {{ default_payment.network }}{% else %}{{ default_payment.crypto.name }}{% endif %}">
+                    <input type="hidden" name="symbolToInput" class="symbolToInput" value="{{ default_dep.crypto.symbol }} {% if default_dep.network is not None %}{{ default_dep.network }}{% else %}{{ default_dep.crypto.name }}{% endif %}">
 
                     <input type="hidden" name="priceFromInput" class="priceFromInput" value="{{ default_payment.crypto.price }}">
                     <input type="hidden" name="priceToInput" class="priceToInput" value="{{ default_dep.crypto.price }}">
@@ -244,11 +244,7 @@
 
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-payment');
-                if (itemNetwork=='None'){
-                  labelElement.innerText = itemName;               
-                } else {
-                  labelElement.innerText = itemName;
-                }
+                labelElement.innerText = itemName;
 
                 let sumFromInput = document.getElementById('sumFrom');
                 let minChange = min.toString();  // Ensure minChange is a string
@@ -277,7 +273,12 @@
                 symbol.innerText = itemSymbol;
                 
                 let symbolFromInput = document.querySelector(".symbolFromInput");
-                symbolFromInput.value = itemSymbol;
+                if (itemNetwork=='None'){
+                  symbolFromInput.value = itemName;   
+                } else {
+                  symbolFromInput.value = itemSymbol + ' ' + itemNetwork;   
+                }
+                
 
                 let zero = newPriceRatio.toString().split('.')[1];
                 if (zero && zero.charAt(0) === '0') {
@@ -352,10 +353,10 @@
         secondSymbolElement.innerText = thirdSymbol;
 
         let symbolFromInput = document.querySelector(".symbolFromInput");
-        symbolFromInput.value = firstSymbolElement.innerText;
+        symbolFromInput.value = name2Payment.innerText;   
 
         let symbolToInput = document.querySelector(".symbolToInput");
-        symbolToInput.value = secondSymbolElement.innerText;
+        symbolToInput.value = name1Dep.innerText;
 
         // Get the element by its class name
         var priceratioElement = document.querySelector('.priceratio');
@@ -461,7 +462,7 @@
                 symbol.innerText = itemSymbol;
                 
                 let symbolToInput = document.querySelector(".symbolToInput");
-                symbolToInput.value = itemSymbol;
+                symbolToInput.value = itemName;   
 
                 console.log(symbol);
 
@@ -527,22 +528,14 @@
 
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-dep');
-                if (itemNetwork=='None'){
-                  labelElement.innerText = itemName;               
-                } else {
-                  labelElement.innerText = itemName;
-                }
+                labelElement.innerText = itemName;
                 
 
                 let openSelectImg = document.querySelector('.open-select-dep img');
                 openSelectImg.setAttribute('src', itemIcon);
 
                 let name2 = document.querySelector('.name1');
-                if (itemNetwork=='None'){
-                  name2.innerText = itemName;
-                } else {
-                  name2.innerText = itemName;
-                }
+                name2.innerText = itemName;
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-dep').innerText.replace(',', '.'));
                 
@@ -577,7 +570,11 @@
                 symbol.innerText = itemSymbol;
                 
                 let symbolToInput = document.querySelector(".symbolToInput");
-                symbolToInput.value = itemSymbol;
+                if (itemNetwork=='None'){
+                  symbolToInput.value = itemName;   
+                } else {
+                  symbolToInput.value = itemSymbol + ' ' + itemNetwork;   
+                }
 
                 console.log(symbol);
 

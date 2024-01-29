@@ -79,8 +79,8 @@ class DepositSettings(models.Model):
 
 class Exchange(models.Model):
     id = models.CharField(max_length=100, unique=True, primary_key=True, verbose_name="ID")
-    coinFrom = models.ForeignKey(Crypto, on_delete=models.CASCADE, verbose_name="")
-    coinTo = models.ForeignKey(DepositPayment, on_delete=models.CASCADE, verbose_name="")
+    coinFrom = models.CharField(max_length=100, null=True, verbose_name="")
+    coinTo = models.CharField(max_length=100, null=True, verbose_name="")
     sumFrom = models.CharField(max_length=100, null=True, verbose_name="Из")
     sumTo = models.CharField(max_length=100, null=True, verbose_name="В")
     email = models.EmailField(verbose_name="Почта")

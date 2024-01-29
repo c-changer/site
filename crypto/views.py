@@ -69,8 +69,8 @@ def home(request):
 def exchange(request):
     try:
         if request.method == 'POST':
-            symbolFrom = request.POST.get('symbolFromInput')
-            symbolTo = request.POST.get('symbolToInput')
+            coinFrom = request.POST.get('symbolFromInput')
+            coinTo = request.POST.get('symbolToInput')
             sumFrom = request.POST.get('sumFrom')
             sumTo = request.POST.get('sumTo')
             priceFrom = request.POST.get('priceFromInput').replace(',', '.')
@@ -86,8 +86,6 @@ def exchange(request):
                 response_data = {'success': False, 'input': ['sumFrom', 'sumTo']}
                 return JsonResponse(response_data)
             
-            coinFrom = Crypto.objects.get(symbol=symbolFrom)
-            coinTo = Crypto.objects.get(symbol=symbolTo)
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
             exchange = Exchange.objects.create(
