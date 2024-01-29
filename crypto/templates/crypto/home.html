@@ -488,7 +488,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 </script>
 
-<script>
+{% comment %} <script>
     let btn = document.querySelector('.obratnyi');
 
     btn.addEventListener('click', function () {
@@ -615,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function formatNumberWithSpaces(number) {
         return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
-</script>
+</script> {% endcomment %}
 
 
 <script>
