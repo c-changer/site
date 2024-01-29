@@ -223,35 +223,36 @@ document.addEventListener("DOMContentLoaded", function() {
 </script> {% endcomment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Получаем элемент формы priceratio
-    var priceratioElement = document.querySelector('.priceratio');
+  // Получаем элемент формы priceratio
+  var priceratioElement = document.querySelector('.priceratio');
 
-    // Проверяем, существует ли элемент
-    if (priceratioElement) {
-      // Получаем текущее значение priceratio
-      var currentPriceratio = priceratioElement.textContent.trim();
+  // Проверяем, существует ли элемент
+  if (priceratioElement) {
+    // Получаем текущее значение priceratio
+    var currentPriceratio = priceratioElement.textContent.trim();
 
-      // Заменяем запятые на пробелы в текущем значении
-      var newPriceratio = currentPriceratio.replace(/,/g, ' ');
-      newPriceratio = newPriceratio.replace(/./g, ',');
-      // Устанавливаем новое значение в форму priceratio
-      priceratioElement.textContent = newPriceratio;
-    }
+    // Заменяем запятые на пробелы, а точки на запятые в текущем значении
+    var newPriceratio = currentPriceratio.replace(/,/g, ' ').replace(/\./g, ',');
+    
+    // Устанавливаем новое значение в форму priceratio
+    priceratioElement.textContent = newPriceratio;
+  }
 
-    var reserveElement = document.querySelector('.reserve');
+  var reserveElement = document.querySelector('.reserve');
 
-    // Проверяем, существует ли элемент
-    if (reserveElement) {
-      // Получаем текущее значение priceratio
-      var currentReserve = reserveElement.textContent.trim();
+  // Проверяем, существует ли элемент
+  if (reserveElement) {
+    // Получаем текущее значение priceratio
+    var currentReserve = reserveElement.textContent.trim();
 
-      // Заменяем запятые на пробелы в текущем значении
-      var newReserve = currentReserve.replace(/,/g, ' ');
-      newReserve = newReserve.replace(/./g, ',');
-      // Устанавливаем новое значение в форму priceratio
-      reserveElement.textContent = newReserve;
-    }
-  });
+    // Заменяем запятые на пробелы, а точки на запятые в текущем значении
+    var newReserve = currentReserve.replace(/,/g, ' ').replace(/\./g, ',');
+    
+    // Устанавливаем новое значение в форму priceratio
+    reserveElement.textContent = newReserve;
+  }
+});
+
 </script>
 
  <script>
