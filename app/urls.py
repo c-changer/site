@@ -35,3 +35,5 @@ urlpatterns = i18n_patterns(
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )
+
+urlpatterns += [path('i18n/', include('django.conf.urls.i18n')),]
