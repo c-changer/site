@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
-from .models import Crypto, DepositPayment, DepositSettings, Exchange
+from .models import Crypto, DepositPayment, DepositSettings, Exchange, Bank
 from decimal import Decimal
 
 import secrets
@@ -16,6 +16,7 @@ def home(request):
     payments = DepositPayment.objects.filter(is_available=True)
     deposit = DepositPayment.objects.filter(is_available=True)
     settings = DepositSettings.objects.get(title="Настройки депозита")
+    banks = Bank.objects.filter(is_available=True)
     
     try:
         obj = Crypto.objects.get(symbol="BTC",is_available=True)
@@ -51,6 +52,7 @@ def home(request):
     context = {
         "payments": payments,
         "deposit": deposit,
+        "banks": banks,
         "settings": settings,
         "default_payment": default_payment,
         "default_dep": default_dep,

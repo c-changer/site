@@ -129,6 +129,16 @@
                           </div>
                         </div>
                         {% endfor %}
+                        {% for bank in banks %}
+                           <div class="hidden__item hidden__item-bank">
+                            <img src="{{ bank.icon }}" alt="{{ bank.name }}" class="hidden__item-img hidden__item-img-bank" /><div class="hidden__item-wrapper">
+                            <span class="hidden__item-name hidden__item-name-bank">{{ bank.name }} ({{ bank.symbol }})</span>
+                            <span style="display: none;" class="hidden__item-symbol hidden__item-symbol-bank">{{ bank.symbol }}</span>
+                            <span style="display: none;" class="hidden__item-price hidden__item-price-bank">{{ bank.price }}</span>
+                            <span style="display: none;" class="hidden__item-price hidden__item-reserve-bank">{{ bank.reserve }}</span>
+                          </div>
+                        </div>
+                        {% endfor %}
                        
                         <!--  -->
                         <!--  -->
@@ -383,6 +393,89 @@
         return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+        let hiddenItems = document.querySelectorAll('.hidden__item-bank');
+
+        // Добавить обработчик события на каждый элемент в списке
+        hiddenItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                // Получить данные о выбранном элементе
+                let itemName = item.querySelector('.hidden__item-name-bank').innerText;
+                let itemSymbol = item.querySelector('.hidden__item-symbol-bank').innerText;
+                let itemIcon = item.querySelector('.hidden__item-img-bank').getAttribute('src');
+
+                // Подставить данные в нужные места
+                let labelElement = document.querySelector('.label-dep');
+                labelElement.innerText = itemName + ' ' + itemSymbol;               
+                
+
+                let openSelectImg = document.querySelector('.open-select-dep img');
+                openSelectImg.setAttribute('src', itemIcon);
+
+                let name2 = document.querySelector('.name1');
+                name2.innerText = itemName + ' ' + itemSymbol;
+                
+                let itemPrice = parseFloat(item.querySelector('.hidden__item-price-bank').innerText.replace(',', '.'));
+                
+                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+
+                let sumFromInput = document.getElementById('sumTo');
+                let minChange = min.toString();  // Ensure minChange is a string
+                let maxChange = max.toString();  // Ensure maxChange is a string
+
+                if (itemSymbol !== "USDT" && itemSymbol !== "USDC") {
+                  minChange = (min / itemPrice).toFixed(5).toString();
+                  maxChange = (max / itemPrice).toFixed(5).toString();
+                }
+
+                sumFromInput.placeholder = `${minChange.replace('.', ',')} - ${maxChange.replace('.', ',')}`;
+
+                
+
+                let price = document.querySelector(".dep-price");
+                price.innerText = itemPrice;
+
+                let priceToInput = document.querySelector(".priceToInput");
+                priceToInput.value = itemPrice;
+                // Get the element by its class name
+                var priceratioElement = document.querySelector('.priceratio');
+                let paymentPrice = parseFloat(document.querySelector('.payment-price').innerText.replace(',', '.'));
+                // Update price ratio
+                let newPriceRatio = paymentPrice / itemPrice;
+
+                var symbol = document.querySelector('.secondsymbol');
+                symbol.innerText = itemSymbol;
+                
+                let symbolToInput = document.querySelector(".symbolToInput");
+                symbolToInput.value = itemSymbol;
+
+                console.log(symbol);
+
+                let zero = newPriceRatio.toString().split('.')[1];
+                if (zero && zero.charAt(0) === '0') {
+                  priceratioElement.innerText = newPriceRatio.toFixed(8).replace('.', ','); // Adjusted precision
+                } else {
+                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
+                }
+
+                let reserveSpan = document.querySelector('.reserve');
+                let itemReserve = item.querySelector('.hidden__item-reserve-bank');
+
+                let formattedReserve = formatNumberWithSpaces(itemReserve);
+                reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
+
+                // Закрыть соответствующий список hidden
+                let hiddenList = item.closest('.hidden-dep');
+                hiddenList.classList.remove('show');
+            });
+        });
+    });
+</script>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
