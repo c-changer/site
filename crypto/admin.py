@@ -29,7 +29,7 @@ admin.site.register(DepositPayment, DepositCryptoAdmin)
 class DepositSettingsAdmin(admin.ModelAdmin):
     actions_on_top = False
     actions_on_bottom = False    
-    list_display = ['title', 'min_amount', 'max_amount']
+    list_display = ['title', 'crypto', 'min_amount', 'max_amount']
     list_editable = ['min_amount', 'max_amount']
 
 admin.site.register(DepositSettings, DepositSettingsAdmin)
