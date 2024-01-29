@@ -146,8 +146,18 @@ def deal(request):
     if exchange_id:
         exchange = Exchange.objects.get(id=exchange_id)
         
+        first_word = exchange.coinTo.split()[0]
+            
+        try:
+            crypto = Crypto.objects.get(name=first_word)
+        except:
+            crypto = Crypto.objects.get(symbol=first_word)
+        
+        qrcode = DepositPayment.objects.get(crypto=crypto).qrcode  
+            
         context = {
-            'exchange': exchange
+            'exchange': exchange,
+            'qrcode':qrcode
         }
         
         return render(request, 'crypto/deal.html', context)
