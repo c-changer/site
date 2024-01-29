@@ -8,6 +8,8 @@ import random
 
 import secrets
 
+from django.db import transaction
+
 # Create your views here.
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
