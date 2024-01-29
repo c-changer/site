@@ -24,7 +24,7 @@ class Bank(models.Model):
     icon = models.URLField(max_length=1000, default="", verbose_name="Иконка")
     name = models.CharField(max_length=50, default="", verbose_name="Название")
     symbol = models.CharField(max_length=10, default="", verbose_name="Валюта")
-    price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name="Цена к доллару")
+    price = models.DecimalField(max_digits=20, decimal_places=3, default=0, verbose_name="Цена к доллару")
     reserve = models.DecimalField(
         max_digits=20, 
         decimal_places=10, 
