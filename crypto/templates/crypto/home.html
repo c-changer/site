@@ -243,15 +243,13 @@ document.addEventListener("DOMContentLoaded", function() {
       if (labelPayment === labelDep) {
         // Лейблы одинаковые, делаем кнопку disabled
         document.querySelector(".trade__form-action").disabled = true;
-        reserveElement.textContent = "-";
-        priceratioElement.classList.add("error");
+        reserveElement.textContent = "- ---";
+        priceratioElement.textContent = "- ---";
         sumFromInput.classList.add("error");
         sumToInput.classList.add("error");
       } else {
         // Лейблы разные, возвращаем в нормальное состояние
         document.querySelector(".trade__form-action").disabled = false;
-        reserveElement.textContent = "{{ reserve|intcomma }} {{ default_dep.crypto.symbol }}";
-        priceratioElement.classList.remove("error");
         sumFromInput.classList.remove("error");
         sumToInput.classList.remove("error");
       }
