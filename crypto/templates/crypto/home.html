@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Заменяем запятые на пробелы в текущем значении
       var newPriceratio = currentPriceratio.replace(/,/g, ' ');
-
+      newPriceratio = newPriceratio.replace(/./g, ',');
       // Устанавливаем новое значение в форму priceratio
       priceratioElement.textContent = newPriceratio;
     }
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Заменяем запятые на пробелы в текущем значении
       var newReserve = currentReserve.replace(/,/g, ' ');
-
+      newReserve = newReserve.replace(/./g, ',');
       // Устанавливаем новое значение в форму priceratio
       reserveElement.textContent = newReserve;
     }
