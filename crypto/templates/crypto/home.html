@@ -156,13 +156,19 @@
                   </div>
                 </div>
                 <!--  -->
+                <!--  -->
+                <div class="trade__form-item field active">
+                  <input name="fio" type="email" id="text" placeholder="" class="trade__form-item__field js-field fio" style="display:none;"/><label class="label">ФИО</label>
+                </div>
+                <!--  -->
+                <!--  -->
                 <div class="trade__form-item field active">
                   <input name="email" type="email" id="email" placeholder="" class="trade__form-item__field js-field" /><label class="label">E-mail</label>
                 </div>
                 <!--  -->
                 <!--  -->
                 <div class="trade__form-item field active">
-                  <input name="wallet" type="text" id="wallet" autocomplete="off" class="trade__form-item__field js-field" placeholder="" /><label class="label">Кошелек</label><div class="trade__form-info">Укажите реквизиты куда вам перевести ваши средства</div>
+                  <input name="wallet" type="text" id="wallet" autocomplete="off" class="trade__form-item__field js-field" placeholder="" /><label class="label label-wallet">Кошелек</label><div class="trade__form-info">Укажите реквизиты куда вам перевести ваши средства</div>
                 </div>
                 <!--  -->
                 <!--  -->
@@ -472,12 +478,14 @@
                 let obj = document.querySelector(".obratnyi");
                 obj.style.display = "none";
 
+                let labelWallet = document.querySelector(".label-wallet");
+                labelWallet.innerText = "Номер счета"
+
+                let fio = document.querySelector(".fio");
+                fio.style.display = "block";
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
-
-                
-
             });
         });
     });
@@ -581,6 +589,12 @@
 
                 let obj = document.querySelector(".obratnyi");
                 obj.style.display = "flex";
+
+                let labelWallet = document.querySelector(".label-wallet");
+                labelWallet.innerText = "Кошелек"
+
+                let fio = document.querySelector(".fio");
+                fio.style.display = "none";
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
