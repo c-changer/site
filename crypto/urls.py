@@ -7,6 +7,7 @@ urlpatterns = [
     path("order/", deal, name="deal"),
     path("cancel/", cancel, name="cancel"),
     path("error/", error, name="error"),
+    path("ip-error/", ip_error, name="ip-error"),
     path("success/", success, name="success"),
     path("confirm/", confirm, name="confirm"),
     path("check_status/", check_status, name="check_status")

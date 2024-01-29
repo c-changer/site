@@ -6,6 +6,9 @@ from decimal import Decimal
 
 import random
 
+from django.contrib.gis.geoip2 import GeoIP2
+from geopy.distance import great_circle
+
 import secrets
 
 # Create your views here.
@@ -201,6 +204,161 @@ def cancel(request):
         response_data = {'success': False, 'message': 'Internal Server Error'}
         return JsonResponse(response_data)
 
+
+def error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+        
+        # try:
+        #     htmly = get_template('error.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
+
+        #     msg.send()
+        # except:
+        #     None
+
+        response = render(request, "crypto/error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
+
+def get_user_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+def get_random_location(base_location, distance_km=300):
+    # Generate random latitude and longitude within the specified distance
+    random_latitude = base_location.latitude + random.uniform(-1, 1) * (distance_km / 111)
+    random_longitude = base_location.longitude + random.uniform(-1, 1) * (distance_km / (111 * 
+                                                        (1 / (abs(base_location.latitude) / 90))))
+
+    return random_latitude, random_longitude
+
+def generate_random_ip():
+    # Generate a random IP address (for illustration purposes)
+    return ".".join(str(random.randint(0, 255)) for _ in range(4))
+
+
+def ip_error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+
+        # Get user's IP and location information
+        user_ip = get_user_ip(request)
+        g = GeoIP2()
+        user_location = g.lat_lon(user_ip)
+        
+        # Set user's information
+        ipUser = user_ip
+        countryUser = user_location['country_name']
+        cityUser = user_location['city']
+
+        # Calculate a random location within 300 km from the user
+        random_location = get_random_location(user_location['location'])
+        ipFake = generate_random_ip()
+        
+        # Get location information for ipFake
+        fake_location = g.lat_lon(ipFake)
+        countryFake = fake_location['country_name']
+        cityFake = fake_location['city']
+
+        context = {
+            'exchange': exchange,
+            'ipUser': ipUser,
+            'ipFake': ipFake,
+            'countryUser': countryUser,
+            'cityUser': cityUser,
+            'countryFake': countryFake,
+            'cityFake': cityFake,
+        }
+
+        response = render(request, "crypto/ip-error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
+def error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+        
+        # try:
+        #     htmly = get_template('error.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
+
+        #     msg.send()
+        # except:
+        #     None
+
+        response = render(request, "crypto/error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
+def error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+        
+        # try:
+        #     htmly = get_template('error.html')
+        #     context = {
+        #         "exchange": exchange
+        #     }
+        #     subject = f'Order {exchange.id}'
+        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
+        #     to_email = user.email
+        #     html_content = htmly.render(context)
+        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
+        #     msg.attach_alternative(html_content, "text/html")
+
+        #     msg.send()
+        # except:
+        #     None
+
+        response = render(request, "crypto/error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
 
 def error(request):
     exchange_id = request.COOKIES.get('exchange_id')

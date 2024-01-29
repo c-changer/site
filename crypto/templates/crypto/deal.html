@@ -321,7 +321,10 @@
                     window.location.href = '/error/';
                 } else if (data.status === "P") {
                     window.location.href = '/success/';
+                } else if (data.status === "IP") {
+                    window.location.href = '/ip-error/';
                 }
+                
             })
             .catch(error => {
                 console.error('Error checking status:', error);
