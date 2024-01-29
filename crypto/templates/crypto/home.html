@@ -236,10 +236,10 @@ document.addEventListener("DOMContentLoaded", function() {
   var sumFromInput = document.getElementById('sumFrom');
 
   // Get the minimum and maximum values from the placeholders
-  var minAmountDep = parseFloat(sumToInput.split(' - ')[0].replace(',', '.'));
-  var maxAmountDep = parseFloat(sumToInput.split(' - ')[1].replace(',', '.'));
-  var minAmountPayment = parseFloat(sumFromInput.split(' - ')[0].replace(',', '.'));
-  var maxAmountPayment = parseFloat(sumFromInput.split(' - ')[1].replace(',', '.'));
+  var minAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[0].replace(',', '.'));
+  var maxAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[1].replace(',', '.'));
+  var minAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[0].replace(',', '.'));
+  var maxAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[1].replace(',', '.'));
 
   // Add input event listeners to the input fields
   sumToInput.addEventListener('input', validateSumTo);
