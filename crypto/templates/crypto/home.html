@@ -286,6 +286,9 @@
                   priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
+                var sumFromInput = document.getElementById('sumFrom');
+                sumFromInput.value = '';
+
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-payment');
                 hiddenList.classList.remove('show');
@@ -483,6 +486,9 @@
 
                 let fio = document.querySelector(".fio");
                 fio.style.display = "block";
+
+                var sumToInput = document.getElementById('sumTo');
+                sumToInput.value = '';
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
@@ -595,6 +601,9 @@
 
                 let fio = document.querySelector(".fio");
                 fio.style.display = "none";
+
+                var sumToInput = document.getElementById('sumTo');
+                sumToInput.value = '';
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
