@@ -286,10 +286,10 @@
                   priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
-                var sumFromInput = document.getElementById('sumFrom');
-                sumFromInput.value = '';
-                var sumToInput = document.getElementById('sumTo');
-                sumToInput.value = '';
+                var gg = document.getElementById('sumFrom');
+                gg.value = '';
+                var wp = document.getElementById('sumTo');
+                wp.value = '';
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-payment');
                 hiddenList.classList.remove('show');
@@ -488,10 +488,10 @@
                 let fio = document.querySelector(".fio");
                 fio.style.display = "block";
 
-                var sumToInput = document.getElementById('sumTo');
-                sumToInput.value = '';
-                var sumFromInput = document.getElementById('sumFrom');
-                sumFromInput.value = '';
+                var wp = document.getElementById('sumTo');
+                wp.value = '';
+                var gg = document.getElementById('sumFrom');
+                gg.value = '';
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
@@ -605,10 +605,10 @@
                 let fio = document.querySelector(".fio");
                 fio.style.display = "none";
 
-                var sumToInput = document.getElementById('sumTo');
-                sumToInput.value = '';
-                var sumFromInput = document.getElementById('sumFrom');
-                sumFromInput.value = '';
+                var wp = document.getElementById('sumTo');
+                wp.value = '';
+                var gg = document.getElementById('sumFrom');
+                gg.value = '';
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
