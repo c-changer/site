@@ -201,6 +201,29 @@
 
  <!-- Ваш HTML-код -->
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var searchField = document.querySelector('.hidden__search-field');
+    var items = document.querySelectorAll('.hidden__item');
+
+    searchField.addEventListener('input', function() {
+        var searchTerm = searchField.value.toLowerCase();
+
+        items.forEach(function(item) {
+            var itemName = item.querySelector('.hidden__item-name').textContent.toLowerCase();
+            var itemSymbol = item.querySelector('.hidden__item-symbol').textContent.toLowerCase();
+            
+            if (itemName.includes(searchTerm) || itemSymbol.includes(searchTerm)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+
  <script>
 document.addEventListener("DOMContentLoaded", function() {
     var cryptoButton = document.querySelector('.hidden__choose-link-crypto');
@@ -210,19 +233,19 @@ document.addEventListener("DOMContentLoaded", function() {
     cryptoButton.addEventListener('click', function() {
         toggleActiveClass(cryptoButton);
         showHideItems('.hidden__item-bank', 'none');
-        showHideItems('.hidden__item-dep', 'block');
+        showHideItems('.hidden__item-dep', 'flex');
     });
 
     bankButton.addEventListener('click', function() {
         toggleActiveClass(bankButton);
         showHideItems('.hidden__item-dep', 'none');
-        showHideItems('.hidden__item-bank', 'block');
+        showHideItems('.hidden__item-bank', 'flex');
     });
 
     allButton.addEventListener('click', function() {
         toggleActiveClass(allButton);
-        showHideItems('.hidden__item-dep', 'block');
-        showHideItems('.hidden__item-bank', 'block');
+        showHideItems('.hidden__item-dep', 'flex');
+        showHideItems('.hidden__item-bank', 'flex');
     });
 
     function toggleActiveClass(button) {
