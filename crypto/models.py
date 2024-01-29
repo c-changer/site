@@ -24,11 +24,11 @@ class Bank(models.Model):
     icon = models.URLField(max_length=1000, default="", verbose_name="Иконка")
     name = models.CharField(max_length=50, default="", verbose_name="Название")
     symbol = models.CharField(max_length=10, default="", verbose_name="Валюта")
-    price = models.DecimalField(max_digits=20, decimal_places=10, default=0, verbose_name="Цена к доллару")
+    price = models.DecimalField(max_digits=20, decimal_places=2, default=0, verbose_name="Цена к доллару")
     reserve = models.DecimalField(
         max_digits=20, 
         decimal_places=10, 
-        default=round(random.uniform(500000, 3000000), 10),
+        default=round(random.uniform(500000, 3000000), 2),
         verbose_name="Резерв")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
 
