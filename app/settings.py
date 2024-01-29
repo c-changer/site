@@ -269,6 +269,21 @@ JAZZMIN_SETTINGS = {
         "crypto.DepositPayment": "fas fa-piggy-bank",
         "crypto.Bank": "fas fa-university"
     },
+    
+    'JAZZMIN_CUSTOM_MODEL_REORDERING': {
+        'crypto': {
+            'models': [
+                'Crypto',
+                'Bank',
+                'DepositPayment',
+                'DepositSettings',
+                'Exchange',
+                # Add more models as needed
+            ]
+        },
+    # Add more apps as needed
+    },
+    
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
