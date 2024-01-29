@@ -463,7 +463,7 @@
                 }
 
                 let reserveSpan = document.querySelector('.reserve');
-                let itemReserve = item.querySelector('.hidden__item-reserve-bank');
+                let itemReserve = parseFloat(item.querySelector('.hidden__item-reserve-bank').innerText.replace(',', '.'));
 
                 let formattedReserve = formatNumberWithSpaces(itemReserve);
                 reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
