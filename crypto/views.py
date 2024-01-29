@@ -54,8 +54,8 @@ def home(request):
     
     try:
         settings_usdt = DepositSettings.objects.get(crypto="USDT")
-        min_amount_dep = round(settings_usdt.min_amount / default_payment.crypto.price, 5)
-        max_amount_dep = round(settings_usdt.max_amount / default_payment.crypto.price, 5)
+        min_amount_dep = settings_usdt.min_amount
+        max_amount_dep = settings_usdt.max_amount
     except:
         min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
         max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
