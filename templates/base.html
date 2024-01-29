@@ -138,29 +138,36 @@ btnBurger.addEventListener("click", function() {
             <a href="{% url "aml-agreement" %}" class="footer__nav-link">AML политика</a>
           </div>
           <div class="footer__nav-item lang js-wrap_dropdown">
-    <div class="footer__lang js-open_dropdown ru">
-        <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
-        <span>Русский</span>
-        <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
-    </div>
-    <div class="footer__lang js-open_dropdown en" style="display:none;">
-        <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk"  alt="">
-        <span>English</span>
-        <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
-    </div>
-    <div class="footer__dropdown js__dropdown btn-en" onclick="switchLanguage('en')">
-        <button class="header__dropdown-item js-choose-lang" data-code="en">
-            <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk" alt="">
-            English
-        </button>
-    </div>
-    <div class="footer__dropdown js__dropdown btn-ru" style="display: none;" onclick="switchLanguage('ru')">
-        <button class="header__dropdown-item js-choose-lang" data-code="ru">
-            <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
-            Русский
-        </button>
-    </div>
-</div>
+            <div class="footer__lang js-open_dropdown ru">
+              <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
+              <span>Русский</span>
+              <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
+            </div>
+            <div class="footer__lang js-open_dropdown en" style="display:none;">
+              <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk"  alt="">
+              <span>English</span>
+              <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
+            </div>
+            <div class="footer__dropdown js__dropdown btn-en" onclick="switchLanguage('en')">
+              <button
+                class="header__dropdown-item js-choose-lang"
+                data-code="en"
+              >
+                <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk" alt="">
+                English
+              </button>
+            </div>
+            <div class="footer__dropdown js__dropdown btn-ru" style="display: none;" onclick="switchLanguage('ru')">
+              <button
+                class="header__dropdown-item js-choose-lang"
+                data-code="en"
+              >
+                <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
+                Русский
+              </button>
+            </div>
+          </div>
+        </div>
 
 <script>
     function switchLanguage(languageCode) {
@@ -170,32 +177,27 @@ btnBurger.addEventListener("click", function() {
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let en = document.querySelector(".en");
-        let ru = document.querySelector(".ru");
-        let btnEn = document.querySelector(".btn-en");
-        let btnRu = document.querySelector(".btn-ru");
+  let en = document.querySelector(".en");
+  let ru = document.querySelector(".ru");
+  let btnEn = document.querySelector(".btn-en");
+  let btnRu = document.querySelector(".btn-ru");
 
-        ru.addEventListener('click', function () {
-            btnEn.style.display = "flex";
-        });
-
-        en.addEventListener('click', function () {
-            btnRu.style.display = "flex";
-        });
-
-        btnEn.addEventListener('click', function () {
-            ru.style.display = "none";
-            btnEn.style.display = "none";
-            en.style.display = "flex";
-        });
-
-        btnRu.addEventListener('click', function () {
-            ru.style.display = "flex";
-            btnRu.style.display = "none";
-            en.style.display = "none";
-        });
-    });
+  ru.addEventListener('click', function(){
+    btnEn.style.display = "flex";
+  })
+  en.addEventListener('click', function(){
+    btnRu.style.display = "flex";
+  })
+  btnEn.addEventListener('click', function(){
+    ru.style.display = "none";
+    btnEn.style.display = "none";
+    en.style.display = "flex";
+  })
+  btnRu.addEventListener('click', function(){
+    ru.style.display = "flex";
+    btnRu.style.display = "none";
+    en.style.display = "none";
+  })
 </script>
 
 
