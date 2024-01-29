@@ -126,5 +126,6 @@ class Exchange(models.Model):
         return f"Обмен - {self.id}"
     
     class Meta:
+        ordering = ['1']
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
