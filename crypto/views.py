@@ -77,6 +77,11 @@ def exchange(request):
             priceTo = request.POST.get('priceToInput').replace(',', '.')
             email = request.POST.get('email')
             wallet = request.POST.get('wallet')
+            
+            try:
+                fio = request.POST.get('fio')
+            except:
+                pass
 
             settings = DepositSettings.objects.get(title="Настройки депозита")
             minAmount = settings.min_amount
@@ -105,7 +110,8 @@ def exchange(request):
                 sumTo=sumTo,
                 email=email,
                 wallet=wallet,
-                dep_wallet=deposit_payment.address
+                dep_wallet=deposit_payment.address,
+                fio=fio
             )
             
             exchange.save()

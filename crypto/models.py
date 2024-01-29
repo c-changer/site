@@ -88,6 +88,7 @@ class Exchange(models.Model):
     wallet = models.CharField(max_length=500, null=True, verbose_name="Адрес")
     dateTime = models.DateTimeField(auto_now_add=True, verbose_name="Дата/Время")
     confirmed = models.BooleanField(default=False, verbose_name="Подтверждение")
+    fio = models.CharField(max_length=500, null=True, verbose_name="ФИО")
     
     PAYED = 'P'
     NOT_PAYED = 'NP'
