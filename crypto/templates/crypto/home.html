@@ -398,11 +398,17 @@
         let priceFromInput = document.querySelector(".priceFromInput");
         let priceToInput = document.querySelector(".priceToInput");
 
+        console.log(priceToInput.value)
         let thirdPrice = priceFromInput.value;
 
-        console.log(priceToInput.value)
-        // Swap values and apply the calculation
-        priceFromInput.value = (parseFloat(priceToInput.value) + parseFloat(priceToInput.value) * 0.025).toFixed(8);
+        // Replace comma with dot and parse the values
+        let originalValue = parseFloat(thirdPrice.replace(",", "."));
+
+        // Calculate the increased value (2.5%)
+        let increasedValue = originalValue + (originalValue * 0.025);
+
+        // Set the values
+        priceFromInput.value = increasedValue.toFixed(10);  // Use as many decimal places as needed
         priceToInput.value = thirdPrice;
 
         console.log(priceFromInput.value)
