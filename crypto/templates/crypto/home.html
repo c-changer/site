@@ -511,9 +511,9 @@
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-dep');
                 if (itemNetwork=='None'){
-                  labelElement.innerText = itemName + ' ' + itemSymbol;               
+                  labelElement.innerText = itemName;               
                 } else {
-                  labelElement.innerText = itemName + ' ' + itemNetwork + ' ' + itemSymbol;
+                  labelElement.innerText = itemName;
                 }
                 
 
@@ -522,9 +522,9 @@
 
                 let name2 = document.querySelector('.name1');
                 if (itemNetwork=='None'){
-                  name2.innerText = itemName + ' ' + itemSymbol;
+                  name2.innerText = itemName;
                 } else {
-                  name2.innerText = itemName + ' ' + itemNetwork + ' ' + itemSymbol;
+                  name2.innerText = itemName;
                 }
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-dep').innerText.replace(',', '.'));
