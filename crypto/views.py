@@ -44,17 +44,28 @@ def home(request):
         
     price_ratio = default_payment.crypto.price -  default_payment.crypto.price * Decimal(0.025)
 
-    min_amount_payment = round(settings.min_amount / default_payment.crypto.price, 5)
-    max_amount_payment = round(settings.max_amount / default_payment.crypto.price, 5)
+    try:
+        settings_btc = DepositSettings.objects.get(crypto="BTC")
+        min_amount_payment = round(settings_btc.min_amount / default_payment.crypto.price, 5)
+        max_amount_payment = round(settings_btc.max_amount / default_payment.crypto.price, 5)
+    except:
+        min_amount_payment = round(settings.min_amount / default_payment.crypto.price, 5)
+        max_amount_payment = round(settings.max_amount / default_payment.crypto.price, 5)
+    
+    
     
     if default_dep.crypto.symbol == "USDT":
-        min_amount_dep = settings.min_amount
-        max_amount_dep = settings.max_amount
+        try:
+            settings_usdt = DepositSettings.objects.get(crypto="USDT")
+            min_amount_dep = round(settings_usdt.min_amount / default_payment.crypto.price, 5)
+            max_amount_dep = round(settings_usdt.max_amount / default_payment.crypto.price, 5)
+        except:
+            pass
     else:
         min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
         max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
     
-    reserve = settings.max_amount / settings.min_amount * Decimal(25.2716)
+    reserve = max_amount_dep / min_amount_dep * Decimal(25.2716)
     
     all_settings = DepositSettings.objects.exclude(title="По умолчанию")
     context = {
