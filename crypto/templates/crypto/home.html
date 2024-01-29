@@ -427,10 +427,10 @@
                 let minChange = min.toString();  // Ensure minChange is a string
                 let maxChange = max.toString();  // Ensure maxChange is a string
 
-                if (itemSymbol !== "USDT" && itemSymbol !== "USDC") {
-                  minChange = (min / itemPrice).toFixed(5).toString();
-                  maxChange = (max / itemPrice).toFixed(5).toString();
-                }
+                
+                minChange = (min / itemPrice).toFixed(0).toString();
+                maxChange = (max / itemPrice).toFixed(0).toString();
+                
 
                 sumFromInput.placeholder = `${minChange.replace('.', ',')} - ${maxChange.replace('.', ',')}`;
 
