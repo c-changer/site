@@ -113,7 +113,7 @@ def exchange(request):
             return JsonResponse(response_data)
     except Exception as e:
         print(e)  # Print the exception to the console for debugging
-        response_data = {'success': False, 'message': 'Internal Server Error'}
+        response_data = {'success': False, 'message': e}
         return JsonResponse(response_data)
     
 def deal(request):
