@@ -9,7 +9,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'crypto': {
         'task': 'crypto.tasks.binance_price',
-        'schedule': 30.0,  # Run every 30 seconds
+        'schedule': 120.0,  # Run every 30 seconds
     },
 }
 
