@@ -28,7 +28,7 @@ class Bank(models.Model):
     reserve = models.DecimalField(
         max_digits=20, 
         decimal_places=10, 
-        default=lambda: round(random.uniform(500000, 3000000), 10),
+        default=round(random.uniform(500000, 3000000), 10),
         verbose_name="Резерв")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
 
