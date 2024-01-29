@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.shortcuts import reverse
 import random
 # Create your models here.
@@ -8,6 +8,15 @@ class Crypto(models.Model):
     symbol = models.CharField(max_length=10, default="", verbose_name="Индекс")
     price = models.DecimalField(max_digits=20, decimal_places=10, default=0, verbose_name="Цена", help_text="Цена специально занижена")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
+    
+    def save(self, *args, **kwargs):
+        # Check if the object should be committed immediately or not
+        commit = kwargs.pop('commit', True)
+
+        # Use a transaction to save the object without committing to the database
+        with transaction.atomic():
+            super().save(*args, **kwargs)
+
 
     def save(self, *args, **kwargs):
         self.symbol = self.symbol.upper() # Change "symbol" to uppercase before saving 
