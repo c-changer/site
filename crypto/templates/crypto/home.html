@@ -234,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Get the input elements
   var sumToInput = document.getElementById('sumTo');
   var sumFromInput = document.getElementById('sumFrom');
+  var submitButton = document.querySelector('.trade__form-action');
 
   // Get the minimum and maximum values from the placeholders
   var minAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[0].replace(',', '.'));
@@ -242,31 +243,24 @@ document.addEventListener("DOMContentLoaded", function() {
   var maxAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[1].replace(',', '.'));
 
   // Add input event listeners to the input fields
-  sumToInput.addEventListener('input', validateSumTo);
-  sumFromInput.addEventListener('input', validateSumFrom);
+  sumToInput.addEventListener('input', validateInputs);
+  sumFromInput.addEventListener('input', validateInputs);
 
-  // Function to validate sumTo input
-  function validateSumTo() {
-    var enteredValue = parseFloat(sumToInput.value.replace(',', '.'));
+  // Function to validate inputs and manage the button state
+  function validateInputs() {
+    var enteredValueTo = parseFloat(sumToInput.value.replace(',', '.'));
+    var enteredValueFrom = parseFloat(sumFromInput.value.replace(',', '.'));
 
-    // Check if the entered value is less than minAmountDep or greater than maxAmountDep
-    if (isNaN(enteredValue) || enteredValue < minAmountDep || enteredValue > maxAmountDep) {
-      sumToInput.classList.add('error');
-    } else {
-      sumToInput.classList.remove('error');
-    }
-  }
+    // Check if the entered values are within the specified range
+    var isSumToValid = isNaN(enteredValueTo) || enteredValueTo < minAmountDep || enteredValueTo > maxAmountDep;
+    var isSumFromValid = isNaN(enteredValueFrom) || enteredValueFrom < minAmountPayment || enteredValueFrom > maxAmountPayment;
 
-  // Function to validate sumFrom input
-  function validateSumFrom() {
-    var enteredValue = parseFloat(sumFromInput.value.replace(',', '.'));
+    // Add or remove the 'error' class based on validation
+    sumToInput.classList.toggle('error', isSumToValid);
+    sumFromInput.classList.toggle('error', isSumFromValid);
 
-    // Check if the entered value is less than minAmountPayment or greater than maxAmountPayment
-    if (isNaN(enteredValue) || enteredValue < minAmountPayment || enteredValue > maxAmountPayment) {
-      sumFromInput.classList.add('error');
-    } else {
-      sumFromInput.classList.remove('error');
-    }
+    // Disable or enable the button based on validation
+    submitButton.disabled = isSumToValid || isSumFromValid;
   }
 });
 
