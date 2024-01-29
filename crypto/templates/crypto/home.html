@@ -344,14 +344,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-payment').innerText.replace(',', '.'));
                 let allSymbol = document.querySelector(".all-symbol").innerText;
 
-                if (itemSymbol != allSymbol){
-                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
-                } else {
+                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                if (itemSymbol == allSymbol){
                   let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
                   let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
                 }
-                
 
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-payment');
@@ -567,10 +565,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 let allSymbol = document.querySelector(".all-symbol").innerText;
 
-                if (itemSymbol != allSymbol){
-                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
-                } else {
+                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                if (itemSymbol == allSymbol){
                   let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
                   let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
                 }
@@ -682,10 +679,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 let allSymbol = document.querySelector(".all-symbol").innerText;
 
-                if (itemSymbol != allSymbol){
-                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
-                } else {
+                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                if (itemSymbol == allSymbol){
                   let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
                   let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
                 }
