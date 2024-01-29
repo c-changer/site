@@ -169,7 +169,7 @@
                     <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo }}</div>
                   </div>
                   <div class="order__step-row">
-                    {% if exchange.fio is None %}
+                    {% if exchange.fio == '' %}
                     <div class="option">По реквизитам</div>
                     <div class="result">{{ exchange.wallet }}</div>
                     {% else %}
