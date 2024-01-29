@@ -229,45 +229,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script> {% endcomment %}
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  // Get the input elements
-  var sumToInput = document.getElementById('sumTo');
-  var sumFromInput = document.getElementById('sumFrom');
-  var submitButton = document.querySelector('.trade__form-action');
-
-  // Get the minimum and maximum values from the placeholders
-  var minAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[0].replace(',', '.'));
-  var maxAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[1].replace(',', '.'));
-  var minAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[0].replace(',', '.'));
-  var maxAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[1].replace(',', '.'));
-
-  // Add input event listeners to the input fields
-  sumToInput.addEventListener('input', validateInputs);
-  sumFromInput.addEventListener('input', validateInputs);
-
-  // Function to validate inputs and manage the button state
-  function validateInputs() {
-    var enteredValueTo = parseFloat(sumToInput.value.replace(',', '.'));
-    var enteredValueFrom = parseFloat(sumFromInput.value.replace(',', '.'));
-
-    // Check if the entered values are within the specified range
-    var isSumToValid = isNaN(enteredValueTo) || enteredValueTo < minAmountDep || enteredValueTo > maxAmountDep;
-    var isSumFromValid = isNaN(enteredValueFrom) || enteredValueFrom < minAmountPayment || enteredValueFrom > maxAmountPayment;
-
-    // Add or remove the 'error' class based on validation
-    sumToInput.classList.toggle('error', isSumToValid);
-    sumFromInput.classList.toggle('error', isSumFromValid);
-
-    // Disable or enable the button based on validation
-    submitButton.disabled = isSumToValid || isSumFromValid;
-  }
-});
-
-</script>
 
 
-<script>
+
+{% comment %} <script>
   document.addEventListener("DOMContentLoaded", function () {
     function updateFormState() {
       var labelPayment = document.querySelector(".label-payment").textContent.trim();
@@ -303,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }).observe(label, { childList: true, subtree: true });
     });
   });
-</script>
+</script> {% endcomment %}
 
 
 
@@ -488,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 </script>
 
-{% comment %} <script>
+<script>
     let btn = document.querySelector('.obratnyi');
 
     btn.addEventListener('click', function () {
@@ -615,7 +580,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function formatNumberWithSpaces(number) {
         return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
-</script> {% endcomment %}
+</script>
 
 
 <script>
