@@ -55,6 +55,8 @@ def home(request):
     
     
     if default_dep.crypto.symbol == "USDT":
+        min_amount_dep = 0
+        max_amount_dep = 0
         try:
             settings_usdt = DepositSettings.objects.get(crypto="USDT")
             min_amount_dep = round(settings_usdt.min_amount / default_payment.crypto.price, 5)
