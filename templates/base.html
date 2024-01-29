@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,11 +55,11 @@
             class="header__support js-support"
           
           >
-            Поддержка
+            {% trans "Поддержка" %}
           </a>
           <div class="header__nav">
             {% if request.path != "/" %}
-                <a href="/" class="header__nav-link">Все направления</a>
+                <a href="/" class="header__nav-link">{% trans "Все направления" %}</a>
             {% endif %}
             <a href="{% url "reviews" %}" class="header__nav-link">Отзывы</a>
             <a
@@ -147,7 +148,7 @@ btnBurger.addEventListener("click", function() {
               <span>English</span>
               <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
             </div>
-            <div class="footer__dropdown js__dropdown btn-en">
+            <div class="footer__dropdown js__dropdown btn-en" onclick="switchLanguage('en')">
               <button
                 class="header__dropdown-item js-choose-lang"
                 data-code="en"
@@ -156,7 +157,7 @@ btnBurger.addEventListener("click", function() {
                 English
               </button>
             </div>
-            <div class="footer__dropdown js__dropdown btn-ru" style="display: none;">
+            <div class="footer__dropdown js__dropdown btn-ru" style="display: none;" onclick="switchLanguage('ru')">
               <button
                 class="header__dropdown-item js-choose-lang"
                 data-code="en"
@@ -167,6 +168,13 @@ btnBurger.addEventListener("click", function() {
             </div>
           </div>
         </div>
+
+<script>
+    function switchLanguage(languageCode) {
+        document.cookie = `django_language=${languageCode};path=/`;
+        location.reload();
+    }
+</script>
 
 <script>
   let en = document.querySelector(".en");

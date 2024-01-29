@@ -160,8 +160,11 @@ LOCALE_PATHS = [
 
 LANGUAGES = [
     ('ru', _('Russian')),
+    ('en', _('English')),
     # Add more languages as needed
 ]
+
+MODELTRANSLATION_LANGUAGES = ('en', 'ru',)
 
 
 JAZZMIN_SETTINGS = {
