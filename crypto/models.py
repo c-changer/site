@@ -82,7 +82,7 @@ class DepositSettings(models.Model):
     max_amount = models.DecimalField(max_digits=10, decimal_places=2, default=100000, verbose_name="max $", blank=True)
     
     def __str__(self):
-        return f"{self.title}"
+        return f"Лимит"
     
     class Meta:
         verbose_name = "Лимит"
