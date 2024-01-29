@@ -6,7 +6,8 @@ from decimal import Decimal
 
 import random
 
-from django.contrib.gis.geoip2 import GeoIP2
+import requests
+
 import secrets
 
 # Create your views here.
@@ -234,7 +235,6 @@ def error(request):
         return response
     return redirect("home")
 
-
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -242,6 +242,15 @@ def get_user_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def get_ip_info(ip):
+    api_url = f"https://ipinfo.io/{ip}/json"
+    response = requests.get(api_url)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
 
 def ip_error(request):
     exchange_id = request.COOKIES.get('exchange_id')
@@ -251,13 +260,12 @@ def ip_error(request):
 
         # Get user's IP and location information
         user_ip = get_user_ip(request)
-        g = GeoIP2()
-        user_location = g.lat_lon(user_ip)
+        user_info = get_ip_info(user_ip)
         
         # Set user's information
-        ipUser = user_ip
-        countryUser = g.country(user_ip)['country_name']
-        cityUser = g.city(user_ip)['city']
+        ipUser = user_info.get('ip', '')
+        countryUser = user_info.get('country', '')
+        cityUser = user_info.get('city', '')
 
         context = {
             'exchange': exchange,
