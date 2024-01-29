@@ -20,7 +20,7 @@
             <div class="complete__list">
               <div class="complete__list-wrap">
                 <div class="complete__list-title">
-                  Средства были переведенны по указанному вами адрессу "{% if exchange.fio is not None %}{{ exchange.fio }} {{ exchange.wallet }}{% else %}{{ exchange.wallet }}{% endif %}"
+                  Средства были переведенны по указанному вами адрессу "{% if exchange.fio != '' %}{{ exchange.fio }} {{ exchange.wallet }}{% else %}{{ exchange.wallet }}{% endif %}"
                   <br>
                   <br/>
                   Сумма сделки {{ exchange.sumTo }} {{ exchange.coinTo }}
