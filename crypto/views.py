@@ -19,6 +19,10 @@ def home(request):
     deposit = DepositPayment.objects.filter(is_available=True)
     settings = DepositSettings.objects.get(title="Настройки депозита")
     banks = Bank.objects.filter(is_available=True)
+    
+    for dep in deposit:
+        dep.crypto.price -= dep.crypto.price * Decimal(0.025)
+        dep.crypto.save()
 
     try:
         obj = Crypto.objects.get(symbol="BTC",is_available=True)

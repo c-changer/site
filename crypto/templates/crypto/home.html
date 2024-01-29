@@ -372,9 +372,9 @@
             console.error('Unable to convert the content to a float.');
         }
 
+        priceratioValue = priceratioValue + (priceratioValue*0.025)
         // Update price ratio
-        let newPriceRatio = 1.0 / (priceratioValue + (priceratioValue*0.025));
-        newPriceRatio = newPriceRatio - (newPriceRatio*0.025);
+        let newPriceRatio = 1.0 / priceratioValue;
 
         let zero = newPriceRatio.toString().split('.')[1];
         if (zero && zero.charAt(0) === '0') {
@@ -399,9 +399,24 @@
         let priceToInput = document.querySelector(".priceToInput");
 
         let thirdPrice = priceToInput.value;
-        let originalValue = parseFloat(thirdPrice.replace(",", "."));
-        priceToInput.value = priceFromInput.value;
+        console.log(priceToInput.value)
+        
 
+        // Replace comma with dot and parse the values
+        let originalValue = parseFloat(thirdPrice.replace(",", "."));
+
+        // Calculate the increased value (2.5%)
+        let increasedValue = originalValue + (originalValue * 0.025);
+
+        // Set the values
+        priceToInput.value = priceFromInput.value;
+        priceFromInput.value = increasedValue.toFixed(10);  // Use as many decimal places as needed
+        
+
+        console.log(priceFromInput.value)
+        console.log(priceToInput.value)
+        console.log(symbolFromInput.value)
+        console.log(symbolToInput.value)
         // Update the reserve span with the new formatted value
         let reserveSpan = document.querySelector('.reserve');
         reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + thirdSymbol;
@@ -464,7 +479,7 @@
                 var priceratioElement = document.querySelector('.priceratio');
                 let paymentPrice = parseFloat(document.querySelector('.payment-price').innerText.replace(',', '.'));
                 // Update price ratio
-                let newPriceRatio = paymentPrice / (itemPrice - (itemPrice * 0.025));
+                let newPriceRatio = paymentPrice / itemPrice;
 
                 var symbol = document.querySelector('.secondsymbol');
                 symbol.innerText = itemSymbol;
@@ -572,7 +587,7 @@
                 var priceratioElement = document.querySelector('.priceratio');
                 let paymentPrice = parseFloat(document.querySelector('.payment-price').innerText.replace(',', '.'));
                 // Update price ratio
-                let newPriceRatio = paymentPrice / (itemPrice - (itemPrice * 0.025));
+                let newPriceRatio = paymentPrice / itemPrice;
 
                 var symbol = document.querySelector('.secondsymbol');
                 symbol.innerText = itemSymbol;
@@ -686,30 +701,25 @@
   function calculateAmount() {
     var sumFromInput = document.getElementById('sumFrom');
     var sumToInput = document.getElementById('sumTo');
-
+    
     // Remove the "error" class from both inputs
     sumFromInput.classList.remove('error');
     sumToInput.classList.remove('error');
 
     // Получаем значение из первого инпута
     var sumFromValue = parseFloat(sumFromInput.value.replace(',', '.')) || null;
-    
     // Получаем цену из скрытого элемента или откуда-то еще (ваша реализация может отличаться)
-    var priceratioElement = document.querySelector('.priceratio');
-    var originalPrice = parseFloat(priceratioElement.textContent.replace(/\s/g, '').replace(',', '.')) || null;
-
-    // Уменьшаем цену на 2.5%
-    var discountedPrice = (originalPrice !== null) ? (originalPrice - (originalPrice * 0.025)).toFixed(10) : null;
+    var price = parseFloat(document.querySelector('.priceratio').textContent.replace(/\s/g, '').replace(',', '.')) || null;
 
     // Вычисляем сумму во втором инпуте
-    var sumToValue = (sumFromValue !== null && discountedPrice !== null) ? (sumFromValue * discountedPrice).toFixed(5) : '';
+    var sumToValue = (sumFromValue !== null && price !== null) ? (sumFromValue * price).toFixed(5) : '';
 
     // Устанавливаем значение во второй инпут
     sumToInput.value = isNaN(sumToValue) ? '' : sumToValue;
-}
+  }
 
-document.getElementById('sumFrom').addEventListener('input', calculateAmount);
-document.getElementById('sumTo').addEventListener('input', function() {
+  document.getElementById('sumFrom').addEventListener('input', calculateAmount);
+  document.getElementById('sumTo').addEventListener('input', function() {
     var sumToInput = document.getElementById('sumTo');
     var sumFromInput = document.getElementById('sumFrom');
     
@@ -717,19 +727,14 @@ document.getElementById('sumTo').addEventListener('input', function() {
     var sumToValue = parseFloat(sumToInput.value.replace(',', '.')) || null;
 
     // Получаем цену из скрытого элемента или откуда-то еще (ваша реализация может отличаться)
-    var priceratioElement = document.querySelector('.priceratio');
-    var originalPrice = parseFloat(priceratioElement.textContent.replace(/\s/g, '').replace(',', '.')) || null;
-
-    // Уменьшаем цену на 2.5%
-    var discountedPrice = (originalPrice !== null) ? (originalPrice - (originalPrice * 0.025)).toFixed(10) : null;
+    var price = parseFloat(document.querySelector('.priceratio').textContent.replace(/\s/g, '').replace(',', '.')) || null;
 
     // Вычисляем сумму в первом инпуте
-    var sumFromValue = (sumToValue !== null && discountedPrice !== null) ? (sumToValue / discountedPrice).toFixed(5) : '';
+    var sumFromValue = (sumToValue !== null && price !== null) ? (sumToValue / price).toFixed(5) : '';
 
     // Устанавливаем значение в первый инпут
     sumFromInput.value = isNaN(sumFromValue) ? '' : sumFromValue;
-});
-
+  });
 
   // Очистка значения второго инпута при фокусе на первом инпуте
   document.getElementById('sumFrom').addEventListener('focus', function() {
