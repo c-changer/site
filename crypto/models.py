@@ -19,7 +19,24 @@ class Crypto(models.Model):
     class Meta:
         verbose_name = "Монета"
         verbose_name_plural = "Монеты"
-        
+
+class Bank(models.Model):
+    icon = models.URLField(max_length=1000, default="", verbose_name="Иконка")
+    name = models.CharField(max_length=50, default="", verbose_name="Название")
+    symbol = models.CharField(max_length=10, default="", verbose_name="Валюта")
+    price = models.DecimalField(max_digits=20, decimal_places=10, default=0, verbose_name="Цена к доллару")
+    is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
+
+    def save(self, *args, **kwargs):
+        self.symbol = self.symbol.upper() # Change "symbol" to uppercase before saving 
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f"{self.symbol}"
+    
+    class Meta:
+        verbose_name = "Банк"
+        verbose_name_plural = "Банки"
 
 class DepositPayment(models.Model):
     crypto = models.ForeignKey(Crypto, on_delete=models.CASCADE, verbose_name="Монета")

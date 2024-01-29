@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Crypto, DepositPayment, DepositSettings, Exchange
+from .models import Crypto, Bank, DepositPayment, DepositSettings, Exchange
 
 # Register your models here.
 class CryptoAdmin(admin.ModelAdmin):
@@ -9,6 +9,14 @@ class CryptoAdmin(admin.ModelAdmin):
     list_editable = ['is_available']
     
 admin.site.register(Crypto, CryptoAdmin)
+
+class BankAdmin(admin.ModelAdmin):
+    actions_on_top = True
+    actions_on_bottom = False    
+    list_display = ['name', 'symbol', 'price', 'is_available']
+    list_editable = ['is_available']
+    
+admin.site.register(Bank, BankAdmin)
 
 class DepositCryptoAdmin(admin.ModelAdmin):
     # actions_on_top = False
