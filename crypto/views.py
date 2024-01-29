@@ -88,6 +88,15 @@ def exchange(request):
             
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
+            first_word = coinFrom.split()[0]
+            
+            try:
+                crypto = Crypto.objects.get(name=first_word)
+            except:
+                crypto = Crypto.objects.get(symbol=first_word)
+            
+            deposit_payment = get_object_or_404(DepositPayment, crypto=crypto_by_symbol)    
+            
             exchange = Exchange.objects.create(
                 id=exchange_id,
                 coinFrom=coinFrom,
@@ -95,7 +104,8 @@ def exchange(request):
                 sumFrom=sumFrom,
                 sumTo=sumTo,
                 email=email,
-                wallet=wallet
+                wallet=wallet,
+                dep_wallet=deposit_payment.wallet
             )
             
             exchange.save()

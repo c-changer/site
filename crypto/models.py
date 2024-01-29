@@ -79,12 +79,13 @@ class DepositSettings(models.Model):
 
 class Exchange(models.Model):
     id = models.CharField(max_length=100, unique=True, primary_key=True, verbose_name="ID")
+    dep_wallet = models.CharField(max_length=500, null=True, verbose_name="Ваш адрес")
     coinFrom = models.CharField(max_length=100, null=True, verbose_name="")
     coinTo = models.CharField(max_length=100, null=True, verbose_name="")
     sumFrom = models.CharField(max_length=100, null=True, verbose_name="Из")
     sumTo = models.CharField(max_length=100, null=True, verbose_name="В")
     email = models.EmailField(verbose_name="Почта")
-    wallet = models.CharField(max_length=500, null=True, verbose_name="Адресс")
+    wallet = models.CharField(max_length=500, null=True, verbose_name="Адрес")
     dateTime = models.DateTimeField(auto_now_add=True, verbose_name="Дата/Время")
     confirmed = models.BooleanField(default=False, verbose_name="Подтверждение")
     

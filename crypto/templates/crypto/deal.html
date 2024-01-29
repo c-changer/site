@@ -56,14 +56,14 @@
           <div class="order__hdr">
             <h1 class="order__hdr-title">Заказ 6272e0e87cf6f829</h1>
             <div class="order__hdr-info">
-              <div class="option">{{ exchange.coinFrom.crypto.name }} {% if exchange.coinFrom.network != '' %}{{ exchange.coinFrom.network }}{% endif %} {{ exchange.coinFrom.crypto.symbol }}</div>
-              <div class="result">{{ exchange.sumFrom }} {{ exchange.coinFrom.symbol }}</div>
+              <div class="option">{{ exchange.coinFrom }}</div>
+              <div class="result">{{ exchange.sumFrom }}</div>
               <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width: 14px; transform: rotate(-90deg);" alt="" />
 
               <div class="option">
-                {{ exchange.coinTo.crypto.name }} {% if exchange.coinTo.network != '' %}{{ exchange.coinTo.network }}{% endif %} {{ exchange.coinTo.crypto.symbol }}
+                {{ exchange.coinTo }}
               </div>
-              <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo.crypto.symbol }}</div>
+              <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo }}</div>
             </div>
             <div class="order__hdr-over">
               <p>
@@ -101,7 +101,7 @@
                     <div class="wrapper">
                       <div class="label">переводите</div>
                       <div class="result">
-                        <span class="amount1">{{ exchange.sumFrom }}</span> {{ exchange.coinFrom.crypto.symbol }}
+                        <span class="amount1">{{ exchange.sumFrom }}</span> {{ exchange.coinFrom }}
                       </div>
                     </div>
                     <button class="copy copy1"><img src="https://coinchanger.in/img/sprite.svg?v=1666338994#copy" style="width: 40px;" alt="" /></button>
@@ -111,7 +111,7 @@
                   <div class="order__step-field">
                     <div class="wrapper">
                       <div class="label">на кошелек</div>
-                      <div class="result wallet">{{ exchange.coinTo.address }}</div>
+                      <div class="result wallet">{{ exchange.dep_wallet }}</div>
                     </div>
                     <div class="qr">
                       <button class="qr__btn"><img src="https://coinchanger.in/img/sprite.svg?v=1666338994#qr" style="width: 40px;" alt="" /></button>
@@ -167,18 +167,12 @@
                 <div class="order__step-tabel">
                   <div class="order__step-row">
                     <div class="option">Мы переведем</div>
-                    <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo.crypto.symbol }}</div>
+                    <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo }}</div>
                   </div>
                   <div class="order__step-row">
                     <div class="option">По реквизитам</div>
                     <div class="result">{{ exchange.wallet }}</div>
                   </div>
-                  {% if exchange.coinTo.network != '' %}
-                    <div class="order__step-row">
-                      <div class="option">Отправка монет осуществляется по сети</div>
-                      <div class="result">{{ exchange.coinTo.network }}</div>
-                    </div>
-                  {% endif %}
 
                   <!--  -->
                 </div>
