@@ -404,7 +404,10 @@
         priceFromInput.value = (parseFloat(priceToInput.value) + parseFloat(priceToInput.value) * 0.025).toFixed(8);
         priceToInput.value = thirdPrice;
 
-
+        console.log(priceFromInput.value)
+        console.log(priceToInput.value)
+        console.log(sumFromInput.value)
+        console.log(sumToInput.value)
         // Update the reserve span with the new formatted value
         let reserveSpan = document.querySelector('.reserve');
         reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + thirdSymbol;
