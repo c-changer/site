@@ -235,6 +235,51 @@ def error(request):
         return response
     return redirect("home")
 
+def mac_error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+
+        response = render(request, "crypto/mac-error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
+def dne_error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+
+        response = render(request, "crypto/does_not_exist.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
+def aml_error(request):
+    exchange_id = request.COOKIES.get('exchange_id')
+    
+    if exchange_id:
+        exchange = Exchange.objects.get(id=exchange_id)
+        
+        context = {
+            'exchange': exchange
+        }
+
+        response = render(request, "crypto/aml-error.html", context)
+        response.delete_cookie('exchange_id')
+        return response
+    return redirect("home")
+
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
