@@ -73,10 +73,11 @@ def home(request):
         "reserve": round(reserve, 2),
     }
     
-    for dep in deposit:
-        dep.crypto.price = prices[dep]
-        dep.crypto.price.save()
-    
+    for dep, new_price in zip(deposit, prices):
+        # Assuming dep.crypto is a ForeignKey to a Crypto model
+        dep.crypto.price = new_price
+        dep.crypto.save()
+
     return render(request, "crypto/home.html", context)
 
 def exchange(request):
