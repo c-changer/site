@@ -26,7 +26,7 @@
                   <div class="modal__item">
                     <div class="modal__item-option">
                       <div class="modal__item-label">Получите</div>
-                      <div class="modal__item-result">{{ exchange.sumTo }}</div>
+                      <div class="modal__item-result">{{ exchange.sumTo }} {{ exchange.coinFrom }}</div>
                     </div>
                   </div>
                   <br />
@@ -56,14 +56,14 @@
           <div class="order__hdr">
             <h1 class="order__hdr-title">Заказ 6272e0e87cf6f829</h1>
             <div class="order__hdr-info">
-              <div class="option">{{ exchange.coinFrom }}</div>
               <div class="result">{{ exchange.sumFrom }}</div>
+              <div class="option">{{ exchange.coinFrom }}</div>
               <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width: 14px; transform: rotate(-90deg);" alt="" />
 
-              <div class="option">
-                {{ exchange.coinTo }}
+              <div class="result">
+                {{ exchange.sumTo }}
               </div>
-              <div class="result">{{ exchange.sumTo }} {{ exchange.coinTo }}</div>
+              <div class="option">{{ exchange.coinTo }}</div>
             </div>
             <div class="order__hdr-over">
               <p>
@@ -132,7 +132,6 @@
                     <p>В последнее время участились случаи мошенничества. Если вы указывайте не свой личный кошелёк, а кошелёк сторонних лиц (Инвестиционных экспертов, других обменных сервисов, брокеров и.т. д) убедитесь, что это не мошенники, почитайте отзывы в интернете, иначе вы рискуйте потерять свои средства.</p>
                     <p></p>
                     <p>Наш сервис не принимает платежи, если криптовалюта отправленная Вами будет иметь High Risk или связана с нелегитимными источниками. В случае, если вы уже осуществили перевод на наши счета, может потребоваться процедура верификации личности для возврата средств с учетом комиссии сети.</p>
-                    <p>Если вы выводите монеты с биржи Binance, Huobi и др., выберите сеть Bitcoin</p>
                     <!--  -->
                   </div>
                   <!--  -->

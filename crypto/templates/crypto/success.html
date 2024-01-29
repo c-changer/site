@@ -20,10 +20,10 @@
             <div class="complete__list">
               <div class="complete__list-wrap">
                 <div class="complete__list-title">
-                  Средства были переведенны по указанному вами адрессу "{{ exchange.wallet }}" в сети {% if exchange.coinTo.network != "" %}{{ exchange.coinTo.network }}{% else %}{{ exchange.coinTo.crypto.name }}{% endif %}
+                  Средства были переведенны по указанному вами адрессу "{{ exchange.wallet }}"
                   <br>
                   <br/>
-                  Сумма сделки {{ exchange.sumTo }} {{ exchange.coinTo.crypto.symbol }}
+                  Сумма сделки {{ exchange.sumTo }} {{ exchange.coinTo }}
                   <br>
                   
                   Статус: <span style="color: green;">Успешно</span>
