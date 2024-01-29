@@ -400,6 +400,7 @@
 
         let thirdPrice = priceFromInput.value;
 
+        console.log(priceToInput.value)
         // Swap values and apply the calculation
         priceFromInput.value = (parseFloat(priceToInput.value) + parseFloat(priceToInput.value) * 0.025).toFixed(8);
         priceToInput.value = thirdPrice;
