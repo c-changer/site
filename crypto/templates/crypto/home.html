@@ -32,7 +32,9 @@
                 <div class="trade__form-item">
                   <div class="trade__form-hdr">
                     <div class="trade__form-title">Отдаете</div>
-                    <div class="trade__form-title" >1 <span class="firstsymbol" name="symbolFrom">{{ default_payment.crypto.symbol }}</span> = <span class="priceratio">{{ price_ratio|floatformat:"3"|replace:",":" " }}</span> <span class="secondsymbol" name="symbolTo">{{ default_dep.crypto.symbol }}</span></div>
+                    <div class="trade__form-title" >1 <span class="firstsymbol" name="symbolFrom">{{ default_payment.crypto.symbol }}</span> = <span class="priceratio">{% spaceless %}
+  {{ price_ratio|intcomma|default:"0" }}
+{% endspaceless %}</span> <span class="secondsymbol" name="symbolTo">{{ default_dep.crypto.symbol }}</span></div>
                     <input type="hidden" name="symbolFromInput" class="symbolFromInput" value="{% if default_payment.network is not None %}{{ default_payment.crypto.symbol }} {{ default_payment.network }}{% else %}{{ default_payment.crypto.name }}{% endif %}">
                     <input type="hidden" name="symbolToInput" class="symbolToInput" value="{{ default_dep.crypto.symbol }} {% if default_dep.network is not None %}{{ default_dep.network }}{% else %}{{ default_dep.crypto.name }}{% endif %}">
 
@@ -89,7 +91,9 @@
                 <div class="trade__form-item">
                   <div class="trade__form-hdr">
                     <div class="trade__form-title">Получаете</div>
-                    <div class="trade__form-title">Резерв: <span class="reserve">{{ price_ratio|floatformat:"3"|replace:",":" " }} {{ default_dep.crypto.symbol }}</span></div>
+                    <div class="trade__form-title">Резерв: <span class="reserve">{% spaceless %}
+  {{ price_ratio|intcomma|default:"0" }}
+{% endspaceless %} {{ default_dep.crypto.symbol }}</span></div>
                   </div>
                   <div class="field ex-field js-dropdown-container active">
                     <input name="sumTo" type="text" id="sumTo" autocomplete="off" placeholder="{{ min_amount_dep }} - {{ max_amount_dep }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-dep">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</label><a class="open-select open-select-dep">
