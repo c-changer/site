@@ -52,18 +52,11 @@ def home(request):
         min_amount_payment = round(settings.min_amount / default_payment.crypto.price, 5)
         max_amount_payment = round(settings.max_amount / default_payment.crypto.price, 5)
     
-    
-    
-    if default_dep.crypto.symbol == "USDT":
-        min_amount_dep = 0
-        max_amount_dep = 0
-        try:
-            settings_usdt = DepositSettings.objects.get(crypto="USDT")
-            min_amount_dep = round(settings_usdt.min_amount / default_payment.crypto.price, 5)
-            max_amount_dep = round(settings_usdt.max_amount / default_payment.crypto.price, 5)
-        except:
-            pass
-    else:
+    try:
+        settings_usdt = DepositSettings.objects.get(crypto="USDT")
+        min_amount_dep = round(settings_usdt.min_amount / default_payment.crypto.price, 5)
+        max_amount_dep = round(settings_usdt.max_amount / default_payment.crypto.price, 5)
+    except:
         min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
         max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
     
