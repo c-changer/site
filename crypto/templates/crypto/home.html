@@ -196,43 +196,14 @@
 
     <div>
       {% for all_set in all_settings  %}
-        <span class="all-symbol" style="display: none;">{{ all_set.crypto }}</span>
-        <span class="all-min" style="display: none;">{{ all_set.min_amount }}</span>
-        <span class="all-max" style="display: none;">{{ all_set.max_amount }}</span>
+        <span class="all-symbol" style="display: none;">{% if all_set.crypto is not None %}{{ all_set.crypto }}{% else %}None{% endif %}</span>
+        <span class="all-min" style="display: none;">{% if all_set.min_amount is not None %}{{ all_set.min_amount }}{% else %}None{% endif %}</span>
+        <span class="all-max" style="display: none;">{% if all_set.max_amount is not None %}{{ all_set.max_amount }}{% else %}None{% endif %}</span>
       {% endfor %}
     </div>
  <!-- Ваш HTML-код -->
 
-{% comment %} <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var searchField = document.querySelector('.hidden__search-field');
-    var items = document.querySelectorAll('.hidden__item');
-
-    searchField.addEventListener('input', function() {
-        var searchTerm = searchField.value.toLowerCase();
-
-        items.forEach(function(item) {
-            var itemName = item.querySelector('.hidden__item-name');
-            var itemSymbol = item.querySelector('.hidden__item-symbol');
-            
-            if (itemName && itemSymbol) {
-                itemName = itemName.textContent.toLowerCase();
-                itemSymbol = itemSymbol.textContent.toLowerCase();
-                
-                if (itemName.includes(searchTerm) || itemSymbol.includes(searchTerm)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            }
-        });
-    });
-});
-</script> {% endcomment %}
-
-
-
-{% comment %} <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     function updateFormState() {
       var labelPayment = document.querySelector(".label-payment").textContent.trim();
@@ -268,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }).observe(label, { childList: true, subtree: true });
     });
   });
-</script> {% endcomment %}
+</script>
 
 
 
@@ -380,11 +351,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 openSelectImg.setAttribute('src', itemIcon);
 
                 let name2 = document.querySelector('.name2');
-                if (itemNetwork=='None'){
-                  name2.innerText = itemName;
-                } else {
-                  name2.innerText = itemName;
-                }
+                name2.innerText = itemName;
+                
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-payment').innerText.replace(',', '.'));
                 let allSymbol = document.querySelector(".all-symbol").innerText;
