@@ -59,8 +59,8 @@ def home(request):
         min_amount_dep = settings_usdt.min_amount
         max_amount_dep = settings_usdt.max_amount
     except:
-        min_amount_dep = round(settings.min_amount / default_dep.crypto.price, 5)
-        max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
+        min_amount_dep = settings.min_amount
+        max_amount_dep = settings.max_amount
     
     reserve = max_amount_dep / min_amount_dep * Decimal(25.2716)
     
