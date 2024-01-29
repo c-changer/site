@@ -267,7 +267,7 @@ JAZZMIN_SETTINGS = {
         "crypto.Exchange": "fas fa-receipt",
         "crypto.Crypto": "fab fa-bitcoin",
         "crypto.DepositPayment": "fas fa-piggy-bank",
-        "crypto.Bank": "fas fa-building-columns"
+        "crypto.Bank": "fas fa-university"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
