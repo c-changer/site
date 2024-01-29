@@ -5,7 +5,7 @@ from .models import Crypto, Bank, DepositPayment, DepositSettings, Exchange
 class CryptoAdmin(admin.ModelAdmin):
     actions_on_top = True
     actions_on_bottom = False    
-    list_display = ['name', 'symbol', 'price', 'is_available']
+    list_display = ['name', 'symbol', 'price', 'reserve', 'is_available']
     list_editable = ['is_available']
     
 admin.site.register(Crypto, CryptoAdmin)
