@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from .models import Crypto, DepositPayment, DepositSettings, Exchange, Bank
 from decimal import Decimal
 
+import random
+
 import secrets
 
 # Create your views here.
@@ -18,6 +20,10 @@ def home(request):
     settings = DepositSettings.objects.get(title="Настройки депозита")
     banks = Bank.objects.filter(is_available=True)
     
+    for dep in deposit:
+        dep.price -= dep.price * Decimal(0.025)
+        dep.save()
+
     try:
         obj = Crypto.objects.get(symbol="BTC",is_available=True)
         default_payment = DepositPayment.objects.filter(crypto=obj, is_available=True).first()

@@ -372,6 +372,7 @@
             console.error('Unable to convert the content to a float.');
         }
 
+        priceratioValue = priceratioValue + (priceratioValue*0.025)
         // Update price ratio
         let newPriceRatio = 1.0 / priceratioValue;
 
@@ -393,6 +394,16 @@
 
         // Format the reserve value with spaces for thousands
         let formattedReserve = formatNumberWithSpaces(newReserve);
+
+        let priceFromInput = document.querySelector(".priceFromInput");
+        let priceToInput = document.querySelector(".priceToInput");
+
+        let thirdPrice = priceFromInput.value;
+
+        // Swap values and apply the calculation
+        priceFromInput.value = (parseFloat(priceToInput.value) + parseFloat(priceToInput.value) * 0.025).toFixed(8);
+        priceToInput.value = thirdPrice;
+
 
         // Update the reserve span with the new formatted value
         let reserveSpan = document.querySelector('.reserve');
