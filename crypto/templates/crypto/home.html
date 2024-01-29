@@ -210,13 +210,18 @@ document.addEventListener("DOMContentLoaded", function() {
         var searchTerm = searchField.value.toLowerCase();
 
         items.forEach(function(item) {
-            var itemName = item.querySelector('.hidden__item-name').textContent.toLowerCase();
-            var itemSymbol = item.querySelector('.hidden__item-symbol').textContent.toLowerCase();
+            var itemName = item.querySelector('.hidden__item-name');
+            var itemSymbol = item.querySelector('.hidden__item-symbol');
             
-            if (itemName.includes(searchTerm) || itemSymbol.includes(searchTerm)) {
-                item.style.display = 'flex';
-            } else {
-                item.style.display = 'none';
+            if (itemName && itemSymbol) {
+                itemName = itemName.textContent.toLowerCase();
+                itemSymbol = itemSymbol.textContent.toLowerCase();
+                
+                if (itemName.includes(searchTerm) || itemSymbol.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
             }
         });
     });
