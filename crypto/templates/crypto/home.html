@@ -40,7 +40,7 @@
                     <input type="hidden" name="priceToInput" class="priceToInput" value="{{ default_dep.crypto.price }}">
                   </div>
                   <div class="field ex-field js-dropdown-container active">
-                    <input name="sumFrom" type="text" id="sumFrom" autocomplete="off" min="{{ min_amount_payment }}" max="{{ max_amount_payment }}" type="number" placeholder="{{ min_amount_payment }} - {{ max_amount_payment }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-payment">{{ default_payment.crypto.name }} {{ default_payment.crypto.symbol }}</label><a class="open-select open-select-payment">
+                    <input name="sumFrom" type="text" id="sumFrom" autocomplete="off" min="{{ min_amount_payment }}" max="{{ max_amount_payment }}" type="number" placeholder="{{ min_amount_payment }} - {{ max_amount_payment }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-payment">{{ default_payment.crypto.name }} ({{ default_payment.crypto.symbol }})</label><a class="open-select open-select-payment">
                       <img src="{{ default_payment.crypto.icon }}" alt="BTC" />
                       <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width: 18px;" alt="">
                       <span class="payment-price" name="priceFrom" style="display:none">{{ default_payment.crypto.price }}</span>
@@ -93,7 +93,7 @@
                     <div class="trade__form-title">Резерв: <span class="reserve">{{ reserve|intcomma }} {{ default_dep.crypto.symbol }}</span></div>
                   </div>
                   <div class="field ex-field js-dropdown-container active">
-                    <input name="sumTo" type="text" id="sumTo" autocomplete="off" placeholder="{{ min_amount_dep }} - {{ max_amount_dep }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-dep">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</label><a class="open-select open-select-dep">
+                    <input name="sumTo" type="text" id="sumTo" autocomplete="off" placeholder="{{ min_amount_dep }} - {{ max_amount_dep }}" class="trade__form-item__field js-field with-drdwn" /><label class="label label-dep">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} ({{ default_dep.crypto.symbol }})</label><a class="open-select open-select-dep">
                       
                       <img src="{{ default_dep.crypto.icon }}" alt="USDTERC20" />
                       <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#drop" style="width:18px" alt="">
@@ -259,8 +259,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Вызываем функцию при загрузке документа
     updateFormState();
+
+    // Слушаем событие изменения контента лейблов
+    var labels = document.querySelectorAll(".label-payment, .label-dep");
+    labels.forEach(function (label) {
+      new MutationObserver(function () {
+        updateFormState();
+      }).observe(label, { childList: true, subtree: true });
+    });
   });
 </script>
+
 
 
 
