@@ -27,7 +27,7 @@ class Bank(models.Model):
     price = models.DecimalField(max_digits=20, decimal_places=3, default=0, verbose_name="Цена к доллару")
     reserve = models.DecimalField(
         max_digits=20, 
-        decimal_places=10, 
+        decimal_places=2, 
         default=round(random.uniform(500000, 3000000), 2),
         verbose_name="Резерв")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
