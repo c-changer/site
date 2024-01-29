@@ -158,7 +158,7 @@
                 <!--  -->
                 <!--  -->
                 <div class="trade__form-item field active">
-                  <input name="fio" type="email" id="text" placeholder="" class="trade__form-item__field js-field fio" style="display:none;"/><label class="label">ФИО</label>
+                  <input name="fio" type="text" id="fio" placeholder="" class="trade__form-item__field js-field fio" style="display:none;"/><label class="label">ФИО</label>
                 </div>
                 <!--  -->
                 <!--  -->
@@ -717,12 +717,15 @@
     var sumFromValue = parseFloat(document.getElementById('sumFrom').value.replace(',', '.')) || 0;
     var sumToValue = parseFloat(document.getElementById('sumTo').value.replace(',', '.')) || 0;
     var emailValue = document.getElementById('email').value.trim();
+    var fio = document.getElementById('fio')
+    var fioValue = document.getElementById('fio').value.trim();
     var walletValue = document.getElementById('wallet').value.trim();
 
     // Проверяем условия
     var isCheckboxChecked = document.querySelector('.checkbox').checked;
     var isEmailValid = emailValue !== '';
     var isWalletValid = walletValue !== '';
+    var isFIOValid = fioValue !== '';
 
     // Проверяем, не пустые ли инпуты для сум
     var isSumFromEmpty = document.getElementById('sumFrom').value.trim() === '';
@@ -732,7 +735,11 @@
     var submitButton = document.querySelector('.mainButton');
 
     // Устанавливаем состояние кнопки
-    submitButton.disabled = !(isCheckboxChecked && isEmailValid && isWalletValid && !isSumFromEmpty && !isSumToEmpty);
+    if (fio.style.display == "none"){
+      submitButton.disabled = !(isCheckboxChecked && isEmailValid && isWalletValid && !isSumFromEmpty && !isSumToEmpty);
+    } else {
+      submitButton.disabled = !(isCheckboxChecked && isEmailValid && isWalletValid && !isSumFromEmpty && !isSumToEmpty && isFIOValid);
+    }
   }
 
   // Слушаем события изменения для валидации
