@@ -99,10 +99,16 @@ def exchange(request):
                 pass
 
             settings = DepositSettings.objects.get(title="Настройки депозита")
-            minAmount = settings.min_amount
-            maxAmount = settings.max_amount
             
-            if Decimal(sumFrom) < (Decimal(minAmount) / Decimal(priceFrom)) or Decimal(sumFrom) > (Decimal(maxAmount) / Decimal(priceFrom)) or Decimal(sumTo) < (Decimal(minAmount) / Decimal(priceTo)) or Decimal(sumTo) > (Decimal(maxAmount) / Decimal(priceTo)):
+            second_word = coinFrom.split()[1]
+            try:
+                minAmount = DepositSettings.objects.get(crypto=second_word).min_amount
+                maxAmount = DepositSettings.objects.get(crypto=second_word).max_amount
+            except:
+                minAmount = settings.min_amount
+                maxAmount = settings.max_amount
+            
+            if Decimal(sumFrom) < (Decimal(minAmount) / Decimal(priceFrom)) or Decimal(sumFrom) > (Decimal(maxAmount) / Decimal(priceFrom)):
                 response_data = {'success': False, 'input': ['sumFrom', 'sumTo']}
                 return JsonResponse(response_data)
             
