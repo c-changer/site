@@ -193,6 +193,13 @@
     <span class="min" style="display: none;">{{ settings.min_amount }}</span>
     <span class="max" style="display: none;">{{ settings.max_amount }}</span>
 
+    <div>
+      {% for all_set in all_settings  %}
+        <span class="all-symbol" style="display: none;">{{ all_set.crypto.symbol }}</span>
+        <span class="all-min" style="display: none;">{{ all_set.min_amount }}</span>
+        <span class="all-max" style="display: none;">{{ all_set.max_amount }}</span>
+      {% endfor %}
+    </div>
  <!-- Ваш HTML-код -->
 
 {% comment %} <script>
@@ -335,8 +342,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-payment').innerText.replace(',', '.'));
-                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                let allSymbol = document.querySelector(".all-symbol").innerText;
+
+                if (itemSymbol != allSymbol){
+                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                } else {
+                  let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
+                }
+                
 
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-payment');
@@ -550,8 +565,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-bank').innerText.replace(',', '.'));
                 
-                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                let allSymbol = document.querySelector(".all-symbol").innerText;
+
+                if (itemSymbol != allSymbol){
+                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                } else {
+                  let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
+                }
 
                 let sumFromInput = document.getElementById('sumTo');
                 let minChange = min.toString();  // Ensure minChange is a string
@@ -658,8 +680,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-dep').innerText.replace(',', '.'));
                 
-                let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
-                let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                let allSymbol = document.querySelector(".all-symbol").innerText;
+
+                if (itemSymbol != allSymbol){
+                  let min = parseFloat(document.querySelector('.min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.max').innerText.replace(',', '.'));
+                } else {
+                  let min = parseFloat(document.querySelector('.all-min').innerText.replace(',', '.'));
+                  let max = parseFloat(document.querySelector('.all-max').innerText.replace(',', '.'));
+                }
 
                 let sumFromInput = document.getElementById('sumTo');
                 let minChange = min.toString();  // Ensure minChange is a string

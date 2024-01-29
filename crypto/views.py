@@ -17,7 +17,7 @@ def home(request):
     
     payments = DepositPayment.objects.filter(is_available=True)
     deposit = DepositPayment.objects.filter(is_available=True)
-    settings = DepositSettings.objects.get(title="Настройки депозита")
+    settings = DepositSettings.objects.get(title="По умолчанию")
     banks = Bank.objects.filter(is_available=True)
     
     for dep in deposit:
@@ -55,6 +55,8 @@ def home(request):
         max_amount_dep = round(settings.max_amount / default_dep.crypto.price, 5)
     
     reserve = settings.max_amount / settings.min_amount * Decimal(25.2716)
+    
+    all_settings = DepositSettings.objects.exclude(title="По умолчанию")
     context = {
         "payments": payments,
         "deposit": deposit,
@@ -68,6 +70,7 @@ def home(request):
         "min_amount_payment": min_amount_payment,
         "max_amount_payment": max_amount_payment,
         "reserve": round(reserve, 2),
+        "all_settings": all_settings,
     }
 
     return render(request, "crypto/home.html", context)

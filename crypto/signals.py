@@ -60,5 +60,5 @@ def create_initial_instance(sender, **kwargs):
 def create_initial_instance(sender, **kwargs):
     if sender.name == 'crypto':
         if not DepositSettings.objects.exists():
-            DepositSettings.objects.create(title="Настройки депозита")
+            DepositSettings.objects.create(title="По умолчанию")
 

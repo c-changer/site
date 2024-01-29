@@ -32,10 +32,6 @@ class DepositSettingsAdmin(admin.ModelAdmin):
     list_display = ['title', 'min_amount', 'max_amount']
     list_editable = ['min_amount', 'max_amount']
 
-    def has_add_permission(self, request):
-        # Disable the ability to add new instances
-        return False
-    
 admin.site.register(DepositSettings, DepositSettingsAdmin)
 
 class ExchangeAdmin(admin.ModelAdmin):
