@@ -78,7 +78,8 @@
                         <!--  -->
                       </div>
                     </div>
-                  </div><a type="button" style="display:flex; justify-content: center;"class="trade__form-exchange ">
+                  </div>
+                  <a type="button" style="display:flex; justify-content: center;"class="trade__form-exchange ">
                     <div class="obratnyi" style="display:flex;">Обратный обмен
                     <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#change" style="width:30px" alt=""></div>
                     
@@ -228,6 +229,41 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script> {% endcomment %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function updateFormState() {
+      var labelPayment = document.querySelector(".label-payment").textContent.trim();
+      var labelDep = document.querySelector(".label-dep").textContent.trim();
+      var reserveElement = document.querySelector(".reserve");
+      var priceratioElement = document.querySelector(".priceratio");
+      var sumFromInput = document.getElementById("sumFrom");
+      var sumToInput = document.getElementById("sumTo");
+
+      if (labelPayment === labelDep) {
+        // Лейблы одинаковые, делаем кнопку disabled
+        document.querySelector(".trade__form-action").disabled = true;
+        reserveElement.textContent = "-";
+        priceratioElement.classList.add("error");
+        sumFromInput.classList.add("error");
+        sumToInput.classList.add("error");
+      } else {
+        // Лейблы разные, возвращаем в нормальное состояние
+        document.querySelector(".trade__form-action").disabled = false;
+        reserveElement.textContent = "{{ reserve|intcomma }} {{ default_dep.crypto.symbol }}";
+        priceratioElement.classList.remove("error");
+        sumFromInput.classList.remove("error");
+        sumToInput.classList.remove("error");
+      }
+    }
+
+    // Вызываем функцию при загрузке документа
+    updateFormState();
+  });
+</script>
+
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
   // Получаем элемент формы priceratio
