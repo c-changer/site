@@ -6,8 +6,7 @@ from decimal import Decimal
 
 import random
 
-from django.contrib.gis.geoip import GeoIP
-
+from django.contrib.gis.geoip2 import GeoIP2
 import secrets
 
 # Create your views here.
@@ -252,7 +251,7 @@ def ip_error(request):
 
         # Get user's IP and location information
         user_ip = get_user_ip(request)
-        g = GeoIP()
+        g = GeoIP2()
         user_location = g.lat_lon(user_ip)
         
         # Set user's information
