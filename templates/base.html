@@ -1,5 +1,4 @@
 {% load static %}
-{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,13 +54,13 @@
             class="header__support js-support"
           
           >
-            {% trans "Поддержка" %}
+            Поддержка
           </a>
           <div class="header__nav">
             {% if request.path != "/" %}
-                <a href="/" class="header__nav-link">{% trans "Все направления" %}</a>
+                <a href="/" class="header__nav-link">Все направления</a>
             {% endif %}
-            <a href="{% url "reviews" %}" class="header__nav-link">{% trans "Отзывы" %}</a>
+            <a href="{% url "reviews" %}" class="header__nav-link">Отзывы</a>
             <a
               href="https://t.me/CoinChangerSupport"
               class="header__nav-link support js-support"
@@ -148,7 +147,7 @@ btnBurger.addEventListener("click", function() {
               <span>English</span>
               <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
             </div>
-            <a href="/en{{ request.get_full_path|slice:'3:' }}" class="footer__dropdown js__dropdown btn-en" onclick="switchLanguage('en')">
+            <div class="footer__dropdown js__dropdown btn-en" onclick="switchLanguage('en')">
               <button
                 class="header__dropdown-item js-choose-lang"
                 data-code="en"
@@ -156,8 +155,8 @@ btnBurger.addEventListener("click", function() {
                 <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk" alt="">
                 English
               </button>
-            </a>
-            <a href="/ru{{ request.get_full_path|slice:'3:' }}" class="footer__dropdown js__dropdown btn-ru" style="display: none;">
+            </div>
+            <div class="footer__dropdown js__dropdown btn-ru" style="display: none;">
               <button
                 class="header__dropdown-item js-choose-lang"
                 data-code="en"
@@ -165,34 +164,9 @@ btnBurger.addEventListener("click", function() {
                 <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
                 Русский
               </button>
-            </a>
+            </div>
           </div>
         </div>
-
-<script>
-  let en = document.querySelector(".en");
-  let ru = document.querySelector(".ru");
-  let btnEn = document.querySelector(".btn-en");
-  let btnRu = document.querySelector(".btn-ru");
-
-  ru.addEventListener('click', function(){
-    btnEn.style.display = "flex";
-  })
-  en.addEventListener('click', function(){
-    btnRu.style.display = "flex";
-  })
-  btnEn.addEventListener('click', function(){
-    ru.style.display = "none";
-    btnEn.style.display = "none";
-    en.style.display = "flex";
-  })
-  btnRu.addEventListener('click', function(){
-    ru.style.display = "flex";
-    btnRu.style.display = "none";
-    en.style.display = "none";
-  })
-</script>
-
 
         <div class="footer__inform">
           <div class="footer__partner">
@@ -213,6 +187,67 @@ btnBurger.addEventListener("click", function() {
         </div>
       </div>
     </footer>
+
+    {% comment %} <script>
+  let en = document.querySelector(".en");
+  let ru = document.querySelector(".ru");
+  let btnEn = document.querySelector(".btn-en");
+  let btnRu = document.querySelector(".btn-ru");
+
+  // Function to set the language cookie
+  function setLanguageCookie(languageCode) {
+    document.cookie = `lang=${languageCode};path=/`;
+  }
+
+  // Function to get the language from the cookie
+  function getLanguageFromCookie() {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      const [name, value] = cookie.trim().split('=');
+      if (name === 'lang') {
+        return value;
+      }
+    }
+    return null;
+  }
+
+  // Initial setup based on the cookie
+  const savedLang = getLanguageFromCookie();
+  if (savedLang === 'en') {
+    ru.style.display = "none";
+    btnEn.style.display = "none";
+    en.style.display = "flex";
+  } else if (savedLang === 'ru') {
+    ru.style.display = "flex";
+    btnRu.style.display = "none";
+    en.style.display = "none";
+  }
+
+  // Event listeners
+  ru.addEventListener('click', function(){
+    btnEn.style.display = "flex";
+    setLanguageCookie('ru');
+  });
+
+  en.addEventListener('click', function(){
+    btnRu.style.display = "flex";
+    setLanguageCookie('en');
+  });
+
+  btnEn.addEventListener('click', function(){
+    ru.style.display = "none";
+    btnEn.style.display = "none";
+    en.style.display = "flex";
+    setLanguageCookie('en');
+  });
+
+  btnRu.addEventListener('click', function(){
+    ru.style.display = "flex";
+    btnRu.style.display = "none";
+    en.style.display = "none";
+    setLanguageCookie('ru');
+  });
+</script> {% endcomment %}
 
     <!-- Language switch script -->
 <script>

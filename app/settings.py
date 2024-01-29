@@ -154,18 +154,6 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 
 CoinMarketCup = "9957bc10-5c0c-4ec6-98e3-e98e08969dc4"
 
-LOCALE_PATHS = [
-    BASE_DIR / 'locale'
-]
-
-LANGUAGES = [
-    ('ru', _('Russian')),
-    ('en', _('English')),
-    # Add more languages as needed
-]
-
-MODELTRANSLATION_LANGUAGES = ('en', 'ru',)
-
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
