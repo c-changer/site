@@ -31,7 +31,7 @@
               {% csrf_token %}
               <div class="preloader">
                 <img src="{% static "images/preload.svg" %}" alt="loading" />
-              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %}</span> за <span class="name2">{{ default_payment.crypto.name }} {% if default_payment.network is not None %}{{ default_payment.network }}{% endif %} {{ default_payment.crypto.symbol }}</span></h1><div>
+              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</span> за <span class="name2">{{ default_payment.crypto.name }} {% if default_payment.network is not None %}{{ default_payment.network }}{% endif %} {{ default_payment.crypto.symbol }}</span></h1><div>
                 <div class="trade__actual">
                   Курс актуален <span id="timer" class="time"></span> — плавающий курс <a href="{% url "agreement" %}" target="_blank">подробнее</a>
                 </div>
@@ -471,9 +471,25 @@
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
+
             });
         });
     });
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let obj = document.querySelector(".obratnyi");
+    let symbol = document.querySelector(".symbolToInput").value;
+    
+    if (symbol == "RUB") {
+      obj.style.display = "none";
+    } else {
+      obj.style.display = "flex";
+    }
+  })
+
 </script>
 
 
