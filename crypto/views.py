@@ -105,7 +105,7 @@ def exchange(request):
                 sumTo=sumTo,
                 email=email,
                 wallet=wallet,
-                dep_wallet=deposit_payment.wallet
+                dep_wallet=deposit_payment.address
             )
             
             exchange.save()
