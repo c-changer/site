@@ -2,12 +2,6 @@
 {% load static %}
 {% load humanize %}
 
-{% block title %}
-  c-changer
-{% endblock %}
-{% block metaTitle %}
-  c-changer
-{% endblock %}
 {% block cssStyle %}
   {% static 'css/home.css' %}
 {% endblock cssStyle %}
@@ -201,7 +195,7 @@
 
  <!-- Ваш HTML-код -->
 
-<script>
+{% comment %} <script>
 document.addEventListener("DOMContentLoaded", function() {
     var searchField = document.querySelector('.hidden__search-field');
     var items = document.querySelectorAll('.hidden__item');
@@ -226,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-</script>
+</script> {% endcomment %}
 
 
  <script>
