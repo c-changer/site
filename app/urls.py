@@ -27,13 +27,4 @@ urlpatterns = [
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-from django.conf.urls.i18n import i18n_patterns
-urlpatterns = i18n_patterns(
-    path('users', include('users.urls')),
-    # other urls
-    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-)
-
 urlpatterns += [path('i18n/', include('django.conf.urls.i18n')),]
