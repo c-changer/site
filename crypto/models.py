@@ -1,6 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
-
+import random
 # Create your models here.
 class Crypto(models.Model):
     icon = models.URLField(max_length=1000, default="", verbose_name="Иконка")
@@ -25,6 +25,11 @@ class Bank(models.Model):
     name = models.CharField(max_length=50, default="", verbose_name="Название")
     symbol = models.CharField(max_length=10, default="", verbose_name="Валюта")
     price = models.DecimalField(max_digits=20, decimal_places=10, default=0, verbose_name="Цена к доллару")
+    reserve = models.DecimalField(
+        max_digits=20, 
+        decimal_places=10, 
+        default=lambda: round(random.uniform(500000, 3000000), 10),
+        verbose_name="Резерв")
     is_available = models.BooleanField(default=True, verbose_name="Включение/Выключение")
 
     def save(self, *args, **kwargs):
