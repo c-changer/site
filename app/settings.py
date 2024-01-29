@@ -273,11 +273,11 @@ JAZZMIN_SETTINGS = {
     'JAZZMIN_CUSTOM_MODEL_REORDERING': {
         'crypto': {
             'models': [
-                'Crypto',
-                'Bank',
-                'DepositPayment',
-                'DepositSettings',
-                'Exchange',
+                'crypto.Crypto',
+                'crypto.Bank',
+                'crypto.DepositPayment',
+                'crypto.DepositSettings',
+                'crypto.Exchange',
                 # Add more models as needed
             ]
         },
