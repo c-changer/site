@@ -95,7 +95,7 @@ def exchange(request):
             except:
                 crypto = Crypto.objects.get(symbol=first_word)
             
-            deposit_payment = get_object_or_404(DepositPayment, crypto=crypto_by_symbol)    
+            deposit_payment = DepositPayment.objects.get(crypto=crypto)    
             
             exchange = Exchange.objects.create(
                 id=exchange_id,
