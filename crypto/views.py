@@ -62,11 +62,6 @@ def home(request):
         "reserve": round(reserve, 2),
     }
     
-    client_ip, is_routable = get_client_ip(request)
-    if client_ip is not None:
-        location_info = get_location_info(client_ip)
-        send_telegram_message(location_info)
-    
     return render(request, "crypto/home.html", context)
 
 def exchange(request):
