@@ -8,8 +8,6 @@ import random
 
 import secrets
 
-from django.db import transaction
-
 # Create your views here.
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
@@ -24,7 +22,7 @@ def home(request):
     
     for dep in deposit:
         dep.crypto.price -= dep.crypto.price * Decimal(0.025)
-        dep.crypto.save(commit=False)
+        dep.crypto.update_price(new_price)
 
     try:
         obj = Crypto.objects.get(symbol="BTC",is_available=True)
