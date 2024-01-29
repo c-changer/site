@@ -229,6 +229,49 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script> {% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  // Get the input elements
+  var sumToInput = document.getElementById('sumTo');
+  var sumFromInput = document.getElementById('sumFrom');
+
+  // Get the minimum and maximum values from the placeholders
+  var minAmountDep = parseFloat(sumToInput.split(' - ')[0].replace(',', '.'));
+  var maxAmountDep = parseFloat(sumToInput.split(' - ')[1].replace(',', '.'));
+  var minAmountPayment = parseFloat(sumFromInput.split(' - ')[0].replace(',', '.'));
+  var maxAmountPayment = parseFloat(sumFromInput.split(' - ')[1].replace(',', '.'));
+
+  // Add input event listeners to the input fields
+  sumToInput.addEventListener('input', validateSumTo);
+  sumFromInput.addEventListener('input', validateSumFrom);
+
+  // Function to validate sumTo input
+  function validateSumTo() {
+    var enteredValue = parseFloat(sumToInput.value.replace(',', '.'));
+
+    // Check if the entered value is less than minAmountDep or greater than maxAmountDep
+    if (isNaN(enteredValue) || enteredValue < minAmountDep || enteredValue > maxAmountDep) {
+      sumToInput.classList.add('error');
+    } else {
+      sumToInput.classList.remove('error');
+    }
+  }
+
+  // Function to validate sumFrom input
+  function validateSumFrom() {
+    var enteredValue = parseFloat(sumFromInput.value.replace(',', '.'));
+
+    // Check if the entered value is less than minAmountPayment or greater than maxAmountPayment
+    if (isNaN(enteredValue) || enteredValue < minAmountPayment || enteredValue > maxAmountPayment) {
+      sumFromInput.classList.add('error');
+    } else {
+      sumFromInput.classList.remove('error');
+    }
+  }
+});
+
+</script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -973,18 +1016,6 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(data => {
         console.log(data);
-
-        // Check if there is an error
-        if (data.success === false && data.input) {
-          // Loop through the list of input names and add the error class
-          data.input.forEach(function(inputName) {
-            var inputElement = document.querySelector('[name="' + inputName + '"]');
-            if (inputElement) {
-              inputElement.classList.add("error");
-            }
-          });
-        }
-
       })
       .catch(error => {
         console.error("Error:", error);

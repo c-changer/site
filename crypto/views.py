@@ -97,20 +97,6 @@ def exchange(request):
                 fio = request.POST.get('fio')
             except:
                 pass
-
-            settings = DepositSettings.objects.get(title="По умолчанию")
-            
-            second_word = coinFrom.split()[1]
-            try:
-                minAmount = DepositSettings.objects.get(crypto=second_word).min_amount
-                maxAmount = DepositSettings.objects.get(crypto=second_word).max_amount
-            except:
-                minAmount = settings.min_amount
-                maxAmount = settings.max_amount
-            
-            if Decimal(sumFrom) < (Decimal(minAmount) / Decimal(priceFrom)) or Decimal(sumFrom) > (Decimal(maxAmount) / Decimal(priceFrom)):
-                response_data = {'success': False, 'input': ['sumFrom', 'sumTo']}
-                return JsonResponse(response_data)
             
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
