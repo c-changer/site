@@ -65,7 +65,7 @@
                         <!--  -->
                       </div>
                       <div class="hidden__list">
-                        {% for payment in payments  %}
+                        {% for payment in payments|dictsort:"crypto.name"  %}
                            <div class="hidden__item hidden__item-payment">
                             <img src="{{ payment.crypto.icon }}" alt="{{ payment.crypto.name }}" class="hidden__item-img hidden__item-img-payment" />
                             <div class="hidden__item-wrapper">
