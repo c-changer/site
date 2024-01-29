@@ -137,12 +137,17 @@ btnBurger.addEventListener("click", function() {
             <a href="{% url "aml-agreement" %}" class="footer__nav-link">AML политика</a>
           </div>
           <div class="footer__nav-item lang js-wrap_dropdown">
-            <div class="footer__lang js-open_dropdown">
+            <div class="footer__lang js-open_dropdown ru">
               <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
               <span>Русский</span>
               <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
             </div>
-            <div class="footer__dropdown js__dropdown">
+            <div class="footer__lang js-open_dropdown en">
+              <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#uk" style="display:none;" alt="">
+              <span>English</span>
+              <img src="https://coinchange.in/img/sprite.svg#drop" style="width: 15px;" alt="">
+            </div>
+            <div class="footer__dropdown js__dropdown btn-en">
               <button
                 class="header__dropdown-item js-choose-lang"
                 data-code="en"
@@ -151,14 +156,41 @@ btnBurger.addEventListener("click", function() {
                 English
               </button>
             </div>
-            <div class="footer__dropdown js__dropdown" data-lang="en" style="display: none;">
-  <button class="header__dropdown-item js-choose-lang" data-code="ru">
-    <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
-    Русский
-  </button>
-</div>
+            <div class="footer__dropdown js__dropdown btn-ru" style="display: none;">
+              <button
+                class="header__dropdown-item js-choose-lang"
+                data-code="en"
+              >
+                <img style="height: 20px;" src="https://coinchanger.in//img/sprite.svg?v=1666338994#rus" alt="">
+                Русский
+              </button>
+            </div>
           </div>
         </div>
+
+<script>
+  let en = document.querySelector(".en");
+  let ru = document.querySelector(".ru");
+  let btnEn = document.querySelector(".btn-en");
+  let btnRu = document.querySelector(".btn-ru");
+
+  ru.addEventListener('click', function(){
+    btnEN.style.display = "flex";
+  })
+  en.addEventListener('click', function(){
+    btnRu.style.display = "flex";
+  })
+  btnEn.addEventListener('click', function(){
+    ru.style.display = "none";
+    en.style.display = "flex";
+  })
+  btnRu.addEventListener('click', function(){
+    ru.style.display = "flex";
+    en.style.display = "none";
+  })
+</script>
+
+
         <div class="footer__inform">
           <div class="footer__partner">
             <a
