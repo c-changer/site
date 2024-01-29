@@ -31,7 +31,7 @@
               {% csrf_token %}
               <div class="preloader">
                 <img src="{% static "images/preload.svg" %}" alt="loading" />
-              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} {{ default_dep.crypto.symbol }}</span> за <span class="name2">{{ default_payment.crypto.name }} {% if default_payment.network is not None %}{{ default_payment.network }}{% endif %} {{ default_payment.crypto.symbol }}</span></h1><div>
+              </div><h1 class="trade__title">Купить <span class="name1">{{ default_dep.crypto.name }} {% if default_dep.network is not None %}{{ default_dep.network }}{% endif %} ({{ default_dep.crypto.symbol }})</span> за <span class="name2">{{ default_payment.crypto.name }} {% if default_payment.network is not None %}{{ default_payment.network }}{% endif %} ({{ default_payment.crypto.symbol }})</span></h1><div>
                 <div class="trade__actual">
                   Курс актуален <span id="timer" class="time"></span> — плавающий курс <a href="{% url "agreement" %}" target="_blank">подробнее</a>
                 </div>
@@ -69,7 +69,7 @@
                            <div class="hidden__item hidden__item-payment">
                             <img src="{{ payment.crypto.icon }}" alt="{{ payment.crypto.name }}" class="hidden__item-img hidden__item-img-payment" />
                             <div class="hidden__item-wrapper">
-                              <span class="hidden__item-name hidden__item-name-payment">{{ payment.crypto.name }} {% if payment.network is not None %}{{ payment.network }}{% endif %} {{ payment.crypto.symbol }}</span>
+                              <span class="hidden__item-name hidden__item-name-payment">{{ payment.crypto.name }} {% if payment.network is not None %}{{ payment.network }}{% endif %} ({{ payment.crypto.symbol }})</span>
                               <span style="display: none;" class="hidden__item-symbol hidden__item-symbol-payment">{{ payment.crypto.symbol }}</span>
                               <span style="display: none;" class="hidden__item-price hidden__item-price-payment">{{ payment.crypto.price }}</span>
                               <span style="display: none;" class="hidden__item-price hidden__item-network-payment">{{ payment.network }}</span>
@@ -121,7 +121,7 @@
                         {% for dep in deposit  %}
                            <div class="hidden__item hidden__item-dep">
                             <img src="{{ dep.crypto.icon }}" alt="{{ dep.crypto.name }}" class="hidden__item-img hidden__item-img-dep" /><div class="hidden__item-wrapper">
-                            <span class="hidden__item-name hidden__item-name-dep">{{ dep.crypto.name }} {% if dep.network is not None %}{{ dep.network }}{% endif %} {{ dep.crypto.symbol }}</span>
+                            <span class="hidden__item-name hidden__item-name-dep">{{ dep.crypto.name }} {% if dep.network is not None %}{{ dep.network }}{% endif %} ({{ dep.crypto.symbol }})</span>
                             <span style="display: none;" class="hidden__item-symbol hidden__item-symbol-dep">{{ dep.crypto.symbol }}</span>
                             <span style="display: none;" class="hidden__item-price hidden__item-price-dep">{{ dep.crypto.price }}</span>
                             <span style="display: none;" class="hidden__item-price hidden__item-network-dep">{{ dep.network }}</span>
@@ -227,9 +227,9 @@
 
                 let name2 = document.querySelector('.name2');
                 if (itemNetwork=='None'){
-                  name2.innerText = itemName + ' ' + itemSymbol;
+                  name2.innerText = itemName;
                 } else {
-                  name2.innerText = itemName + ' ' + itemNetwork + ' ' + '(' + itemSymbol + ')';
+                  name2.innerText = itemName;
                 }
 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-payment').innerText.replace(',', '.'));
@@ -239,9 +239,9 @@
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-payment');
                 if (itemNetwork=='None'){
-                  labelElement.innerText = itemName + ' ' + itemSymbol;               
+                  labelElement.innerText = itemName;               
                 } else {
-                  labelElement.innerText = itemName + ' ' + itemNetwork + ' ' + itemSymbol;
+                  labelElement.innerText = itemName;
                 }
 
                 let sumFromInput = document.getElementById('sumFrom');
