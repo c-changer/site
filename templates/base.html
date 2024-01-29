@@ -61,7 +61,7 @@
             {% if request.path != "/" %}
                 <a href="/" class="header__nav-link">{% trans "Все направления" %}</a>
             {% endif %}
-            <a href="{% url "reviews" %}" class="header__nav-link">Отзывы</a>
+            <a href="{% url "reviews" %}" class="header__nav-link">{% trans "Отзывы" %}</a>
             <a
               href="https://t.me/CoinChangerSupport"
               class="header__nav-link support js-support"
