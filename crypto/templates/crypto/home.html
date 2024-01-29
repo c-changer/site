@@ -118,7 +118,7 @@
                         <!--  -->
                       </div>
                       <div class="hidden__list">
-                        {% for dep in deposit  %}
+                        {% for dep in deposit|dictsort:"crypto.name"  %}
                            <div class="hidden__item hidden__item-dep">
                             <img src="{{ dep.crypto.icon }}" alt="{{ dep.crypto.name }}" class="hidden__item-img hidden__item-img-dep" /><div class="hidden__item-wrapper">
                             <span class="hidden__item-name hidden__item-name-dep">{{ dep.crypto.name }} {% if dep.network is not None %}{{ dep.network }}{% endif %} ({{ dep.crypto.symbol }})</span>
