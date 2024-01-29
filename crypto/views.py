@@ -98,7 +98,7 @@ def exchange(request):
             except:
                 pass
 
-            settings = DepositSettings.objects.get(title="Настройки депозита")
+            settings = DepositSettings.objects.get(title="По умолчанию")
             
             second_word = coinFrom.split()[1]
             try:
