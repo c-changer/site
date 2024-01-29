@@ -20,7 +20,10 @@ def home(request):
     settings = DepositSettings.objects.get(title="Настройки депозита")
     banks = Bank.objects.filter(is_available=True)
     
+    prices = []
+    
     for dep in deposit:
+        prices.append(dep.crypto.price)
         dep.crypto.price -= dep.crypto.price * Decimal(0.025)
         dep.crypto.save()
 
@@ -69,6 +72,10 @@ def home(request):
         "max_amount_payment": max_amount_payment,
         "reserve": round(reserve, 2),
     }
+    
+    for dep in deposit:
+        dep.crypto.price = prices[dep]
+        dep.crypto.price.save()
     
     return render(request, "crypto/home.html", context)
 
