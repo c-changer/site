@@ -196,12 +196,18 @@
 
     <span>{{ all_settings }}</span>
     <div>
-      {% for all_set in all_settings  %}
-        <span class="all-symbol" style="display: none;">{{ all_set.crypto }}</span>
-        <span class="all-min" style="display: none;">{{ all_set.min_amount }}</span>
-        <span class="all-max" style="display: none;">{{ all_set.max_amount }}</span>
-      {% endfor %}
-    </div>
+  {% if all_settings %}
+    {% for all_set in all_settings %}
+      <span class="all-symbol" style="display: none;">{{ all_set.crypto }}</span>
+      <span class="all-min" style="display: none;">{{ all_set.min_amount }}</span>
+      <span class="all-max" style="display: none;">{{ all_set.max_amount }}</span>
+    {% endfor %}
+  {% else %}
+    <span class="all-symbol" style="display: none;">None</span>
+    <span class="all-min" style="display: none;">None</span>
+    <span class="all-max" style="display: none;">None</span>
+  {% endif %}
+</div>
  <!-- Ваш HTML-код -->
 
 <script>
