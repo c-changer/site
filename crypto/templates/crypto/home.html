@@ -409,14 +409,14 @@
 
                 // Подставить данные в нужные места
                 let labelElement = document.querySelector('.label-dep');
-                labelElement.innerText = itemName + ' ' + itemSymbol;               
+                labelElement.innerText = itemName;               
                 
 
                 let openSelectImg = document.querySelector('.open-select-dep img');
                 openSelectImg.setAttribute('src', itemIcon);
 
                 let name2 = document.querySelector('.name1');
-                name2.innerText = itemName + ' ' + itemSymbol;
+                name2.innerText = itemName;
                 
                 let itemPrice = parseFloat(item.querySelector('.hidden__item-price-bank').innerText.replace(',', '.'));
                 
@@ -468,28 +468,19 @@
                 let formattedReserve = formatNumberWithSpaces(itemReserve);
                 reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
 
+
+                let obj = document.querySelector(".obratnyi");
+                obj.style.display = "none";
+
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
 
+                
+
             });
         });
     });
-</script>
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let obj = document.querySelector(".obratnyi");
-    let symbol = document.querySelector(".symbolToInput").value;
-    
-    if (symbol == "RUB") {
-      obj.style.display = "none";
-    } else {
-      obj.style.display = "flex";
-    }
-  })
-
 </script>
 
 
@@ -588,6 +579,8 @@
                 let formattedReserve = formatNumberWithSpaces(newReserve);
                 reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
 
+                let obj = document.querySelector(".obratnyi");
+                obj.style.display = "flex";
                 // Закрыть соответствующий список hidden
                 let hiddenList = item.closest('.hidden-dep');
                 hiddenList.classList.remove('show');
