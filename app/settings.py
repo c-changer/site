@@ -237,7 +237,7 @@ JAZZMIN_SETTINGS = {
     "hide_models": ['auth.Group'],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["auth", "books", "books.author", "books.book"],
+    "order_with_respect_to": ["auth", "crypto.Exchange", "crypto.DepositSettings", "crypto.DepositPayment", "crypto.Crypto", "crypto.Bank"],
 
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
