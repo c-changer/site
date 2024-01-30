@@ -66,7 +66,7 @@ class DepositPayment(models.Model):
         return f"{self.crypto.symbol}"
     
     class Meta:
-        ordering = ['3']
+        ordering = ['id']
         verbose_name = "Адрес"
         verbose_name_plural = "Адреса"
 
@@ -95,7 +95,7 @@ class DepositSettings(models.Model):
         return f"Лимит"
     
     class Meta:
-        ordering = ['2']
+        ordering = ['id']
         verbose_name = "Лимит"
         verbose_name_plural = "Лимиты"
 
@@ -137,6 +137,6 @@ class Exchange(models.Model):
         return f"Обмен - {self.id}"
     
     class Meta:
-        ordering = ['1']
+        ordering = ['id']
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
