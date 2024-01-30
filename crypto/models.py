@@ -21,7 +21,7 @@ class Crypto(models.Model):
         return f"{self.symbol}"
     
     class Meta:
-        ordering = ['4']
+        ordering = ['id']
         verbose_name = "Монета"
         verbose_name_plural = "Монеты"
 
@@ -45,7 +45,7 @@ class Bank(models.Model):
         return f"{self.symbol}"
     
     class Meta:
-        ordering = ['5']
+        ordering = ['id']
         verbose_name = "Банк"
         verbose_name_plural = "Банки"
 
