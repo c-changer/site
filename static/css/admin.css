@@ -1,0 +1,6 @@
+/* custom_admin.css */
+
+/* Hide Recent Actions section */
+#recent-actions-module {
+    display: none !important;
+}
