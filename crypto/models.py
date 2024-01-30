@@ -72,14 +72,15 @@ class DepositPayment(models.Model):
 
 
 class DepositSettings(models.Model):
+    
+
+    title = models.CharField(max_length=100, editable=False, verbose_name="", default="Изменить")
     @staticmethod
     def generate_crypto_choices():
         # Assume Crypto is a list of predefined cryptocurrencies
         objects = Crypto.objects.all()
         crypto_choices = [(crypto.symbol, crypto.symbol) for crypto in objects] + [('RUB', 'RUB')]
         return crypto_choices
-
-    title = models.CharField(max_length=100, editable=False, verbose_name="", default="Изменить")
     crypto = models.CharField(max_length=20, choices=generate_crypto_choices(), verbose_name="Валюта", null=True)
     min_amount = models.DecimalField(max_digits=10, decimal_places=2, default=10, verbose_name="min $", blank=True)
     max_amount = models.DecimalField(max_digits=10, decimal_places=2, default=100000, verbose_name="max $", blank=True)
