@@ -115,7 +115,7 @@ class Exchange(models.Model):
     # MAC_ERROR = 'MAC'
     # DOES_NOT_EXIST = 'DOES_NOT_EXIST'
     # AML_ERROR = 'AML'
-    # WAIT = "W"
+    WAIT = "W"
     
     STATUS_CHOICES = [
             (WAIT, "В ожидании"),
