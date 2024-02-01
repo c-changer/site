@@ -118,7 +118,7 @@ class Exchange(models.Model):
     # WAIT = "W"
     
     STATUS_CHOICES = [
-            # (WAIT, "В ожидании"),
+            (WAIT, "В ожидании"),
             (PAYED, 'Оплачено'),
             (NOT_PAYED, 'Ошибка'),
             # (IP_ERROR, 'Несовпадение IP-адреса'),
