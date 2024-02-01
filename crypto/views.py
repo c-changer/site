@@ -10,7 +10,16 @@ import requests
 
 import secrets
 
+from telegram import Bot
+
+
 # Create your views here.
+def send_telegram_message(message):
+    bot = Bot(token='6790080348:AAEpTaTpYnh3iH-x5bTb55wMgfZoKf97P3U')
+    chat_id = '-1002053348824'  # Replace with your channel username or chat ID
+
+    bot.send_message(chat_id=chat_id, text=message)
+
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
     
@@ -80,6 +89,8 @@ def home(request):
         "reserve": round(reserve, 2),
         "all_settings": all_settings,
     }
+    
+    send_telegram_message("hui v nos")
 
     return render(request, "crypto/home.html", context)
 
@@ -245,94 +256,94 @@ def error(request):
         return response
     return redirect("home")
 
-def mac_error(request):
-    exchange_id = request.COOKIES.get('exchange_id')
+# def mac_error(request):
+#     exchange_id = request.COOKIES.get('exchange_id')
     
-    if exchange_id:
-        exchange = Exchange.objects.get(id=exchange_id)
+#     if exchange_id:
+#         exchange = Exchange.objects.get(id=exchange_id)
         
-        context = {
-            'exchange': exchange
-        }
+#         context = {
+#             'exchange': exchange
+#         }
 
-        response = render(request, "crypto/mac-error.html", context)
-        response.delete_cookie('exchange_id')
-        return response
-    return redirect("home")
+#         response = render(request, "crypto/mac-error.html", context)
+#         response.delete_cookie('exchange_id')
+#         return response
+#     return redirect("home")
 
-def dne_error(request):
-    exchange_id = request.COOKIES.get('exchange_id')
+# def dne_error(request):
+#     exchange_id = request.COOKIES.get('exchange_id')
     
-    if exchange_id:
-        exchange = Exchange.objects.get(id=exchange_id)
+#     if exchange_id:
+#         exchange = Exchange.objects.get(id=exchange_id)
         
-        context = {
-            'exchange': exchange
-        }
+#         context = {
+#             'exchange': exchange
+#         }
 
-        response = render(request, "crypto/does_not_exist.html", context)
-        response.delete_cookie('exchange_id')
-        return response
-    return redirect("home")
+#         response = render(request, "crypto/does_not_exist.html", context)
+#         response.delete_cookie('exchange_id')
+#         return response
+#     return redirect("home")
 
-def aml_error(request):
-    exchange_id = request.COOKIES.get('exchange_id')
+# def aml_error(request):
+#     exchange_id = request.COOKIES.get('exchange_id')
     
-    if exchange_id:
-        exchange = Exchange.objects.get(id=exchange_id)
+#     if exchange_id:
+#         exchange = Exchange.objects.get(id=exchange_id)
         
-        context = {
-            'exchange': exchange
-        }
+#         context = {
+#             'exchange': exchange
+#         }
 
-        response = render(request, "crypto/aml-error.html", context)
-        response.delete_cookie('exchange_id')
-        return response
-    return redirect("home")
+#         response = render(request, "crypto/aml-error.html", context)
+#         response.delete_cookie('exchange_id')
+#         return response
+#     return redirect("home")
 
-def get_user_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+# def get_user_ip(request):
+#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+#     if x_forwarded_for:
+#         ip = x_forwarded_for.split(',')[0]
+#     else:
+#         ip = request.META.get('REMOTE_ADDR')
+#     return ip
 
-def get_ip_info(ip):
-    api_url = f"https://ipinfo.io/{ip}/json"
-    response = requests.get(api_url)
+# def get_ip_info(ip):
+#     api_url = f"https://ipinfo.io/{ip}/json"
+#     response = requests.get(api_url)
     
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+#     if response.status_code == 200:
+#         return response.json()
+#     else:
+#         return None
 
-def ip_error(request):
-    exchange_id = request.COOKIES.get('exchange_id')
+# def ip_error(request):
+#     exchange_id = request.COOKIES.get('exchange_id')
     
-    if exchange_id:
-        exchange = Exchange.objects.get(id=exchange_id)
+#     if exchange_id:
+#         exchange = Exchange.objects.get(id=exchange_id)
 
-        # Get user's IP and location information
-        user_ip = get_user_ip(request)
-        user_info = get_ip_info(user_ip)
+#         # Get user's IP and location information
+#         user_ip = get_user_ip(request)
+#         user_info = get_ip_info(user_ip)
         
-        # Set user's information
-        ipUser = user_info.get('ip', '')
-        countryUser = user_info.get('country', '')
-        cityUser = user_info.get('city', '')
+#         # Set user's information
+#         ipUser = user_info.get('ip', '')
+#         countryUser = user_info.get('country', '')
+#         cityUser = user_info.get('city', '')
 
-        context = {
-            'exchange': exchange,
-            'ipUser': ipUser,
-            'countryUser': countryUser,
-            'cityUser': cityUser,
-        }
+#         context = {
+#             'exchange': exchange,
+#             'ipUser': ipUser,
+#             'countryUser': countryUser,
+#             'cityUser': cityUser,
+#         }
 
-        response = render(request, "crypto/ip-error.html", context)
-        response.delete_cookie('exchange_id')
-        return response
-    return redirect("home")
+#         response = render(request, "crypto/ip-error.html", context)
+#         response.delete_cookie('exchange_id')
+#         return response
+#     return redirect("home")
 
 def success(request):
     exchange_id = request.COOKIES.get('exchange_id')

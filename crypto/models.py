@@ -111,20 +111,20 @@ class Exchange(models.Model):
     
     PAYED = 'P'
     NOT_PAYED = 'NP'
-    IP_ERROR = 'IP'
-    MAC_ERROR = 'MAC'
-    DOES_NOT_EXIST = 'DOES_NOT_EXIST'
-    AML_ERROR = 'AML'
-    WAIT = "W"
+    # IP_ERROR = 'IP'
+    # MAC_ERROR = 'MAC'
+    # DOES_NOT_EXIST = 'DOES_NOT_EXIST'
+    # AML_ERROR = 'AML'
+    # WAIT = "W"
     
     STATUS_CHOICES = [
-            (WAIT, "В ожидании"),
+            # (WAIT, "В ожидании"),
             (PAYED, 'Оплачено'),
-            (NOT_PAYED, 'Не оплачено'),
-            (IP_ERROR, 'Несовпадение IP-адреса'),
-            (MAC_ERROR, 'Несовпадение MAC-адреса'),
-            (DOES_NOT_EXIST, 'Кошелек не существует'),
-            (AML_ERROR, 'Нарушение AML политики'),
+            (NOT_PAYED, 'Ошибка'),
+            # (IP_ERROR, 'Несовпадение IP-адреса'),
+            # (MAC_ERROR, 'Несовпадение MAC-адреса'),
+            # (DOES_NOT_EXIST, 'Кошелек не существует'),
+            # (AML_ERROR, 'Нарушение AML политики'),
             
         ]
     status = models.CharField(max_length=30, verbose_name="Статус", choices=STATUS_CHOICES, default=WAIT)
