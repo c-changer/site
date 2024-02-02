@@ -4,3 +4,4 @@ venv/
 venv
 locale/
 locale
+db.sqlite3
