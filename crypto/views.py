@@ -220,7 +220,7 @@ def deal(request):
         except:
             crypto = Crypto.objects.get(symbol=first_word)
         
-        qrcode = DepositPayment.objects.get(crypto=crypto).qrcode  
+        qrcode = DepositPayment.objects.get(crypto=crypto, address=exchange.dep_wallet).qrcode  
             
         context = {
             'exchange': exchange,
