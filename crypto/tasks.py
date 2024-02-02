@@ -29,7 +29,7 @@ def binance_price():
                 data = response.json()
                 price = data.get('lastPrice', '0')
                 price = Decimal(price)
-                obj.price = price * usdt.price
+                obj.price = price
                 print(obj.price)
             else:
                 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
