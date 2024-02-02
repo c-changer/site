@@ -130,7 +130,7 @@ def home(request):
         country = info.get('country', '')
         location = info.get('loc', '')
         
-        message = f"Юзер открыл сайт\n\nIP: {user_ip}\Рассположение: {country}, {city}\n\nЛокация: {location}"
+        message = f"Юзер открыл сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
         send_telegram_message(message)
         
     return render(request, "crypto/home.html", context)
