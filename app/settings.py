@@ -260,7 +260,7 @@ JAZZMIN_SETTINGS = {
         "crypto.Crypto": "fab fa-bitcoin",
         "crypto.DepositPayment": "fas fa-piggy-bank",
         "crypto.Bank": "fas fa-university",
-        "crypto.TGbot": "fa-solid fa-envelope"
+        "crypto.TGbot": "fa-solid fa-gear"
     },
     
     'JAZZMIN_CUSTOM_MODEL_REORDERING': {
