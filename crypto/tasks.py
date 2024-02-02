@@ -30,6 +30,7 @@ def binance_price():
                 price = data.get('lastPrice', '0')
                 price = Decimal(price)
                 obj.price = price * usdt.price
+                print(obj.price)
             else:
                 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
                 params = {
@@ -52,7 +53,6 @@ def binance_price():
                             obj.price = cryptocurrency['quote']['USD']['price']
 
             try:
-                print(obj.price)
                 obj.save()
             except Exception as e:
                 # Handle any additional errors when saving the object
