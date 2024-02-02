@@ -13,15 +13,20 @@ import secrets
 from telegram import Bot
 # from telegram import Update
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+import asyncio
+
 
 
 
 # Create your views here.
-def send_telegram_message(message):
+async def send_telegram_message_async(message):
     bot = Bot(token='6790080348:AAEpTaTpYnh3iH-x5bTb55wMgfZoKf97P3U')
     chat_id = '-1002053348824'  # Replace with your channel username or chat ID
 
-    bot.send_message(chat_id=chat_id, text=message)
+    await bot.send_message(chat_id=chat_id, text=message)
+
+def send_telegram_message(message):
+    asyncio.run(send_telegram_message_async(message))
 
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
