@@ -203,17 +203,19 @@ def step2(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "S2"
     exchange.save()
-    return HttpResponse("Activate")
+    response = HttpResponse("Activated")
+    response.set_cookie("step2", "step2", 3600)
+    return response
 def errorTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "NP"
     exchange.save()
-    return HttpResponse("Activate")
+    return HttpResponse("Activated")
 def successTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "P"
     exchange.save()
-    return HttpResponse("Activate")
+    return HttpResponse("Activated")
 
 
 def deal(request):
@@ -299,6 +301,7 @@ def error(request):
 
         response = render(request, "crypto/error.html", context)
         response.delete_cookie('exchange_id')
+        response.delete_cookie('step2')
         return response
     return redirect("home")
 
@@ -419,6 +422,7 @@ def success(request):
             
         response = render(request, "crypto/success.html", context)
         response.delete_cookie('exchange_id')
+        response.delete_cookie('step2')
         return response
     return redirect("home")
 
