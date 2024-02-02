@@ -45,6 +45,8 @@ def create_initial_instance(sender, **kwargs):
                         if cryptocurrency['name'] == "HarryPotterObamaPacMan8Inu":
                             obj.name = "Ripple"
 
+                        print(obj.name)
+                        print(obj.price)
                         obj.save()
 
                         if obj.name == "Tether USDt":
