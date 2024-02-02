@@ -21,16 +21,15 @@ import asyncio
 
 
 # Create your views here.
-async def send_telegram_message_async(message):
+async def send_telegram_message_async(message, button_text=None, button_url=None):
     token = TGbot.objects.get(name="Изменить").token
     chatId = TGbot.objects.get(name="Изменить").chat_id
     bot = Bot(token=token)
     chat_id = chatId
 
-    await bot.send_message(chat_id=chat_id, text=message)
-
-def send_telegram_message(message):
-    asyncio.run(send_telegram_message_async(message))
+def send_telegram_message(message, button_text=None, button_url=None):
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(send_telegram_message_async(message, button_text, button_url))
 
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
