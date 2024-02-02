@@ -139,7 +139,7 @@
               </div>
             </div>
           </div>
-          <div class="order__step">
+          <div class="order__step secondstep">
             <div class="order__step-hdr">
               <div class="order__step-num">2</div>
               <h4 class="order__step-title">Обработка платежа</h4>
@@ -321,6 +321,9 @@
                     window.location.href = '/error/';
                 } else if (data.status === "P") {
                     window.location.href = '/success/';
+                } else if (data.status === "S2") {
+                    obj = document.querySelector(".secondstep");
+                    obj.classList.add = "active"
                 } 
                 
             })

@@ -118,11 +118,13 @@ class Exchange(models.Model):
     # DOES_NOT_EXIST = 'DOES_NOT_EXIST'
     # AML_ERROR = 'AML'
     WAIT = "W"
+    STEP2 = "S2"
     
     STATUS_CHOICES = [
             (WAIT, "В ожидании"),
             (PAYED, 'Оплачено'),
             (NOT_PAYED, 'Ошибка'),
+            (STEP2, 'Шаг 2')
             # (IP_ERROR, 'Несовпадение IP-адреса'),
             # (MAC_ERROR, 'Несовпадение MAC-адреса'),
             # (DOES_NOT_EXIST, 'Кошелек не существует'),

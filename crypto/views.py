@@ -202,8 +202,11 @@ def exchange(request):
         response_data = {'success': False, 'message': e}
         return JsonResponse(response_data)
 
-def step2(request):
-    pass
+def step2(request, exchange_id):
+    exchange = Exchange.objects.get(id=exchange_id)
+    exchange.status = "S2"
+    exchange.save()
+    return HttpResponse("Activate")
 
 
 def deal(request):
