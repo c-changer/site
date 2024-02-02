@@ -132,7 +132,7 @@ def home(request):
         
     response = render(request, "crypto/home.html", context)
     if not session:
-        response.set_cookie(tgbotsession, "tgbotsession", 1000)
+        response.set_cookie("tgbotsession", "tgbotsession", 1000)
     return response
 
 def exchange(request):
