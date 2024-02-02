@@ -52,6 +52,7 @@ def binance_price():
                             obj.price = cryptocurrency['quote']['USD']['price']
 
             try:
+                print(obj.price)
                 obj.save()
             except Exception as e:
                 # Handle any additional errors when saving the object
