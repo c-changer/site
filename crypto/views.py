@@ -185,8 +185,8 @@ def exchange(request):
             
             exchange.save()
             
-            message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
-            send_telegram_message(message)
+            # message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
+            # send_telegram_message(message)
             
             # Set the 12-character token as a cookie
             response = redirect('deal')
