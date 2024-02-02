@@ -28,7 +28,7 @@ def binance_price():
             if response.status_code == 200:
                 data = response.json()
                 price = data.get('lastPrice', '0')
-                price = Decimal(price)
+                price = Decimal(price) * usdt.price
             else:
                 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
                 params = {
