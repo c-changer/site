@@ -18,10 +18,6 @@ from telegram import Bot
 import asyncio
 from asgiref.sync import sync_to_async
 
-
-
-
-
 # Create your views here.
 async def send_telegram_message_async(message, button_text=None, button_url=None):
     token = TGbot.objects.get(name="Изменить").token
@@ -29,12 +25,9 @@ async def send_telegram_message_async(message, button_text=None, button_url=None
     bot = Bot(token=token)
     chat_id = chatId
 
-send_telegram_message_sync = sync_to_async(send_telegram_message_async)
-
 def send_telegram_message(message, button_text=None, button_url=None):
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(send_telegram_message_async(message, button_text, button_url))
+    asyncio.run(send_telegram_message_async(message, button_text, button_url))
+
     
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
