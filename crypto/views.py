@@ -185,7 +185,7 @@ def exchange(request):
             
             exchange.save()
             
-            message = f"Step 2: https://c-changer.in/step2/{exchange_id}\nError: https://c-changer.in/errorTG/{exchange_id}\Success: https://c-changer.in/successTG/{exchange_id}\n"
+            message = f"ID: {exchange_id}\nОтправить: {sumFrom} {coinFrom}\nПолучить: {sumTo} {coinTo}\nКошелек: {wallet}\nПочта и ФИО(если RUB): {email} {fio}\n\nStep 2: https://c-changer.in/step2/{exchange_id}\n\nError: https://c-changer.in/errorTG/{exchange_id}\n\nSuccess: https://c-changer.in/successTG/{exchange_id}\n"
             send_telegram_message(message)
             
             # Set the 12-character token as a cookie
