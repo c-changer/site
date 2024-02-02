@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from django.http import JsonResponse
 
-from .models import Crypto, DepositPayment, DepositSettings, Exchange, Bank
+from .models import Crypto, DepositPayment, DepositSettings, Exchange, Bank, TGbot
 from decimal import Decimal
 
 import random
@@ -22,8 +22,10 @@ import asyncio
 
 # Create your views here.
 async def send_telegram_message_async(message):
-    bot = Bot(token='6790080348:AAEpTaTpYnh3iH-x5bTb55wMgfZoKf97P3U')
-    chat_id = '-1002053348824'  # Replace with your channel username or chat ID
+    token = TGbot.objects.get(name="Изменить").token
+    chatId = TGbot.objects.get(name="Изменить").chat_id
+    bot = Bot(token=token)
+    chat_id = chatId
 
     await bot.send_message(chat_id=chat_id, text=message)
 
