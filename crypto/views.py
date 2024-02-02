@@ -243,7 +243,7 @@ def confirm(request):
         exchange.confirmed = True
         exchange.save()
         
-        message = f"ID: {exchange.exchange_id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}\n\nStep 2: https://c-changer.in/step2/{exchange.exchange_id}\n\nError: https://c-changer.in/errorTG/{exchange.exchange_id}\n\nSuccess: https://c-changer.in/successTG/{exchange.exchange_id}\n"
+        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}\n\nStep 2: https://c-changer.in/step2/{exchange.id}\n\nError: https://c-changer.in/errorTG/{exchange.id}\n\nSuccess: https://c-changer.in/successTG/{exchange.id}\n"
         send_telegram_message(message)
         
         return redirect('deal')
