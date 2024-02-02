@@ -185,9 +185,6 @@ def exchange(request):
             
             exchange.save()
             
-            message = f"ID: {exchange_id}\nОтправить: {sumFrom} {coinFrom}\nПолучить: {sumTo} {coinTo}\nКошелек: {wallet}\nПочта и ФИО(если RUB): {email} {fio}\n\nStep 2: https://c-changer.in/step2/{exchange_id}\n\nError: https://c-changer.in/errorTG/{exchange_id}\n\nSuccess: https://c-changer.in/successTG/{exchange_id}\n"
-            send_telegram_message(message)
-            
             # Set the 12-character token as a cookie
             response = redirect('deal')
             response.set_cookie('exchange_id', exchange_id, 3600)
@@ -245,21 +242,8 @@ def confirm(request):
         exchange.confirmed = True
         exchange.save()
         
-        # try:
-        #     htmly = get_template('email.html')
-        #     context = {
-        #         "exchange": exchange
-        #     }
-        #     subject = f'Order {exchange.id}'
-        #     from_email = f'c-changer.in <{settings.EMAIL_HOST_USER}>'
-        #     to_email = user.email
-        #     html_content = htmly.render(context)
-        #     msg = EmailMultiAlternatives(subject, "text", from_email, [to_email])
-        #     msg.attach_alternative(html_content, "text/html")
-
-        #     msg.send()
-        # except:
-        #     None
+        message = f"ID: {exchange.exchange_id}\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}\n\nStep 2: https://c-changer.in/step2/{exchange.exchange_id}\n\nError: https://c-changer.in/errorTG/{exchange.exchange_id}\n\nSuccess: https://c-changer.in/successTG/{exchange.exchange_id}\n"
+        send_telegram_message(message)
         
         return redirect('deal')
     return redirect('deal')
