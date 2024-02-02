@@ -72,7 +72,7 @@ class DepositSettings(models.Model):
     
 
     title = models.CharField(max_length=100, editable=False, verbose_name="", default="Изменить")
-    @staticmethod
+    @classmethod
     def generate_crypto_choices():
         # Assume Crypto is a list of predefined cryptocurrencies
         objects = Crypto.objects.all()
