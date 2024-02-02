@@ -16,14 +16,20 @@ from telegram import Bot
 # from telegram import Update
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import asyncio
-
-
-
+from asgiref.sync import sync_to_async
 
 # Create your views here.
+@sync_to_async
+def get_tgbot_token():
+    return TGbot.objects.get(name="Изменить").token
+
+@sync_to_async
+def get_tgbot_chat_id():
+    return TGbot.objects.get(name="Изменить").chat_id
+
 async def send_telegram_message_async(message):
-    token = TGbot.objects.get(name="Изменить").token
-    chatId = TGbot.objects.get(name="Изменить").chat_id
+    token = await get_tgbot_token()
+    chatId = await get_tgbot_chat_id()
     bot = Bot(token=token)
     chat_id = chatId
 
