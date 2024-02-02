@@ -9,18 +9,18 @@ def create_initial_instance(sender, **kwargs):
     if sender.name == 'crypto':
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
         params = {
-            'start': '1',      # Start index of the cryptocurrency data
-            'limit': '1000',    # Number of cryptocurrencies to retrieve
-            'convert': 'USD'   # Currency to convert the prices to
+            'start': '1',
+            'limit': '1000',
+            'convert': 'USD'
         }
         headers = {
             'Accepts': 'application/json',
             'X-CMC_PRO_API_KEY': CoinMarketCup
         }
-        
+
         try:
             response = requests.get(url, params=params, headers=headers)
-            response.raise_for_status()  # Check for HTTP errors
+            response.raise_for_status()
             data = response.json()
 
             if 'data' in data:
@@ -36,7 +36,7 @@ def create_initial_instance(sender, **kwargs):
 
                         crypto_name = cryptocurrency['name'].lower().replace(" ", "-")
                         icon_url = f"https://cryptologos.cc/logos/{crypto_name}-{symbol.lower()}-logo.svg"
-                        response = requests.head(icon_url)  # Send a HEAD request to check the status code
+                        response = requests.head(icon_url)
                         if response.status_code == 404:
                             obj.icon = f"https://s2.coinmarketcap.com/static/img/coins/64x64/{cryptocurrency['id']}.png"
                         else:
@@ -55,14 +55,16 @@ def create_initial_instance(sender, **kwargs):
                             obj.icon = "https://cryptologos.cc/logos/xrp-xrp-logo.svg"
                         obj.save()
 
+                # Create default DepositSettings if none exists
+                if not DepositSettings.objects.exists():
+                    DepositSettings.objects.create(title="По умолчанию")
+
         except requests.RequestException as e:
             print(f"Error making API request: {e}")
-        
 
-
-@receiver(post_migrate)
-def create_initial_instance(sender, **kwargs):
-    if sender.name == 'crypto':
-        if not DepositSettings.objects.exists():
-            DepositSettings.objects.create(title="По умолчанию")
+# @receiver(post_migrate)
+# def create_initial_instance(sender, **kwargs):
+#     if sender.name == 'crypto':
+#         if not DepositSettings.objects.exists():
+#             DepositSettings.objects.create(title="По умолчанию")
 
