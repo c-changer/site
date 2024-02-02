@@ -30,6 +30,23 @@ async def send_telegram_message_async(message):
 def send_telegram_message(message):
     asyncio.run(send_telegram_message_async(message))
 
+def get_user_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+def get_ip_info(ip):
+    api_url = f"https://ipinfo.io/{ip}/json"
+    response = requests.get(api_url)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
     
@@ -106,13 +123,14 @@ def home(request):
         response = HttpResponse("Cookie set!")
         response.set_cookie('tgbotsession', "exist", 1800)
 
-        user_ip = request.META.get('REMOTE_ADDR')
-        info = requests.get(f"https://freeipapi.com{user_ip}").json()
+        user_ip = get_user_ip(request)
+        info = get_ip_info(user_ip)
         
-        cityName = info.get('cityName', '')
-        timeZone = info.get('timeZone', '')
+        city = info.get('city', '')
+        country = info.get('country', '')
+        location = info.get('loc', '')
         
-        message = f"Юзер открыл сайт\n\nIP: {user_ip}\nЛокация: {info.get('countryName', '')}, {cityName}\nПочтовый индекс: {info.get('zipCode', '')}\nЧасовой пояс: {timeZone}"
+        message = f"Юзер открыл сайт\n\nIP: {user_ip}\Рассположение: {country}, {city}\n\nЛокация: {location}"
         send_telegram_message(message)
         
     return render(request, "crypto/home.html", context)
