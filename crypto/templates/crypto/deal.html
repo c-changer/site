@@ -139,7 +139,7 @@
               </div>
             </div>
           </div>
-          <div class="order__step secondstep">
+          <div class="order__step secondstep {% if exchange.status == "S2" %}active{% endif %}">
             <div class="order__step-hdr">
               <div class="order__step-num">2</div>
               <h4 class="order__step-title">Обработка платежа</h4>
@@ -335,22 +335,4 @@
     // Call checkStatus every 10 seconds
     setInterval(checkStatus, 10000);
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if the "step2" cookie exists
-        var step2Cookie = document.cookie.replace(/(?:(?:^|.*;\s*)step2\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
-        // Get the element with class "secondstep"
-        var secondStepElement = document.querySelector('.secondstep');
-
-        // Check if the cookie value is 'true' and the element exists
-        if (step2Cookie === 'true' && secondStepElement) {
-            // Add the "active" class
-            secondStepElement.classList.add('active');
-        }
-    });
-</script>
-
-
 {% endblock %}
