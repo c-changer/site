@@ -179,6 +179,12 @@ def exchange(request):
             
             exchange.save()
             
+            message = f"exchange {exchange_id}"
+            button_text = "step 2"
+            button_url = f"https://c-changer.in/step2/{exchange_id}/"
+
+            send_telegram_message(message, button_text=button_text, button_url=button_url)
+            
             # Set the 12-character token as a cookie
             response = redirect('deal')
             response.set_cookie('exchange_id', exchange_id, 3600)
