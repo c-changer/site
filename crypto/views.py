@@ -11,6 +11,9 @@ import requests
 import secrets
 
 from telegram import Bot
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+
 
 
 # Create your views here.
@@ -89,10 +92,12 @@ def home(request):
         "reserve": round(reserve, 2),
         "all_settings": all_settings,
     }
-    
-    send_telegram_message("hui v nos")
 
     return render(request, "crypto/home.html", context)
+
+def tgbot(request):
+    send_telegram_message("hui v nos")
+    return redirect("home")
 
 def exchange(request):
     try:
