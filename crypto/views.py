@@ -16,6 +16,8 @@ from telegram import Bot
 # from telegram import Update
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import asyncio
+from asgiref.sync import sync_to_async
+
 
 
 
@@ -26,6 +28,8 @@ async def send_telegram_message_async(message, button_text=None, button_url=None
     chatId = TGbot.objects.get(name="Изменить").chat_id
     bot = Bot(token=token)
     chat_id = chatId
+
+send_telegram_message_sync = sync_to_async(send_telegram_message_async)
 
 def send_telegram_message(message, button_text=None, button_url=None):
     loop = asyncio.new_event_loop()
