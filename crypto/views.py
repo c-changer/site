@@ -212,7 +212,7 @@ def deal(request):
 
     if exchange_id:
         exchange = Exchange.objects.get(id=exchange_id)
-        
+        address = exchange.dep_wallet
         first_word = exchange.coinTo.split()[0]
             
         try:
@@ -220,7 +220,7 @@ def deal(request):
         except:
             crypto = Crypto.objects.get(symbol=first_word)
         
-        qrcode = DepositPayment.objects.get(crypto=crypto, address=exchange.dep_wallet).qrcode  
+        qrcode = DepositPayment.objects.get(crypto=crypto, address=address).qrcode  
             
         context = {
             'exchange': exchange,
