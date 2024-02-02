@@ -120,9 +120,6 @@ def home(request):
     session = request.COOKIES.get('tgbotsession')
     
     if not session:
-        response = HttpResponse("Cookie set!")
-        response.set_cookie('tgbotsession', "exist", 1800)
-
         user_ip = get_user_ip(request)
         info = get_ip_info(user_ip)
         
@@ -130,10 +127,13 @@ def home(request):
         country = info.get('country', '')
         location = info.get('loc', '')
         
-        message = f"Юзер открыл сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
+        message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
         send_telegram_message(message)
         
-    return render(request, "crypto/home.html", context)
+    response = render(request, "crypto/home.html", context)
+    if not session:
+        response.set_cookie(tgbotsession, "tgbotsession", 1000)
+    return response
 
 def exchange(request):
     try:
