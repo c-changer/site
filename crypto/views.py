@@ -97,6 +97,9 @@ def home(request):
         "reserve": round(reserve, 2),
         "all_settings": all_settings,
     }
+    
+    send_telegram_message("home")
+
 
     return render(request, "crypto/home.html", context)
 
