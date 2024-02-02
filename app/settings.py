@@ -259,7 +259,8 @@ JAZZMIN_SETTINGS = {
         "crypto.Exchange": "fas fa-receipt",
         "crypto.Crypto": "fab fa-bitcoin",
         "crypto.DepositPayment": "fas fa-piggy-bank",
-        "crypto.Bank": "fas fa-university"
+        "crypto.Bank": "fas fa-university",
+        "crypto.TGbot": "fa-solid fa-message"
     },
     
     'JAZZMIN_CUSTOM_MODEL_REORDERING': {
@@ -270,6 +271,7 @@ JAZZMIN_SETTINGS = {
                 'DepositPayment',
                 'DepositSettings',
                 'Exchange',
+                'TGbot',
                 # Add more models as needed
             ]
         },

@@ -137,3 +137,13 @@ class Exchange(models.Model):
     class Meta:
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
+
+
+class TGbot(models.Model):
+    name = models.CharField(max_length=100, editable=False, verbose_name="", default="Изменить")
+    token = models.CharField(max_length=1000, verbose_name="Токен")
+    chat_id = models.CharField(max_length=1000, verbose_name="Чат ID")
+    
+    class Meta:
+        verbose_name = "Бот"
+        verbose_name_plural = "Бот"

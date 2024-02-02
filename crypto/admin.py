@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Crypto, Bank, DepositPayment, DepositSettings, Exchange
+from .models import Crypto, Bank, DepositPayment, DepositSettings, Exchange, TGbot
 
 # Register your models here.
 class CryptoAdmin(admin.ModelAdmin):
@@ -44,3 +44,10 @@ class ExchangeAdmin(admin.ModelAdmin):
         return False
 
 admin.site.register(Exchange, ExchangeAdmin)
+
+class TGbotAdmin(admin.ModelAdmin):
+    actions_on_bottom = False    
+    list_display = ['name', 'token', 'chat_id']
+    def has_add_permission(self, request):
+        return False
+admin.site.register(TGbot, TGbotAdmin)
