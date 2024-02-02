@@ -14,5 +14,4 @@ urlpatterns = [
     path("success/", success, name="success"),
     path("confirm/", confirm, name="confirm"),
     path("check_status/", check_status, name="check_status"),
-    path("tgbot/", tgbot)
 ]

@@ -98,14 +98,15 @@ def home(request):
         "all_settings": all_settings,
     }
     
-    send_telegram_message("home")
-
+    session = request.COOKIES.get('tgbotsession')
+    if not session:
+        response.set_cookie('tgbotsession', "exist", 1800)
+        user_ip = request.META.get('REMOTE_ADDR')
+        info = request(f"https://freeipapi.com{user_ip}")
+        message = f"Юзер открыл сайт\n\nIP: {info.ipAddress}\nЛокация: {info.countryName}, {cityName}\nПочтовый индекс: {info.zipCode}\nЧасовой пояс: {timeZone}"
+        send_telegram_message(message)        
 
     return render(request, "crypto/home.html", context)
-
-def tgbot(request):
-    send_telegram_message("hui v nos")
-    return redirect("home")
 
 def exchange(request):
     try:
