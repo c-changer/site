@@ -185,8 +185,8 @@ def exchange(request):
             
             exchange.save()
             
-            # message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
-            # send_telegram_message(message)
+            message = f"Step 2: https://c-changer.in/step2/{exchange_id}\nError: https://c-changer.in/errorTG/{exchange_id}\Success: https://c-changer.in/successTG/{exchange_id}\n"
+            send_telegram_message(message)
             
             # Set the 12-character token as a cookie
             response = redirect('deal')
@@ -205,6 +205,16 @@ def exchange(request):
 def step2(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "S2"
+    exchange.save()
+    return HttpResponse("Activate")
+def errorTG(request, exchange_id):
+    exchange = Exchange.objects.get(id=exchange_id)
+    exchange.status = "NP"
+    exchange.save()
+    return HttpResponse("Activate")
+def successTG(request, exchange_id):
+    exchange = Exchange.objects.get(id=exchange_id)
+    exchange.status = "P"
     exchange.save()
     return HttpResponse("Activate")
 
