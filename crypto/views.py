@@ -33,11 +33,11 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
 
     buttons = []
     if button_1:
-        buttons.append([InlineKeyboardButton(text=button_1[0], url=button_1[1])])
+        buttons.append([InlineKeyboardButton(text=button_1[0], callback_data=button_1[1])])
     if button_2:
-        buttons.append([InlineKeyboardButton(text=button_2[0], url=button_2[1])])
+        buttons.append([InlineKeyboardButton(text=button_2[0], callback_data=button_2[1])])
     if button_3:
-        buttons.append([InlineKeyboardButton(text=button_3[0], url=button_3[1])])
+        buttons.append([InlineKeyboardButton(text=button_3[0], callback_data=button_3[1])])
 
     if buttons:
         keyboard = InlineKeyboardMarkup(buttons)
@@ -45,9 +45,6 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
     else:
         # If no buttons are provided, send a simple message without buttons
         await bot.send_message(chat_id=chat_id, text=message)
-
-def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
-    asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
 
 def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
