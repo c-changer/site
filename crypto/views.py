@@ -13,8 +13,7 @@ import requests
 import secrets
 
 from telegram import Bot
-# from telegram import Update
-# from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 from asgiref.sync import sync_to_async
 
