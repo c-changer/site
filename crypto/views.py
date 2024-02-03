@@ -12,10 +12,14 @@ import requests
 
 import secrets
 
-from telegram import Bot
+from telegram import Bot, Update
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 from asgiref.sync import sync_to_async
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from telegram.ext import CallbackContext
+
 
 # Create your views here.
 @sync_to_async
@@ -33,11 +37,11 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
 
     buttons = []
     if button_1:
-        buttons.append([InlineKeyboardButton(text=button_1[0], callback_data=button_1[1])])
+        buttons.append([InlineKeyboardButton(text=button_1[0], url=button_1[1])])
     if button_2:
-        buttons.append([InlineKeyboardButton(text=button_2[0], callback_data=button_2[1])])
+        buttons.append([InlineKeyboardButton(text=button_2[0], url=button_2[1])])
     if button_3:
-        buttons.append([InlineKeyboardButton(text=button_3[0], callback_data=button_3[1])])
+        buttons.append([InlineKeyboardButton(text=button_3[0], url=button_3[1])])
 
     if buttons:
         keyboard = InlineKeyboardMarkup(buttons)
@@ -48,6 +52,7 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
 
 def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
+    
 
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -214,18 +219,20 @@ def step2(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "S2"
     exchange.save()
-    response = HttpResponse("Activated")
-    return response
+    response_content = "<script>window.close();</script>"
+    return HttpResponse(response_content)
 def errorTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "NP"
     exchange.save()
-    return HttpResponse("Activated")
+    response_content = "<script>window.close();</script>"
+    return HttpResponse(response_content)
 def successTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "P"
     exchange.save()
-    return HttpResponse("Activated")
+    response_content = "<script>window.close();</script>"
+    return HttpResponse(response_content)
 
 
 def deal(request):
