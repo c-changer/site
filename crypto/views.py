@@ -22,24 +22,25 @@ from asgiref.sync import sync_to_async
 def get_tgbot_token():
     return TGbot.objects.get(name="Изменить").token
 
-@sync_to_async
-def get_tgbot_chat_id():
-    return TGbot.objects.get(name="Изменить").chat_id
-
 async def send_telegram_message_async(message, button_1=None, button_2=None, button_3=None):
     token = await get_tgbot_token()
-    chatId = await get_tgbot_chat_id()
+    chat_id = await get_tgbot_chat_id()
     bot = Bot(token=token)
-    chat_id = chatId
 
-    # Create InlineKeyboardMarkup with three buttons
-    keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton(text=button_1[0], url=button_1[1])],
-        [InlineKeyboardButton(text=button_2[0], url=button_2[1])],
-        [InlineKeyboardButton(text=button_3[0], url=button_3[1])]
-    ])
+    buttons = []
+    if button_1:
+        buttons.append([InlineKeyboardButton(text=button_1[0], url=button_1[1])])
+    if button_2:
+        buttons.append([InlineKeyboardButton(text=button_2[0], url=button_2[1])])
+    if button_3:
+        buttons.append([InlineKeyboardButton(text=button_3[0], url=button_3[1])])
 
-    await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard)
+    if buttons:
+        keyboard = InlineKeyboardMarkup(buttons)
+        await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard)
+    else:
+        # If no buttons are provided, send a simple message without buttons
+        await bot.send_message(chat_id=chat_id, text=message)
 
 def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
