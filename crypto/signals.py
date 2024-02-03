@@ -2,7 +2,7 @@ from django.db.models.signals import post_migrate
 from app.settings import CoinMarketCup
 from django.dispatch import receiver
 import requests
-from .models import Crypto, DepositSettings, Exchange
+from .models import Crypto, DepositSettings, Exchange, TGbot
 
 @receiver(post_migrate)
 def create_initial_instance(sender, **kwargs):
@@ -62,9 +62,16 @@ def create_initial_instance(sender, **kwargs):
         except requests.RequestException as e:
             print(f"Error making API request: {e}")
 
-# @receiver(post_migrate)
-# def create_initial_instance(sender, **kwargs):
-#     if sender.name == 'crypto':
-#         if not DepositSettings.objects.exists():
-#             DepositSettings.objects.create(title="По умолчанию")
+@receiver(post_migrate)
+def create_initial_instance(sender, **kwargs):
+    if sender.name == 'crypto':
+        if not DepositSettings.objects.exists():
+            DepositSettings.objects.create(title="По умолчанию")
+
+
+@receiver(post_migrate)
+def create_initial_instance(sender, **kwargs):
+    if sender.name == 'crypto':
+        if not TGbot.objects.exists():
+            TGbot.objects.create(title="Изменить")
 
