@@ -411,9 +411,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 let zero = newPriceRatio.toString().split('.')[1];
                 if (zero && zero.charAt(0) === '0') {
-                  priceratioElement.innerText = newPriceRatio.toFixed(8)// Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(8).replace('.', ','); // Adjusted precision
                 } else {
-                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
                 let reserveSpan = document.querySelector('.reserve');
@@ -516,7 +516,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (zero && zero.charAt(0) === '0') {
           priceratioElement.innerText = newPriceRatio.toFixed(8).replace('.', ','); // Adjusted precision
         } else {
-          priceratioElement.innerText = newPriceRatio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
+          priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
         }
 
         // Get the placeholder text from the sumTo input
@@ -633,9 +633,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 let zero = newPriceRatio.toString().split('.')[1];
                 if (zero && zero.charAt(0) === '0') {
-                  priceratioElement.innerText = newPriceRatio.toFixed(8) // Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(8).replace('.', ','); // Adjusted precision
                 } else {
-                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
                 let reserveSpan = document.querySelector('.reserve');
@@ -751,9 +751,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 let zero = newPriceRatio.toString().split('.')[1];
                 if (zero && zero.charAt(0) === '0') {
-                  priceratioElement.innerText = newPriceRatio.toFixed(8) // Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(8).replace('.', ','); // Adjusted precision
                 } else {
-                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
+                  priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
                 let reserveSpan = document.querySelector('.reserve');
