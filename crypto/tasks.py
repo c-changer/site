@@ -26,7 +26,7 @@ def binance_price():
             response = requests.get(kukoin_url)
 
             data = response.json()
-            price = data.get('last', '0')
+            price = data.get('last')
             print(price)
             if price != '0':
                 price = data.get('last', '0')
