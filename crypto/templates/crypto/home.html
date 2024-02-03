@@ -415,6 +415,13 @@ document.addEventListener("DOMContentLoaded", function() {
                   priceratioElement.innerText = newPriceRatio.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Adjusted precision
                 }
 
+                let reserveSpan = document.querySelector('.reserve');
+    
+                let newReserve = (maxChange / minChange) * 25.2716;
+
+                let formattedReserve = formatNumberWithSpaces(newReserve);
+                reserveSpan.innerText = formattedReserve.replace('.', ',') + " " + itemSymbol;
+
                 var gg = document.getElementById('sumFrom');
                 gg.value = '';
                 var wp = document.getElementById('sumTo');
