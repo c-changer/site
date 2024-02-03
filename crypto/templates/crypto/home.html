@@ -396,6 +396,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let depPrice = parseFloat(document.querySelector('.dep-price').innerText.replace(',', '.'));
                 // Update price ratio
                 let newPriceRatio = itemPrice / depPrice;
+                newPriceRatio = newPriceRatio + (newPriceRatio*0.025)
 
                 var symbol = document.querySelector('.firstsymbol');
                 symbol.innerText = itemSymbol;
