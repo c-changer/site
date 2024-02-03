@@ -232,7 +232,6 @@ def successTG(request, exchange_id):
     return render(request, "bot.html")
 
 
-
 def deal(request):
     # Retrieve the exchange_id from the cookie
     exchange_id = request.COOKIES.get('exchange_id')
@@ -279,12 +278,14 @@ def cancel(request):
 
         if exchange_id:
             # Delete the exchange record with the specified ID
-            Exchange.objects.filter(id=exchange_id).delete()
-
+            exchange = Exchange.objects.filter(id=exchange_id)
+            message = f"Юзер отменил сделку\n\nID: {exchange.id}"
+            exchange.delete()
             # Delete the exchange_id cookie
             response = redirect('home')  # Redirect to the home page (adjust the URL as needed)
             response.delete_cookie('exchange_id')
 
+            
             return response
         else:
             # Handle the case where exchange_id is not found in the cookie
