@@ -261,10 +261,8 @@
     var currentPriceratio = priceratioElement.textContent.trim();
 
     // Заменяем запятые на пробелы, а точки на запятые в текущем значении
-    var newPriceratio = currentPriceratio.replace(/,/g, ' ').replace(/\./g, ',');
     
     // Устанавливаем новое значение в форму priceratio
-    priceratioElement.textContent = newPriceratio;
   }
 
   var reserveElement = document.querySelector('.reserve');
