@@ -26,7 +26,9 @@ def binance_price():
             response = requests.get(kukoin_url)
 
             data = response.json()
-            if data.get('last', '0') != '0':
+            price = data.get('last', '0')
+            print(price)
+            if price != '0':
                 price = data.get('last', '0')
                 price = Decimal(price) * usdt.price
             else:
