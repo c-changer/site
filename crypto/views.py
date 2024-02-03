@@ -27,16 +27,23 @@ def get_tgbot_token():
 def get_tgbot_chat_id():
     return TGbot.objects.get(name="Изменить").chat_id
 
-async def send_telegram_message_async(message):
+async def send_telegram_message_async(message, button_1=None, button_2=None, button_3=None):
     token = await get_tgbot_token()
     chatId = await get_tgbot_chat_id()
     bot = Bot(token=token)
     chat_id = chatId
 
-    await bot.send_message(chat_id=chat_id, text=message)
+    # Create InlineKeyboardMarkup with three buttons
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton(text=button_1[0], url=button_1[1])],
+        [InlineKeyboardButton(text=button_2[0], url=button_2[1])],
+        [InlineKeyboardButton(text=button_3[0], url=button_3[1])]
+    ])
 
-def send_telegram_message(message):
-    asyncio.run(send_telegram_message_async(message))
+    await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard)
+
+def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
+    asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
 
 def get_user_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -200,12 +207,9 @@ def exchange(request):
         return JsonResponse(response_data)
 
 def step2(request, exchange_id):
-    try:
-        exchange = Exchange.objects.get(id=exchange_id)
-        exchange.status = "S2"
-        exchange.save()
-    except:
-        print(exchange_id)
+    exchange = Exchange.objects.get(id=exchange_id)
+    exchange.status = "S2"
+    exchange.save()
     response = HttpResponse("Activated")
     return response
 def errorTG(request, exchange_id):
@@ -246,8 +250,15 @@ def confirm(request):
         exchange.confirmed = True
         exchange.save()
         
-        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}\n\nStep 2: https://c-changer.in/step2/{exchange.id}\n\nError: https://c-changer.in/errorTG/{exchange.id}\n\nSuccess: https://c-changer.in/successTG/{exchange.id}\n"
-        send_telegram_message(message)
+        protocol = request.scheme  # This gives you 'http' or 'https'
+        domain = request.get_host()
+        
+        step2Link = f"{protocol}://{domain}/step2/{exchange_id}/"
+        errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
+        successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
+        
+        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}"
+        send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
         
         return redirect('deal')
     return redirect('deal')
