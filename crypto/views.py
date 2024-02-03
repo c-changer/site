@@ -88,7 +88,7 @@ def home(request):
     except Exception as e:
         pass
         
-    price_ratio = default_payment.crypto.price -  default_payment.crypto.price * Decimal(0.025)
+    price_ratio = default_payment.crypto.price +  default_payment.crypto.price * Decimal(0.025)
 
     try:
         settings_btc = DepositSettings.objects.get(crypto="BTC")
