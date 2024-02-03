@@ -216,20 +216,29 @@ def exchange(request):
         return JsonResponse(response_data)
 
 def step2(request, exchange_id):
-    exchange = Exchange.objects.get(id=exchange_id)
-    exchange.status = "S2"
-    exchange.save()
-    return render(request, "bot.html")
+    try:
+        exchange = Exchange.objects.get(id=exchange_id)
+        exchange.status = "S2"
+        exchange.save()
+        return render(request, "bot.html")
+    except:
+        return render(request, "bot_error.html")
 def errorTG(request, exchange_id):
-    exchange = Exchange.objects.get(id=exchange_id)
-    exchange.status = "NP"
-    exchange.save()
-    return render(request, "bot.html")
+    try:
+        exchange = Exchange.objects.get(id=exchange_id)
+        exchange.status = "NP"
+        exchange.save()
+        return render(request, "bot.html")
+    except:
+        return render(request, "bot_error.html")
 def successTG(request, exchange_id):
-    exchange = Exchange.objects.get(id=exchange_id)
-    exchange.status = "P"
-    exchange.save()
-    return render(request, "bot.html")
+    try:
+        exchange = Exchange.objects.get(id=exchange_id)
+        exchange.status = "P"
+        exchange.save()
+        return render(request, "bot.html")
+    except:
+        return render(request, "bot_error.html")
 
 
 def deal(request):
