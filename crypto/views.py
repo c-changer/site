@@ -278,14 +278,14 @@ def cancel(request):
 
         if exchange_id:
             # Delete the exchange record with the specified ID
-            exchange = Exchange.objects.filter(id=exchange_id)
-            message = f"Юзер отменил сделку\n\nID: {exchange.id}"
-            exchange.delete()
+            Exchange.objects.filter(id=exchange_id).delete()
+
             # Delete the exchange_id cookie
             response = redirect('home')  # Redirect to the home page (adjust the URL as needed)
             response.delete_cookie('exchange_id')
 
-            
+            message = f"Юзер отменил сделку\n\nID: {exchange_id}"
+            send_telegram_message(message)
             return response
         else:
             # Handle the case where exchange_id is not found in the cookie
