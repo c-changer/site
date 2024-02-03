@@ -465,7 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Unable to convert the content to a float.');
         }
 
-        priceratioValue = priceratioValue + (priceratioValue*0.025)
         // Update price ratio
         let newPriceRatio = 1.0 / priceratioValue;
 
@@ -499,11 +498,10 @@ document.addEventListener("DOMContentLoaded", function() {
         let originalValue = parseFloat(thirdPrice.replace(",", "."));
 
         // Calculate the increased value (2.5%)
-        let increasedValue = originalValue + (originalValue * 0.025);
 
         // Set the values
         priceToInput.value = priceFromInput.value;
-        priceFromInput.value = increasedValue.toFixed(10);  // Use as many decimal places as needed
+        priceFromInput.value = originalValue.toFixed(10);  // Use as many decimal places as needed
         
 
         console.log(priceFromInput.value)
