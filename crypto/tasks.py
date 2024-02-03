@@ -22,12 +22,12 @@ def binance_price():
             continue  # Skip iteration if no matching coin is found
 
         for obj in crypto_objects:
-            binance_url = f"https://api.binance.com/api/v3/ticker/24hr?symbol={obj.symbol}USDT"
-            response = requests.get(binance_url)
+            kukoin_url = f"https://api.kucoin.com/api/v1/market/stats?symbol={obj.symbol}-USDT"
+            response = requests.get(kukoin_url)
 
-            if response.status_code == 200:
-                data = response.json()
-                price = data.get('lastPrice', '0')
+            data = response.json()
+            if data.get('last', '0') != '0':
+                price = data.get('last', '0')
                 price = Decimal(price) * usdt.price
             else:
                 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
