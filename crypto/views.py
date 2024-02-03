@@ -200,9 +200,12 @@ def exchange(request):
         return JsonResponse(response_data)
 
 def step2(request, exchange_id):
-    exchange = Exchange.objects.get(id=exchange_id)
-    exchange.status = "S2"
-    exchange.save()
+    try:
+        exchange = Exchange.objects.get(id=exchange_id)
+        exchange.status = "S2"
+        exchange.save()
+    except:
+        print(exchange_id)
     response = HttpResponse("Activated")
     return response
 def errorTG(request, exchange_id):
