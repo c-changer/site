@@ -249,39 +249,6 @@
 
 
 
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-  // Получаем элемент формы priceratio
-  var priceratioElement = document.querySelector('.priceratio');
-
-  // Проверяем, существует ли элемент
-  if (priceratioElement) {
-    // Получаем текущее значение priceratio
-    var currentPriceratio = priceratioElement.textContent.trim();
-
-    // Заменяем запятые на пробелы, а точки на запятые в текущем значении
-    
-    // Устанавливаем новое значение в форму priceratio
-  }
-
-  var reserveElement = document.querySelector('.reserve');
-
-  // Проверяем, существует ли элемент
-  if (reserveElement) {
-    // Получаем текущее значение priceratio
-    var currentReserve = reserveElement.textContent.trim();
-
-    // Заменяем запятые на пробелы, а точки на запятые в текущем значении
-    var newReserve = currentReserve.replace(/,/g, ' ').replace(/\./g, ',');
-    
-    // Устанавливаем новое значение в форму priceratio
-    reserveElement.textContent = newReserve;
-  }
-});
-
-</script>
-
  <script>
 document.addEventListener("DOMContentLoaded", function() {
     var cryptoButton = document.querySelector('.hidden__choose-link-crypto');
