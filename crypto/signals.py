@@ -73,5 +73,5 @@ def create_initial_instance(sender, **kwargs):
 def create_initial_instance(sender, **kwargs):
     if sender.name == 'crypto':
         if not TGbot.objects.exists():
-            TGbot.objects.create(title="Изменить")
+            TGbot.objects.create(name="Изменить")
 
