@@ -34,8 +34,6 @@
     <meta property="og:site_name" content="c-changer.in" />
     {% if request.get_full_path %}
         <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    {% else %}
-        <meta property="og:url" content="https://c-changer.in/">
     {% endif %}    <link
       rel="stylesheet"
       href="{% block cssStyle %}{% endblock cssStyle %}"

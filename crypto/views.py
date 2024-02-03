@@ -219,20 +219,18 @@ def step2(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "S2"
     exchange.save()
-    response_content = "<script>window.close();</script>"
-    return HttpResponse(response_content)
+    return render(request, "bot.html")
 def errorTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "NP"
     exchange.save()
-    response_content = "<script>window.close();</script>"
-    return HttpResponse(response_content)
+    return render(request, "bot.html")
 def successTG(request, exchange_id):
     exchange = Exchange.objects.get(id=exchange_id)
     exchange.status = "P"
     exchange.save()
-    response_content = "<script>window.close();</script>"
-    return HttpResponse(response_content)
+    return render(request, "bot.html")
+
 
 
 def deal(request):
