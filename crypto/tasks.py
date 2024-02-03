@@ -27,7 +27,7 @@ def binance_price():
 
             data = response.json()
             data = data.get('data')
-            price = data.get('last', 0)
+            price = data.get('last', '0')
             print(price)
             if price != '0':
                 price = Decimal(price) * usdt.price
