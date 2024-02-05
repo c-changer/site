@@ -283,19 +283,19 @@ def confirm(request):
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
-        message = f"""⭕️ Appliacation #{exchange.id}\n\n
+        message = f"""⭕️ Appliacation #{exchange.id}
 
-        🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n
+        🔀 {exchange.coinFrom} ➔ {exchange.coinTo}
 
-        ↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n
-        ↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n
+        ↗️ Send: {exchange.sumFrom} {exchange.coinFrom}
+        ↙️ Receive: {exchange.sumTo} {exchange.coinTo}
 
-        📥 Receiving address:\n
-        `{exchange.wallet}`\n\n
+        📥 Receiving address:
+        `{exchange.wallet}`
 
-        —————————————————————————————\n\n
+        —————————————————————————————
 
-        🌐 IP-address: {ip_address}\n
+        🌐 IP-address: {ip_address}
         🕙 Date/Time: {exchange.dateTime} (UTC)"""
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
@@ -315,7 +315,7 @@ def cancel(request):
             response = redirect('home')  # Redirect to the home page (adjust the URL as needed)
             response.delete_cookie('exchange_id')
 
-            message = f"Юзер отменил сделку\n\nID: {exchange_id}"
+            message = f"❌Юзер отменил сделку\n\nID: {exchange_id}"
             send_telegram_message(message)
             return response
         else:
