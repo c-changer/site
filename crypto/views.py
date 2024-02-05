@@ -277,9 +277,9 @@ def confirm(request):
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
-        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: {exchange.wallet}\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio}"
+        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: `{exchange.wallet}`\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio} \U0001F4B0"
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
-        
+
         return redirect('deal')
     return redirect('deal')
 
