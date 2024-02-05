@@ -256,10 +256,10 @@ def deal(request):
                 
             try:
                 crypto = Crypto.objects.get(name=first_word)
-            except:
+            except Crypto.MultipleObjectsReturned:
                 try:
                     crypto = Crypto.objects.get(symbol=first_word)
-                except:
+                except Crypto.MultipleObjectsReturned:
                     crypto = None
             if crypto is not None:
                 qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
