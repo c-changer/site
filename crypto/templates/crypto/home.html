@@ -990,11 +990,16 @@ closeButtons.forEach((closeButton, index) => {
   var submitButton = document.querySelector('.trade__form-action');
 
   // Get the minimum and maximum values from the placeholders
-  var minAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[0].replace(',', '.'));
-  var maxAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[1].replace(',', '.'));
-  var minAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[0].replace(',', '.'));
-  var maxAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[1].replace(',', '.'));
+  let minAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[0].replace(',', '.'));
+  let maxAmountDep = parseFloat(sumToInput.placeholder.split(' - ')[1].replace(',', '.'));
+  let minAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[0].replace(',', '.'));
+  let maxAmountPayment = parseFloat(sumFromInput.placeholder.split(' - ')[1].replace(',', '.'));
 
+  console.log(minAmountPayment)
+  console.log(maxAmountPayment)
+  console.log(minAmountDep)
+  console.log(maxAmountDep)
+  
   // Add input event listeners to the input fields
   sumToInput.addEventListener('input', validateInputs);
   sumFromInput.addEventListener('input', validateInputs);
