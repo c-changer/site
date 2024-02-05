@@ -176,6 +176,9 @@ def exchange(request):
             except:
                 pass
             
+            minAmount = DepositSettings.objects.get(title="По умолчанию").min
+            maxAmount = DepositSettings.objects.get(title="По умолчанию").max
+            
             exchange_id = secrets.token_hex(6)  # 6 bytes will generate 12 characters
             
             first_word = coinFrom.split()[0]
