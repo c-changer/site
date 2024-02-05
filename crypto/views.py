@@ -257,9 +257,12 @@ def deal(request):
             try:
                 crypto = Crypto.objects.get(name=first_word)
             except:
-                crypto = Crypto.objects.get(symbol=first_word)
-            
-            qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
+                try:
+                    crypto = Crypto.objects.get(symbol=first_word)
+                except:
+                    crypto = None
+            if crypto is not None:
+                qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
         except:
             qrcode = DepositPayment.objects.get(address=exchange.dep_wallet).qrcode  
             
