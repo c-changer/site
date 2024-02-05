@@ -52,7 +52,7 @@
                       </div>
                       <div class="hidden__search">
                        <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#search" style="width:36px;" alt="">
-                        <input type="search" placeholder="Поиск" class="hidden__search-field" />
+                        <input type="search" placeholder="Поиск" class=" hidden__search-field-payment" />
                       </div>
                       <div class="hidden__choose">
                         <button type="button" class="hidden__choose-link active">Все</button><!--  -->
@@ -106,7 +106,7 @@
                       </div>
                       <div class="hidden__search">
                         <img src="https://coinchanger.in/img/sprite.svg?v=1666338994#search" style="width:36px;" alt="">
-                        <input type="search" placeholder="Поиск" class="hidden__search-field" />
+                        <input type="search" placeholder="Поиск" class="hidden__search-field hidden__search-field-dep" />
                       </div>
                       <div class="hidden__choose">
                         <button type="button" class="hidden__choose-link hidden__choose-link-all active">Все</button><button type="button" class="hidden__choose-link hidden__choose-link-crypto">Криптовалюты</button><!--  --><button type="button" class="hidden__choose-link hidden__choose-link-bank">Банки RUB</button><!--  -->
@@ -1019,7 +1019,7 @@ closeButtons.forEach((closeButton, index) => {
 </script>
 
 <script>
-  const searchField = document.querySelector('.hidden__search-field');
+  const searchField = document.querySelector('.hidden__search-field-payment');
   const coinItems = document.querySelectorAll('.hidden__item-name-payment');
 
   searchField.addEventListener('input', function() {
@@ -1029,6 +1029,21 @@ closeButtons.forEach((closeButton, index) => {
       const itemText = item.textContent.toLowerCase();
       const shouldShow = itemText.includes(searchTerm);
       item.closest('.hidden__item-payment').style.display = shouldShow ? 'flex' : 'none';
+    });
+  });
+</script>
+
+<script>
+  const searchField = document.querySelector('.hidden__search-field-dep');
+  const coinItems = document.querySelectorAll('.hidden__item-name-dep');
+
+  searchField.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+
+    coinItems.forEach(item => {
+      const itemText = item.textContent.toLowerCase();
+      const shouldShow = itemText.includes(searchTerm);
+      item.closest('.hidden__item-dep').style.display = shouldShow ? 'flex' : 'none';
     });
   });
 </script>
