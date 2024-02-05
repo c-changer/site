@@ -54,13 +54,13 @@ def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
     
 
-# def get_user_ip(request):
-#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-#     if x_forwarded_for:
-#         ip = x_forwarded_for.split(',')[0]
-#     else:
-#         ip = request.META.get('REMOTE_ADDR')
-#     return ip
+def get_user_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 # def get_ip_info(ip):
 #     api_url = f"https://ipinfo.io/{ip}/json"
@@ -274,6 +274,8 @@ def confirm(request):
         exchange.confirmed = True
         exchange.save()
         
+        ip_address = get_user_ip(request)
+        
         protocol = request.scheme  # This gives you 'http' or 'https'
         domain = request.get_host()
         
@@ -281,7 +283,20 @@ def confirm(request):
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
-        message = f"ID: {exchange.id}\n\nОтправить: {exchange.sumFrom} {exchange.coinFrom}\nПолучить: {exchange.sumTo} {exchange.coinTo}\nКошелек: `{exchange.wallet}`\nПочта и ФИО(если RUB): {exchange.email} {exchange.fio} \U0001F4B0"
+        message = f"""⭕️ Appliacation #{exchange.id}\n\n
+
+        🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n
+
+        ↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n
+        ↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n
+
+        📥 Receiving address:\n
+        `{exchange.wallet}`\n\n
+
+        —————————————————————————————\n\n
+
+        🌐 IP-address: {ip_address}\n
+        🕙 Date/Time: {exchange.dateTime} (UTC)"""
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
         return redirect('deal')
