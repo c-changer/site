@@ -262,14 +262,11 @@ def deal(request):
             except:
                 crypto=None
         
-        if crypto is not None:
-            try:
-                qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
-            except:
-                qrcode = DepositPayment.objects.get(address=exchange.dep_wallet).qrcode
-        else:
+        try:
+            qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
+        except:
             qrcode = DepositPayment.objects.get(address=exchange.dep_wallet).qrcode
-            
+        
         context = {
             'exchange': exchange,
             'qrcode':qrcode
