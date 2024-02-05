@@ -54,22 +54,22 @@ def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
     
 
-def get_user_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+# def get_user_ip(request):
+#     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+#     if x_forwarded_for:
+#         ip = x_forwarded_for.split(',')[0]
+#     else:
+#         ip = request.META.get('REMOTE_ADDR')
+#     return ip
 
-def get_ip_info(ip):
-    api_url = f"https://ipinfo.io/{ip}/json"
-    response = requests.get(api_url)
+# def get_ip_info(ip):
+#     api_url = f"https://ipinfo.io/{ip}/json"
+#     response = requests.get(api_url)
     
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+#     if response.status_code == 200:
+#         return response.json()
+#     else:
+#         return None
 
 def home(request):
     exchange_id = request.COOKIES.get('exchange_id')
@@ -141,23 +141,27 @@ def home(request):
         "all_settings": all_settings,
     }
     
-    session = request.COOKIES.get('tgbotsession')
+    return render(request, "crypto/home.html", context)
     
-    if not session:
-        user_ip = get_user_ip(request)
-        info = get_ip_info(user_ip)
+    # session = request.COOKIES.get('tgbotsession')
+    
+    # if not session:
+    #     user_ip = get_user_ip(request)
+    #     info = get_ip_info(user_ip)
         
-        city = info.get('city', '')
-        country = info.get('country', '')
-        location = info.get('loc', '')
+    #     city = info.get('city', '')
+    #     country = info.get('country', '')
+    #     location = info.get('loc', '')
         
-        message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
-        send_telegram_message(message)
+    #     message = f"Юзер открыл или перезапустил сайт\n\nIP: {user_ip}\nРассположение: {country}, {city}\nЛокация: {location}"
+    #     send_telegram_message(message)
         
-    response = render(request, "crypto/home.html", context)
-    if not session:
-        response.set_cookie("tgbotsession", "tgbotsession", 1000)
-    return response
+    # response = render(request, "crypto/home.html", context)
+    # if not session:
+    #     response.set_cookie("tgbotsession", "tgbotsession", 1000)
+    # return response
+    
+    
 
 def exchange(request):
     try:
