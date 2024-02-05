@@ -1040,7 +1040,7 @@ closeButtons.forEach((closeButton, index) => {
   searchFieldDep.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
 
-    coinItems.forEach(item => {
+    coinItemsDep.forEach(item => {
       const itemText = item.textContent.toLowerCase();
       const shouldShow = itemText.includes(searchTerm);
       item.closest('.hidden__item-dep').style.display = shouldShow ? 'flex' : 'none';
