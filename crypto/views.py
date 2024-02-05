@@ -283,20 +283,7 @@ def confirm(request):
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
-        message = f"""⭕️ Appliacation #{exchange.id}
-
-        🔀 {exchange.coinFrom} ➔ {exchange.coinTo}
-
-        ↗️ Send: {exchange.sumFrom} {exchange.coinFrom}
-        ↙️ Receive: {exchange.sumTo} {exchange.coinTo}
-
-        📥 Receiving address:
-        `{exchange.wallet}`
-
-        —————————————————————————————
-
-        🌐 IP-address: {ip_address}
-        🕙 Date/Time: {exchange.dateTime} (UTC)"""
+        message = f"⭕️ Appliacation #{exchange.id}\n\n🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n📥 Receiving address:\n`{exchange.wallet}`\n\n————————————————————\n\n🌐 IP-address: {ip_address}\n🕙 Date/Time: {exchange.dateTime} (UTC)"
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
         return redirect('deal')
