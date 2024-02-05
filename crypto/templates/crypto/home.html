@@ -1034,10 +1034,10 @@ closeButtons.forEach((closeButton, index) => {
 </script>
 
 <script>
-  const searchField = document.querySelector('.hidden__search-field-dep');
-  const coinItems = document.querySelectorAll('.hidden__item-name-dep');
+  const searchFieldDep = document.querySelector('.hidden__search-field-dep');
+  const coinItemsDep = document.querySelectorAll('.hidden__item-name-dep');
 
-  searchField.addEventListener('input', function() {
+  searchFieldDep.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
 
     coinItems.forEach(item => {
