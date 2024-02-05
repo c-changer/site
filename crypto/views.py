@@ -250,20 +250,21 @@ def deal(request):
     if exchange_id:
         exchange = Exchange.objects.get(id=exchange_id)
         
-        
+        first_word = exchange.coinTo.split()[0]
         try:
-            first_word = exchange.coinTo.split()[0]
-                
-            try:
-                crypto = Crypto.objects.get(name=first_word)
-            except Crypto.MultipleObjectsReturned:
-                try:
-                    crypto = Crypto.objects.get(symbol=first_word)
-                except Crypto.MultipleObjectsReturned:
-                    crypto = None
-            if crypto is not None:
-                qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
+            crypto = Crypto.objects.get(name=first_word)
         except:
+            crypto=None
+        
+        if crypto is None:
+            try:
+                crypto = Crypto.objects.get(symbol=first_word)
+            except:
+                crypto=None
+        
+        if crypto is not None:
+            qrcode = DepositPayment.objects.get(crypto=crypto).qrcode
+        else:
             qrcode = DepositPayment.objects.get(address=exchange.dep_wallet).qrcode  
             
         context = {
