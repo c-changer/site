@@ -284,7 +284,7 @@ def confirm(request):
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
-        formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
+        formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)").replace('.', '\\.')
         
         formetted_exchange_coinFrom = exchange.coinFrom.replace('-', '\\-')
         formetted_exchange_coinTo = exchange.coinTo.replace('-', '\\-')
