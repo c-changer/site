@@ -62,24 +62,23 @@ def kukoin_price():
     #Fiat
     fiatList = Bank.objects.all()
     for fiat in fiatList:
-        fiat_objects = Bank.objects.filter(symbol=fiat, is_available=True).first()
+        obj = Bank.objects.filter(symbol=fiat, is_available=True).first()
 
         if not fiat_objects:
-            print(coin)
+            print(fiat)
             continue 
         
-        for obj in fiat_objects:
-            kukoin_url = f"https://api.kucoin.com/api/v1/prices?base={fiat}&&currencies=USDT"
-            response = requests.get(kukoin_url)
+        kukoin_url = f"https://api.kucoin.com/api/v1/prices?base={obj}&&currencies=USDT"
+        response = requests.get(kukoin_url)
 
-            data = response.json()
-            data = data.get('data')
-            price = data.get('USDT', '0')
-            print(price)
-            
-            obj.price = price
-            
-            obj.save()
+        data = response.json()
+        data = data.get('data')
+        price = data.get('USDT', '0')
+        print(price)
+        
+        obj.price = price
+        
+        obj.save()
     
     
 
