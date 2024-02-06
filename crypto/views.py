@@ -286,7 +286,7 @@ def confirm(request):
         
         formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
         
-        message = "⭕️*Appliacation \#{}*\n\n🔀 *{} ➔ {}*\n\n↗️ *Send:* {} *{}*\n↙️ *Receive:* {} *{}*\n\n📥 *Receiving address:*\n`{}`\n\n\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\n\n🌐 *IP\-address:* {}\n🕙 *Date/Time:* {}"
+        message = "⭕️*Appliacation \#\{\}*\n\n🔀 *{} ➔ {}*\n\n↗️ *Send:* {} *{}*\n↙️ *Receive:* {} *{}*\n\n📥 *Receiving address:*\n`{}`\n\n\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\n\n🌐 *IP\-address:* {}\n🕙 *Date/Time:* {}"
         formatted_message = message.format(
             exchange_id,
             exchange.coinFrom.replace('-', '\\-'),
