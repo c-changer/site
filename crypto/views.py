@@ -286,7 +286,7 @@ def confirm(request):
         
         formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
         
-        message = f"⭕️*Appliacation \#{exchange.id}*\n\n🔀 *{exchange.coinFrom} ➔ {exchange.coinTo}*\n\n↗️ *Send:* {exchange.sumFrom} *{exchange.coinFrom}*\n↙️ *Receive:* {exchange.sumTo} *{exchange.coinTo}*\n\n📥 *Receiving address:*\n`{exchange.wallet}`\n\n🌐 *IP address:* {ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
+        message = f"⭕️*Appliacation \#{exchange.id}*\n\n🔀 *{exchange.coinFrom} ➔ {exchange.coinTo}*\n\n↗️ *Send:* {exchange.sumFrom} *\{exchange.coinFrom}*\n↙️ *Receive:* {exchange.sumTo} *\{exchange.coinTo}*\n\n📥 *Receiving address:*\n`{exchange.wallet}`\n\n🌐 *IP address:* {ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
         
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
