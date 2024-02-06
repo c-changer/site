@@ -289,12 +289,12 @@ def confirm(request):
         message = "⭕️*Appliacation \#\{\}*\n\n🔀 *{} ➔ {}*\n\n↗️ *Send:* {} *{}*\n↙️ *Receive:* {} *{}*\n\n📥 *Receiving address:*\n`{}`\n\n\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\n\n🌐 *IP\-address:* {}\n🕙 *Date/Time:* {}"
         formatted_message = message.format(
             exchange_id,
-            exchange.coinFrom.replace('-', '\\-'),
-            exchange.coinTo.replace('-', '\\-'),
+            exchange.coinFrom.replace('-', '\-'),
+            exchange.coinTo.replace('-', '\-'),
             exchange.sumFrom,
-            exchange.coinFrom.replace('-', '\\-'),
+            exchange.coinFrom.replace('-', '\-'),
             exchange.sumTo,
-            exchange.coinTo.replace('-', '\\-'),
+            exchange.coinTo.replace('-', '\-'),
             exchange.wallet,
             ip_address,
             formatted_date_time
