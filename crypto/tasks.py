@@ -71,14 +71,21 @@ def kukoin_price():
         kukoin_url = f"https://api.kucoin.com/api/v1/prices?base={obj}&&currencies=USDT"
         response = requests.get(kukoin_url)
 
-        data = response.json()
-        data = data.get('data')
-        price = data.get('USDT', '0')
-        print(price)
-        
-        obj.price = price
-        
-        obj.save()
+        if response.status_code == 200:
+            data = response.json()
+            data = data.get('data')
+
+            if data is not None:
+                price = data.get('USDT', '0')
+                print(price)
+
+                obj.price = price
+                obj.save()
+            else:
+                print("No data in response")
+        else:
+            print(f"Error: {response.status_code}")
+
     
     
 
