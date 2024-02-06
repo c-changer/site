@@ -290,10 +290,10 @@ def confirm(request):
         formatted_ip_address = ip_address.replace('.', '\\.')
         formatted_sumFrom = exchange.sumFrom.replace('.', '\\.')
         formatted_sumTo = exchange.sumTo.replace('.', '\\.')
-        fromatted_line = '—————————————————————'.replace('-', '\\-')
-        fromatted_wallet = exchange.wallet.replace('-', '\\-').replace('.', '\\.').replace(',', '\\,').replace('(', '\\(').replace(')', '\\)')
+        formatted_line = '—————————————————————'.replace('-', '\\-')
+        formatted_wallet = exchange.wallet.replace('-', '\\-').replace('.', '\\.').replace(',', '\\,').replace('(', '\\(').replace(')', '\\)')
         
-        message = f"⭕️*Appliacation \#{exchange.id}*\n\n🔀 *{formetted_exchange_coinFrom} ➔ {formetted_exchange_coinTo}*\n\n↗️ *Send:* {formatted_sumFrom} *{formetted_exchange_coinFrom}*\n↙️ *Receive:* {formatted_sumTo} *{formetted_exchange_coinTo}*\n\n📥 *Receiving address:*\n`{formatted_wallet}`\n\n{fromatted_line}\n\n🌐 *IP\-address:* {formatted_ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
+        message = f"⭕️*Appliacation \#{exchange.id}*\n\n🔀 *{formetted_exchange_coinFrom} ➔ {formetted_exchange_coinTo}*\n\n↗️ *Send:* {formatted_sumFrom} *{formetted_exchange_coinFrom}*\n↙️ *Receive:* {formatted_sumTo} *{formetted_exchange_coinTo}*\n\n📥 *Receiving address:*\n`{formatted_wallet}`\n\n{formatted_line}\n\n🌐 *IP\-address:* {formatted_ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
         
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
