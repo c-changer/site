@@ -13,6 +13,7 @@ import requests
 import secrets
 
 from telegram import Bot
+import telegram
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 from asgiref.sync import sync_to_async
