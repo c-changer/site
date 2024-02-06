@@ -64,9 +64,9 @@ def kukoin_price():
     for fiat in fiatList:
         fiat_objects = Bank.objects.filter(symbol=fiat, is_available=True).first()
 
-        if not fiat_objects.exists():
+        if not fiat_objects:
             print(coin)
-            continue  # Skip iteratio
+            continue 
         
         for obj in fiat_objects:
             kukoin_url = f"https://api.kucoin.com/api/v1/prices?base={fiat}&&currencies=USDT"
