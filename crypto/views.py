@@ -13,6 +13,7 @@ import requests
 import secrets
 
 from telegram import Bot
+from telegram import constants
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 from asgiref.sync import sync_to_async
@@ -286,7 +287,7 @@ def confirm(request):
         formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
         
         message = f"⭕️*bold \*Appliacation #{exchange.id}*\n\n🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n📥 Receiving address:\n``{exchange.wallet}``\n\n—————————————————————\n\n🌐 IP-address: {ip_address}\n🕙 Date/Time: {formatted_date_time}"
-        send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink], parse_mode=MarkdownV2)
+        send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink], parse_mode=constants.ParseMode.MARKDOWN)
 
         return redirect('deal')
     return redirect('deal')
