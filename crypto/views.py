@@ -49,7 +49,7 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
         await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard, parse_mode=telegram.constants.ParseMode.MARKDOWN_V2)
     else:
         # If no buttons are provided, send a simple message without buttons
-        await bot.send_message(chat_id=chat_id, text=message)
+        await bot.send_message(chat_id=chat_id, text=message, parse_mode=telegram.constants.ParseMode.MARKDOWN_V2)
 
 def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
     asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
