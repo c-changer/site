@@ -286,8 +286,19 @@ def confirm(request):
         
         formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
         
-        message = f"⭕️*Appliacation \#{exchange.id}*\n\n🔀 *{exchange.coinFrom.replace("-", "\\-")} ➔ {exchange.coinTo.replace("-", "\\-")}*\n\n↗️ *Send:* {exchange.sumFrom} *{exchange.coinFrom.replace("-", "\\-")}*\n↙️ *Receive:* {exchange.sumTo} *{exchange.coinTo.replace("-", "\\-")}*\n\n📥 *Receiving address:*\n`{exchange.wallet}`\n\n\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\n\n🌐 *IP\-address:* {ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
-        
+        message = "⭕️*Appliacation \#{}*\n\n🔀 *{} ➔ {}*\n\n↗️ *Send:* {} *{}*\n↙️ *Receive:* {} *{}*\n\n📥 *Receiving address:*\n`{}`\n\n\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\—\n\n🌐 *IP\-address:* {}\n🕙 *Date/Time:* {}"
+        formatted_message = message.format(
+            exchange_id,
+            exchange.coinFrom.replace('-', '\\-'),
+            exchange.coinTo.replace('-', '\\-'),
+            exchange.sumFrom,
+            exchange.coinFrom.replace('-', '\\-'),
+            exchange.sumTo,
+            exchange.coinTo.replace('-', '\\-'),
+            exchange.wallet,
+            ip_address,
+            formatted_date_time
+        )
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
         return redirect('deal')
