@@ -62,7 +62,7 @@ def kukoin_price():
     #Fiat
     fiatList = Bank.objects.all()
     for fiat in fiatList:
-        fiat_objects = Bank.objects.filter(symbol=fiat, is_available=True)
+        fiat_objects = Bank.objects.filter(symbol=fiat, is_available=True).first()
 
         if not fiat_objects.exists():
             print(coin)
