@@ -187,12 +187,18 @@ def exchange(request):
             
             first_word = coinFrom.split()[0]
             
+            
             try:
                 crypto = Crypto.objects.get(name=first_word)
             except:
                 crypto = Crypto.objects.get(symbol=first_word)
             
-            deposit_payment = DepositPayment.objects.get(crypto=crypto)    
+            try:
+                deposit_payment = DepositPayment.objects.get(crypto=crypto) 
+            except:
+                second_word = coinFrom.split()[1] 
+                deposit_payment = DepositPayment.objects.get(crypto=crypto, network=second_word) 
+
             
             exchange = Exchange.objects.create(
                 id=exchange_id,
