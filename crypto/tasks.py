@@ -2,14 +2,15 @@ from celery import shared_task
 import requests
 from decimal import Decimal
 
-from .models import Crypto
+from .models import Crypto, Bank
 
 from decimal import Decimal, ROUND_DOWN
 
 from app.settings import CoinMarketCup
 
 @shared_task
-def binance_price():
+def kukoin_price():
+    #Crypto
     coinList = Crypto.objects.all()
 
     usdt = Crypto.objects.get(symbol="USDT")
@@ -57,3 +58,28 @@ def binance_price():
             except Exception as e:
                 # Handle any additional errors when saving the object
                 print(f"Error saving object: {e}")
+                
+    #Fiat
+    fiatList = Bank.objects.all()
+    for fiat in fiatList:
+        fiat_objects = Bank.objects.filter(symbol=fiat, is_available=True)
+
+        if not fiat_objects.exists():
+            print(coin)
+            continue  # Skip iteratio
+        
+        for obj in fiat_objects:
+            kukoin_url = f"https://api.kucoin.com/api/v1/prices?base={fiat}&&currencies=USDT"
+            response = requests.get(kukoin_url)
+
+            data = response.json()
+            data = data.get('data')
+            price = data.get('USDT', '0')
+            print(price)
+            
+            obj.price = price
+            
+            obj.save()
+    
+    
+
