@@ -13,7 +13,6 @@ import requests
 import secrets
 
 from telegram import Bot
-from telegram import constants
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 import asyncio
 from asgiref.sync import sync_to_async
@@ -46,7 +45,7 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
 
     if buttons:
         keyboard = InlineKeyboardMarkup(buttons)
-        await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard, parse_mode=constants.ParseMode.MARKDOWN)
+        await bot.send_message(chat_id=chat_id, text=message, reply_markup=keyboard, parse_mode=telegram.ParseMode.HTML)
     else:
         # If no buttons are provided, send a simple message without buttons
         await bot.send_message(chat_id=chat_id, text=message)
@@ -286,7 +285,7 @@ def confirm(request):
         
         formatted_date_time = exchange.dateTime.strftime("%d.%m.%y, %H:%M (%Z)")
         
-        message = f"⭕️*bold \*Appliacation #{exchange.id}*\n\n🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n📥 Receiving address:\n``{exchange.wallet}``\n\n—————————————————————\n\n🌐 IP-address: {ip_address}\n🕙 Date/Time: {formatted_date_time}"
+        message = f"⭕️<b>Appliacation #{exchange.id}</b>\n\n🔀 {exchange.coinFrom} ➔ {exchange.coinTo}\n\n↗️ Send: {exchange.sumFrom} {exchange.coinFrom}\n↙️ Receive: {exchange.sumTo} {exchange.coinTo}\n\n📥 Receiving address:\n``{exchange.wallet}``\n\n—————————————————————\n\n🌐 IP-address: {ip_address}\n🕙 Date/Time: {formatted_date_time}"
         send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
 
         return redirect('deal')
