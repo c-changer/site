@@ -313,7 +313,7 @@ def cancel(request):
             response = redirect('home')  # Redirect to the home page (adjust the URL as needed)
             response.delete_cookie('exchange_id')
 
-            message = f"❌Юзер отменил сделку\n\nID: #{exchange_id}"
+            message = f"❌*Юзер отменил сделку*\n\n*ID:* \#{exchange_id}"
             send_telegram_message(message)
             return response
         else:
