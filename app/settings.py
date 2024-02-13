@@ -154,7 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 
-CoinMarketCup = "9957bc10-5c0c-4ec6-98e3-e98e08969dc4"
+CoinMarketCup = "--"
 
 
 JAZZMIN_SETTINGS = {
