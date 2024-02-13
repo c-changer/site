@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-a^nktl*mn@(5+(&fd0$n*s6m3bx9c541wvi=8nie$g%qbyk(7n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.136.49.16', "c-changer.in", "www.c-changer.in", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ['45.136.49.16', "c-changer.com", "www.c-changer.com", "0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -60,8 +60,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://c-changer.in"]
-CSRF_COOKIE_DOMAIN = 'c-changer.in'
+CSRF_TRUSTED_ORIGINS = ["https://c-changer.com"]
+CSRF_COOKIE_DOMAIN = 'c-changer.com'
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
 
@@ -159,13 +159,13 @@ CoinMarketCup = "--"
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "c-changer.in",
+    "site_title": "c-changer.com",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "c-changer.in",
+    "site_header": "c-changer.com",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "c-changer.in",
+    "site_brand": "c-changer.com",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": "images/favicon.ico",
@@ -183,10 +183,10 @@ JAZZMIN_SETTINGS = {
     "site_icon": "images/favicon.ico",
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the c-changer.in Admin Panel",
+    "welcome_sign": "Welcome to the c-changer.com Admin Panel",
 
     # Copyright on the footer
-    "copyright": "c-changer.in",
+    "copyright": "c-changer.com",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
