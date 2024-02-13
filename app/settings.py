@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a^nktl*mn@(5+(&fd0$n*s6m3bx9c541wvi=8nie$g%qbyk(7n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['45.136.49.16', "c-changer.in", "www.c-changer.in", "0.0.0.0", "127.0.0.1"]
 
@@ -142,7 +142,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "collected_static",
 ]
 STATIC_ROOT = BASE_DIR / 'collected_static'
 MEDIA_ROOT = BASE_DIR / 'media'
