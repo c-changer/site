@@ -189,8 +189,8 @@ def exchange(request):
             
             return JsonResponse({"coinFrom": coinFrom, "first_word": first_word})
             
-            except:
-                pass
+    except:
+        pass
     #         try:
     #             crypto = Crypto.objects.get(name=first_word)
     #         except:
