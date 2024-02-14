@@ -187,48 +187,49 @@ def exchange(request):
             
             first_word = coinFrom.split()[0]
             
-            print(coinFrom)
-            print(first_word)
+            return JsonResponse({"coinFrom": coinFrom, "first_word": first_word})
             
-            try:
-                crypto = Crypto.objects.get(name=first_word)
             except:
-                crypto = Crypto.objects.get(symbol=first_word)
+                pass
+    #         try:
+    #             crypto = Crypto.objects.get(name=first_word)
+    #         except:
+    #             crypto = Crypto.objects.get(symbol=first_word)
             
-            try:
-                deposit_payment = DepositPayment.objects.get(crypto=crypto) 
-            except:
-                second_word = coinFrom.split()[1] 
-                deposit_payment = DepositPayment.objects.get(crypto=crypto, network=second_word) 
+    #         try:
+    #             deposit_payment = DepositPayment.objects.get(crypto=crypto) 
+    #         except:
+    #             second_word = coinFrom.split()[1] 
+    #             deposit_payment = DepositPayment.objects.get(crypto=crypto, network=second_word) 
 
             
-            exchange = Exchange.objects.create(
-                id=exchange_id,
-                coinFrom=coinFrom,
-                coinTo=coinTo,
-                sumFrom=sumFrom,
-                sumTo=sumTo,
-                email=email,
-                wallet=wallet,
-                dep_wallet=deposit_payment.address,
-                fio=fio
-            )
+    #         exchange = Exchange.objects.create(
+    #             id=exchange_id,
+    #             coinFrom=coinFrom,
+    #             coinTo=coinTo,
+    #             sumFrom=sumFrom,
+    #             sumTo=sumTo,
+    #             email=email,
+    #             wallet=wallet,
+    #             dep_wallet=deposit_payment.address,
+    #             fio=fio
+    #         )
             
-            exchange.save()
+    #         exchange.save()
             
-            # Set the 12-character token as a cookie
-            response = redirect('deal')
-            response.set_cookie('exchange_id', exchange_id, 3600)
+    #         # Set the 12-character token as a cookie
+    #         response = redirect('deal')
+    #         response.set_cookie('exchange_id', exchange_id, 3600)
 
-            return response
-            # return redirect('contact')
-        else:
-            response_data = {'success': False, 'message': 'Метод запроса не поддерживается'}
-            return JsonResponse(response_data)
-    except Exception as e:
-        print(e)  # Print the exception to the console for debugging
-        response_data = {'success': False, 'message': e}
-        return JsonResponse(response_data)
+    #         return response
+    #         # return redirect('contact')
+    #     else:
+    #         response_data = {'success': False, 'message': 'Метод запроса не поддерживается'}
+    #         return JsonResponse(response_data)
+    # except Exception as e:
+    #     print(e)  # Print the exception to the console for debugging
+    #     response_data = {'success': False, 'message': e}
+    #     return JsonResponse(response_data)
 
 def step2(request, exchange_id):
     try:
