@@ -187,6 +187,8 @@ def exchange(request):
             
             first_word = coinFrom.split()[0]
             
+            print(coinFrom)
+            print(first_word)
             
             try:
                 crypto = Crypto.objects.get(name=first_word)
