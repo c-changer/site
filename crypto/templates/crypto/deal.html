@@ -40,7 +40,7 @@
                 <!--  -->
               </div>
               <div class="modal__footer">
-                {% if exchange.status != "S2" or exchange.status != "S3" %}
+                {% if exchange.status != "S2" and exchange.status != "S3" %}
                 <a href="{% url 'cancel' %}" class="modal__cancel">Отменить сделку</a>
                 {% endif %}
                 <a class="modal__action" href="{% url 'confirm' %}">Подтвердить данные</a>
