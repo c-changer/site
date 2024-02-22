@@ -15,6 +15,7 @@ urlpatterns = [
     path("confirm/", confirm, name="confirm"),
     path("check_status/", check_status, name="check_status"),
     path("step2/<str:exchange_id>/", step2),
+    path("step3/<str:exchange_id>/", step3),
     path("errorTG/<str:exchange_id>/", errorTG),
     path("successTG/<str:exchange_id>/", successTG),
 
