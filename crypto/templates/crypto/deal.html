@@ -77,8 +77,8 @@
                 <br />
                 Мы автоматически зафиксируем курс в момент 2-го подтверждения и произведем обмен.
                 <br />
-                {% if exchange.status != "S2" or exchange.status != "S3" %}
-                <a href="{% url 'cancel' %}">Отменить сделку</a>
+                {% if exchange.status != "S2" and exchange.status != "S3" %}
+                  <a href="{% url 'cancel' %}">Отменить сделку</a>
                 {% endif %}
               </p>
             </div>
