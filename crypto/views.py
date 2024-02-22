@@ -31,7 +31,7 @@ def get_tgbot_token():
 def get_tgbot_chat_id():
     return TGbot.objects.get(name="Изменить").chat_id
 
-async def send_telegram_message_async(message, button_1=None, button_2=None, button_3=None):
+async def send_telegram_message_async(message, button_1=None, button_2=None, button_3=None, button_4=None):
     token = await get_tgbot_token()
     chat_id = await get_tgbot_chat_id()
     bot = Bot(token=token)
@@ -43,6 +43,8 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
         buttons.append([InlineKeyboardButton(text=button_2[0], url=button_2[1])])
     if button_3:
         buttons.append([InlineKeyboardButton(text=button_3[0], url=button_3[1])])
+    if button_4:
+        buttons.append([InlineKeyboardButton(text=button_4[0], url=button_4[1])])
 
     if buttons:
         keyboard = InlineKeyboardMarkup(buttons)
@@ -51,8 +53,8 @@ async def send_telegram_message_async(message, button_1=None, button_2=None, but
         # If no buttons are provided, send a simple message without buttons
         await bot.send_message(chat_id=chat_id, text=message, parse_mode=telegram.constants.ParseMode.MARKDOWN_V2)
 
-def send_telegram_message(message, button_1=None, button_2=None, button_3=None):
-    asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3))
+def send_telegram_message(message, button_1=None, button_2=None, button_3=None, button_4=None):
+    asyncio.run(send_telegram_message_async(message, button_1, button_2, button_3, button_4))
     
 
 def get_user_ip(request):
@@ -238,6 +240,14 @@ def step2(request, exchange_id):
         return render(request, "bot.html")
     except:
         return render(request, "bot_error.html")
+def step3(request, exchange_id):
+    try:
+        exchange = Exchange.objects.get(id=exchange_id)
+        exchange.status = "S3"
+        exchange.save()
+        return render(request, "bot.html")
+    except:
+        return render(request, "bot_error.html")
 def errorTG(request, exchange_id):
     try:
         exchange = Exchange.objects.get(id=exchange_id)
@@ -289,6 +299,7 @@ def confirm(request):
         domain = request.get_host()
         
         step2Link = f"{protocol}://{domain}/step2/{exchange_id}/"
+        step3Link = f"{protocol}://{domain}/step3/{exchange_id}/"
         errorLink = f"{protocol}://{domain}/errorTG/{exchange_id}/"
         successLink = f"{protocol}://{domain}/successTG/{exchange_id}/"
         
@@ -303,7 +314,7 @@ def confirm(request):
         
         message = f"⭕️ *Appliacation \#{exchange.id}*\n\n🔀 *{formetted_exchange_coinFrom} ➔ {formetted_exchange_coinTo}*\n\n↗️ *Send:* {formatted_sumFrom} *{formetted_exchange_coinFrom}*\n↙️ *Receive:* {formatted_sumTo} *{formetted_exchange_coinTo}*\n\n📥 *Receiving address:*\n`{formatted_wallet}`\n\n✉️ *Email:* {formatted_email}\n\n🌐 *IP\ address:* {formatted_ip_address}\n🕙 *Date/Time:* {formatted_date_time}"
         
-        send_telegram_message(message, button_1=["Шаг 2", step2Link], button_2=["Ошибка", errorLink], button_3=["Успешно", successLink])
+        send_telegram_message(message, button_1=["Шаг 2", step2Link],button_2=["Шаг 3", step3Link], button_3=["Ошибка", errorLink], button_4=["Успешно", successLink] )
 
         return redirect('deal')
     return redirect('deal')
