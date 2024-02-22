@@ -40,7 +40,9 @@
                 <!--  -->
               </div>
               <div class="modal__footer">
+                {% if exchange.status != "S2" or exchange.status != "S3" %}
                 <a href="{% url 'cancel' %}" class="modal__cancel">Отменить сделку</a>
+                {% endif %}
                 <a class="modal__action" href="{% url 'confirm' %}">Подтвердить данные</a>
               </div>
             </div>
@@ -75,7 +77,9 @@
                 <br />
                 Мы автоматически зафиксируем курс в момент 2-го подтверждения и произведем обмен.
                 <br />
+                {% if exchange.status != "S2" or exchange.status != "S3" %}
                 <a href="{% url 'cancel' %}">Отменить сделку</a>
+                {% endif %}
               </p>
             </div>
           </div>
