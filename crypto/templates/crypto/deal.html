@@ -139,7 +139,7 @@
               </div>
             </div>
           </div>
-          <div class="order__step secondstep {% if exchange.status == "S2" %}active{% endif %}">
+          <div class="order__step secondstep {% if exchange.status == "S2" or exchange.status == "S3" %}active{% endif %}">
             <div class="order__step-hdr">
               <div class="order__step-num">2</div>
               <h4 class="order__step-title">Обработка платежа</h4>
