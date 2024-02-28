@@ -295,7 +295,7 @@ def confirm(request):
         
         ip_address = get_user_ip(request)
         
-        protocol = request.scheme  # This gives you 'http' or 'https'
+        protocol = 'https'
         domain = request.get_host()
         
         step2Link = f"{protocol}://{domain}/step2/{exchange_id}/"
