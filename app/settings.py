@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-a^nktl*mn@(5+(&fd0$n*s6m3bx9c541wvi=8nie$g%qbyk(7n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.136.49.16', "c-changer.com", "www.c-changer.com", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ['37.1.207.62', "c-changer.net", "www.c-changer.net", "0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://c-changer.com"]
+CSRF_TRUSTED_ORIGINS = ["https://c-changer.net", "https://www.c-changer.net"]
 CSRF_COOKIE_DOMAIN = 'c-changer.com'
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
