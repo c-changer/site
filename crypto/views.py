@@ -25,11 +25,13 @@ from telegram.ext import CallbackContext
 # Create your views here.
 @sync_to_async
 def get_tgbot_token():
-    return TGbot.objects.get(name="Изменить").token
+    tgbots = TGbot.objects.all()
+    return tgbots[0].token
 
 @sync_to_async
 def get_tgbot_chat_id():
-    return TGbot.objects.get(name="Изменить").chat_id
+    tgbots = TGbot.objects.all()
+    return tgbots[0].chat_id
 
 async def send_telegram_message_async(message, button_1=None, button_2=None, button_3=None, button_4=None):
     token = await get_tgbot_token()
