@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-a^nktl*mn@(5+(&fd0$n*s6m3bx9c541wvi=8nie$g%qbyk(7n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['38.180.38.178', "c-changer.net", "www.c-changer.net", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ['176.126.113.169', "coinchahger.com", "www.coinchahger.com", "0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -60,8 +60,8 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://c-changer.net", "https://www.c-changer.net"]
-CSRF_COOKIE_DOMAIN = 'c-changer.net'
+CSRF_TRUSTED_ORIGINS = ["https://coinchahger.com", "https://www.coinchahger.com"]
+CSRF_COOKIE_DOMAIN = 'coinchahger.com'
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
 
@@ -159,13 +159,13 @@ CoinMarketCup = "--"
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "c-changer.net",
+    "site_title": "coinchahger.com",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "c-changer.net",
+    "site_header": "coinchahger.com",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "c-changer.net",
+    "site_brand": "coinchahger.com",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": "images/favicon.ico",
@@ -183,10 +183,10 @@ JAZZMIN_SETTINGS = {
     "site_icon": "images/favicon.ico",
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the c-changer.net Admin Panel",
+    "welcome_sign": "Welcome to the coinchahger.com Admin Panel",
 
     # Copyright on the footer
-    "copyright": "c-changer.net",
+    "copyright": "coinchahger.com",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
