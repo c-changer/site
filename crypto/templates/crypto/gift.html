@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  c-changer
+{% endblock %}
+{% block metaTitle %}
+  c-changer
+{% endblock %}
+{% block cssStyle %}
+  {% static 'css/error.css' %}
+{% endblock %}
+
+{% block content %}
+<main class="main">
+  <section class="complete">
+    <div class="wrap">
+      <div class="complete__draw">
+        <h3 class="complete__draw-title">Участвуй в розыгрыше!</h3>
+        <div class="complete__draw-text">
+          Каждую пятницу Coinchanger проводит розыгрыш.
+        </div>
+        <div class="complete__draw-text">
+          Победитель получит приз в <b>50 USDT</b> на свой кошелёк.
+        </div>
+        <div class="complete__draw-text">Условия розыгрыша:</div>
+        <ol class="complete__draw-list">
+          <li class="complete__draw-item">
+             Совершите обмен на сумму свыше 3000 долларов на нашем сервисе <a href="/">{{ request.get_host }}</a>.
+
+          </li>
+          <li class="complete__draw-item">
+            Поделитесь этим предложением с друзьями или опубликуйте информацию о нашем сервисе в социальных сетях, указав номер обмена.
+          </li>
+        </ol>
+        <div class="complere__draw-text">Все, кто выполнит условия с пятницы 00:00 до четверга 24:00, участвуют в розыгрыше. Победитель объявляется в нашем телеграм-канале с помощью <a href="https://randomus.ru" target="_blank">randomus.ru</a>.</div>
+        <div class="complete__draw-footer">
+          <a class="complete__draw-action" href="/"
+            >Создать обмен</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}

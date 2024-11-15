@@ -18,5 +18,6 @@ urlpatterns = [
     path("step3/<str:exchange_id>/", step3),
     path("errorTG/<str:exchange_id>/", errorTG),
     path("successTG/<str:exchange_id>/", successTG),
+    path("gift/", gift)
 
 ]

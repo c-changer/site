@@ -23,6 +23,9 @@ from telegram.ext import CallbackContext
 
 
 # Create your views here.
+def gift(request):
+    return render(request, "crypto/gift.html")
+
 @sync_to_async
 def get_tgbot_token():
     return TGbot.objects.first().token
