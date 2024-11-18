@@ -277,11 +277,13 @@ def deal(request):
         exchange = Exchange.objects.get(id=exchange_id)
         
         obj = DepositPayment.objects.filter(address=exchange.dep_wallet).first()
-        qrcode = obj.qrcode
+
+        # Ensure obj and qrcode are not None before accessing attributes
+        qrcode = obj.qrcode if obj else None
         
         context = {
             'exchange': exchange,
-            'qrcode': qrcode
+            'qrcode': qrcode.url if qrcode and qrcode.url else None
         }
         
         return render(request, 'crypto/deal.html', context)
